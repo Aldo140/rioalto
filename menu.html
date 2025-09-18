@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu — Rio Alto Authentic Mexican Food</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles (shared) -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <link rel="icon" href="pictures/logo.png" sizes="32x32" />
+
+  <!-- SEO: basic Restaurant/hasMenu schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Menu",
+    "name":"Rio Alto Menu",
+    "hasMenuSection":[
+      {"@type":"MenuSection","name":"Appetizers"},
+      {"@type":"MenuSection","name":"Soup"},
+      {"@type":"MenuSection","name":"Salads"},
+      {"@type":"MenuSection","name":"Lunch"},
+      {"@type":"MenuSection","name":"Main Course"},
+      {"@type":"MenuSection","name":"Tortas"},
+      {"@type":"MenuSection","name":"Soft Tacos"},
+      {"@type":"MenuSection","name":"Sides"},
+      {"@type":"MenuSection","name":"Drinks"},
+      {"@type":"MenuSection","name":"Desserts"}
+    ]
+  }
+  </script>
+  <script src="assets/js/script.js" defer></script>
+
+</head>
+<body>
+  <!-- ===== Header / Nav (mirrors index) ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html#home">
+        <img src="pictures/logo.png" alt="Rio Alto logo" class="brand-logo" />
+      </a>
+      <nav class="main-nav">
+        <a href="menu.html" aria-current="page">Menu</a>
+        <a href="index.html#story">Our Story</a>
+        <a href="index.html#visit">Visit</a>
+        <a class="cta" href="tel:+14036521261"><i class="fa-solid fa-phone"></i> (403) 652-1261</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><i class="fa fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- ===== Menu Header / Intro ===== -->
+  <section class="sig" aria-label="Menu intro">
+    <div class="container">
+      <h1 class="section-title">Full Menu</h1>
+      <p class="menu-intro">
+        Small-batch Mexican from Mexico City & surrounding provinces. Local Alberta beef (90%), local vegetables, 
+        and <strong>no canned or preprocessed ingredients</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Appetizers ===== -->
+  <section class="sig" aria-label="Appetizers">
+    <div class="container">
+      <h2 class="section-title">Appetizers</h2>
+      <div class="sig-grid">
+        <article class="sig-card">
+          <img src="pictures/empanadas.webp" alt="Empanadas with cabbage, pico and crema" loading="lazy">
+          <div class="sig-body">
+            <h3>Empanadas</h3>
+            <p>Corn dough filled with chicken tinga and cheese. Topped with cabbage, pico de gallo and crema fresca.</p>
+            <span class="sig-price">$14</span>
+          </div>
+        </article>
+
+        <article class="sig-card">
+          <img src="pictures/Sopes.webp" alt="Sopes topped with beans, chorizo and salsa" loading="lazy">
+          <div class="sig-body">
+            <h3>Sopes</h3>
+            <p>Three handmade corn tortillas topped with refried beans, potato, chorizo, lettuce, and salsa.</p>
+            <span class="sig-price">$14</span>
+          </div>
+        </article>
+
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Tacos Dorados (Flautas)</h3>
+            <p>2 homemade corn tortillas rolled and fried with beef, chicken or veggie. Served with special green sauce. <em>Lunch hours only</em>.</p>
+            <span class="sig-price">$16</span>
+          </div>
+        </article>
+
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Chorinacho</h3>
+            <p>Layers of tortilla chips and chorizo, served with pico de gallo, cheese and crema fresca.</p>
+            <span class="sig-price">$16</span>
+          </div>
+        </article>
+
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Five Layer Nacho Dip</h3>
+            <p>Refried beans, guacamole, sour cream, cheddar, salsa verde, queso fresco.</p>
+            <span class="sig-price">$16</span>
+          </div>
+        </article>
+
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Chorizo Queso Fundido</h3>
+            <p>Chorizo with homemade guajillo sauce and melted cheese. Served with tortillas.</p>
+            <span class="sig-price">$15</span>
+          </div>
+        </article>
+
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Molletes</h3>
+            <p>Open-faced Mexican bread with refried beans, cheddar, pico de gallo, salsa verde and crema.</p>
+            <span class="sig-price">$12</span>
+          </div>
+        </article>
+
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Guacamole & Chips</h3>
+            <p>House guacamole and tortilla chips.</p>
+            <span class="sig-price">$15</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Soup ===== -->
+  <section class="sig" aria-label="Soup">
+    <div class="container">
+      <h2 class="section-title">Soup</h2>
+      <div class="sig-grid">
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Sopa del día</h3>
+            <p>Chef’s daily soup.</p>
+            <span class="sig-price">$12</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Sopa de Tortilla</h3>
+            <p>Tomato & ancho chile soup with chicken, corn chips, cheddar, avocado, and crema.</p>
+            <span class="sig-price">$12</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Salads ===== -->
+  <section class="sig" aria-label="Salads">
+    <div class="container">
+      <h2 class="section-title">Salads</h2>
+      <div class="sig-grid">
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Nopales (Cactus Salad)</h3>
+            <p>Butter lettuce, pickled nopales, red onions, pico de gallo, radish with guajillo vinaigrette.</p>
+            <span class="sig-price">$13</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Rio Alto Salad</h3>
+            <p>Romaine, avocado, radishes, apples & red onions with lemon jalapeño dressing.</p>
+            <span class="sig-price">$13</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Lunch ===== -->
+  <section class="sig" aria-label="Lunch">
+    <div class="container">
+      <h2 class="section-title">Lunch</h2>
+      <div class="sig-grid">
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Huevos Rancheros</h3>
+            <p>Two fried eggs on corn tortilla, refried beans, cheddar, salsa verde, rice, crema.</p>
+            <span class="sig-price">$15</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Chilaquiles Rio Style</h3>
+            <p>Corn tortilla chips in salsa, topped with chicken, cheese, onion & crema. Choice of salsa verde or roja.</p>
+            <span class="sig-price">$14</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Main Course ===== -->
+  <section class="sig" aria-label="Main Course">
+    <div class="container">
+      <h2 class="section-title">Main Course</h2>
+      <div class="sig-grid">
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Amigas Enchiladas</h3>
+            <p>Corn tortillas filled with Chicken Tinga / Beef Brisket / Pork / Veggie. Choice of salsa.</p>
+            <span class="sig-price">$18.50</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Carne Asada</h3>
+            <p>7oz Mexican-style grilled steak with sautéed onions, nopales, 6oz chorizo; rice, pico and tortillas.</p>
+            <span class="sig-price">$30</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Mole</h3>
+            <p>Stuffed duck with traditional mole. May contain nuts. Served with rice & beans.</p>
+            <span class="sig-price">$27</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Chile Relleno</h3>
+            <p>Stuffed poblano with smoked gouda; ancho chile tomato sauce; rice & beans.</p>
+            <span class="sig-price">$20</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Azteca Lasagna</h3>
+            <p>Corn tortillas, beef tenderloin, spinach, smoked gouda & mascarpone, roasted corn, poblano sauce.</p>
+            <span class="sig-price">$20</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Rio Alto Sombrero Platter</h3>
+            <p>A taste of antojitos: empanadas, tacos, sope, enchiladas, soft tacos with pico & guac.</p>
+            <span class="sig-price">$29</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Tortas ===== -->
+  <section class="sig" aria-label="Tortas">
+    <div class="container">
+      <h2 class="section-title">Tortas (Mexican Sandwiches)</h2>
+      <div class="sig-grid">
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Three Farmers Torta</h3>
+            <p>Shredded chicken tinga, refried beans, butter lettuce, tomato, avocado, mayo.</p>
+            <span class="sig-price">$16</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Ranchero Torta</h3>
+            <p>Slow-cooked marinated beef, refried beans, butter lettuce, tomato, avocado, chipotle mayo.</p>
+            <span class="sig-price">$16</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Crazy Horse</h3>
+            <p>Refried beans, caramelized onions, roasted pineapple, lettuce, tomato, lime, chipotle mayo. Choice of pork or chorizo.</p>
+            <span class="sig-price">$16</span>
+          </div>
+        </article>
+        <article class="sig-card">
+          <div class="sig-body">
+            <h3>Rio Alto Burritos</h3>
+            <p>Whole wheat tortilla with refried beans, rice, chipotle mayo, lettuce & cheddar. Choice of Chicken Tinga, Shredded Beef, Pork, or Veggie. <em>Lunch only.</em></p>
+            <span class="sig-price">$15</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Soft Tacos ===== -->
+  <section class="sig" aria-label="Soft Tacos">
+    <div class="container">
+      <h2 class="section-title">Soft Tacos</h2>
+      <p class="menu-intro">Eat as many as you want. Add: side salad $6.50, pico $3.50, crema $3.50, <strong>guacamole $4.00</strong>.</p>
+    <div class="sig-grid">
+        <article class="sig-card"><div class="sig-body"><h3>Beef</h3><p>Shredded beef, cilantro, onions, lime.</p></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Chicken</h3><p>Chicken tinga, cilantro, onions, roasted pineapple.</p></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Pork</h3><p>Roasted pineapple, salsa verde, lime.</p></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Chorizo</h3><p>Onions, cilantro, lime.</p></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Beans</h3><p>Refried beans, feta cheese, pico de gallo.</p></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Veggie</h3><p>Mushrooms, roasted poblano, roasted corn, crema fresca, feta, salsa verde.</p></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Cactus</h3><p>Fresh cactus, onions, feta, pico de gallo.</p></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Sides ===== -->
+  <section class="sig" aria-label="Sides">
+    <div class="container">
+      <h2 class="section-title">Sides</h2>
+      <div class="sig-grid">
+        <article class="sig-card"><div class="sig-body"><h3>Pico de gallo</h3><p>Small</p><span class="sig-price">$3.50</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Crema fresca</h3><p>Small</p><span class="sig-price">$3.50</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Fresh guacamole</h3><span class="sig-price">$4.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Extra chips</h3><span class="sig-price">$4.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Side salad</h3><span class="sig-price">$6.50</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Drinks ===== -->
+  <section class="sig" aria-label="Drinks">
+    <div class="container">
+      <h2 class="section-title">Drinks</h2>
+
+      <h3 class="section-subtitle" style="margin-top:0">Cold</h3>
+      <div class="sig-grid">
+        <article class="sig-card"><div class="sig-body"><h3>Cranberry + sparkling</h3><span class="sig-price">$4.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Mango + sparkling</h3><span class="sig-price">$4.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Iced Tea</h3><span class="sig-price">$3.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Soft drinks</h3><p>Coke, Diet Coke, Sprite, Ginger Ale, Agua de Jamaica, Horchata, Sidral</p><span class="sig-price">$3.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Agua fresca del día</h3><p>Summer / ask</p><span class="sig-price">$4.00</span></div></article>
+      </div>
+
+      <h3 class="section-subtitle">Alcoholic</h3>
+      <div class="sig-grid">
+        <article class="sig-card"><div class="sig-body"><h3>Imported Mexican Beer</h3><p>Corona, Negra Modelo, Modelo Especial, Pacifico, Dos Equis XX</p><span class="sig-price">$8.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Domestic Beer</h3><p>Budweiser</p><span class="sig-price">$6.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>House Wine</h3><p>Red or White (6oz)</p><span class="sig-price">$10.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Margaritas</h3><p>Lime • Mango • On the rocks w/ hint of jalapeño <br><em>(Gold +$1.50)</em></p><span class="sig-price">$12.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Bulldog</h3><span class="sig-price">$14.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Submarino</h3><span class="sig-price">$14.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Paloma</h3><span class="sig-price">$14.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Charro Negro</h3><span class="sig-price">$12.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Piña Colada</h3><span class="sig-price">$12.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Sangria</h3><span class="sig-price">$12.00</span></div></article>
+      </div>
+
+      <h3 class="section-subtitle">Hot</h3>
+      <div class="sig-grid">
+        <article class="sig-card"><div class="sig-body"><h3>Peru medium roast coffee</h3><p>Add Canadian rye whiskey +$8.00 (coffee only)</p><span class="sig-price">$4.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Peru medium roast espresso</h3><span class="sig-price">$4.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Home blend espresso</h3><span class="sig-price">$4.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Cappuccino</h3><span class="sig-price">$5.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Mocha latte</h3><span class="sig-price">$5.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Premium tea</h3><span class="sig-price">$4.00</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu: Desserts ===== -->
+  <section class="sig" aria-label="Desserts">
+    <div class="container">
+      <h2 class="section-title">Desserts</h2>
+      <p class="menu-intro">All desserts <strong>$10.00</strong></p>
+      <div class="sig-grid">
+        <article class="sig-card"><div class="sig-body"><h3>Churros</h3><p>Cinnamon sugar, cream</p><span class="sig-price">$10.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Mexican Baked Flan</h3><span class="sig-price">$10.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Mexican Cheese Tart</h3><p>Whipped cream & fruit</p><span class="sig-price">$10.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Impossible Cake</h3><p>Chocolate + vanilla flan</p><span class="sig-price">$10.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Tres Leches Cake</h3><span class="sig-price">$10.00</span></div></article>
+        <article class="sig-card"><div class="sig-body"><h3>Rio’s Copa de Ice Cream</h3><p>Ask for today’s flavor</p><span class="sig-price">$10.00</span></div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer (same as index) ===== -->
+  <footer class="sig" aria-label="Footer" style="background:#fff;padding:40px 0">
+    <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;align-items:start">
+      <div>
+        <img src="pictures/logo.png" alt="Rio Alto logo" style="height:64px;object-fit:contain;margin-bottom:10px">
+        <p style="margin:8px 0 0;color:#444">Authentic Mexican food in High River, AB.</p>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 10px;font:800 16px Inter,sans-serif;color:#0F8A5F">Visit</h4>
+        <p style="margin:0;color:#444">
+          118 3 Ave SW<br/>High River, AB T1V 1R3
+        </p>
+        <p style="margin:6px 0 0">
+          <a href="tel:+14036521261" style="color:#0F8A5F;font-weight:700">(403) 652-1261</a>
+        </p>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 10px;font:800 16px Inter,sans-serif;color:#0F8A5F">Hours</h4>
+        <p style="margin:0;color:#444">Mon–Wed 11–8</p>
+        <p style="margin:0;color:#444">Thu–Sat 11–9</p>
+        <p style="margin:0;color:#444">Sun Closed</p>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 10px;font:800 16px Inter,sans-serif;color:#0F8A5F">Links</h4>
+        <p style="margin:0"><a href="index.html#home" style="color:#C1272D;font-weight:700">Home</a></p>
+        <p style="margin:0"><a href="menu.html" style="color:#C1272D;font-weight:700" aria-current="page">Menu</a></p>
+        <p style="margin:0"><a href="index.html#story" style="color:#C1272D;font-weight:700">Our Story</a></p>
+        <p style="margin:0"><a href="index.html#visit" style="color:#C1272D;font-weight:700">Visit</a></p>
+        <p style="margin:0"><a href="https://www.facebook.com/RioAltoHighRiver/" target="_blank" rel="noopener" style="color:#C1272D;font-weight:700"><i class="fa-brands fa-facebook"></i> Facebook</a></p>
+      </div>
+    </div>
+
+    <div class="container" style="text-align:center;margin-top:18px;color:#666;font-size:14px">
+      © <span id="year"></span> Rio Alto. All rights reserved.
+    </div>
+  </footer>
+
+  
+</body>
+</html>

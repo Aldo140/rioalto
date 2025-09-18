@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rio Alto — Authentic Mexican Food in High River, AB</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Icons (for peppers, map, utensils) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <link rel="icon" href="pictures/logo.png" sizes="32x32" />
+
+  <!-- SEO: basic Restaurant schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Rio Alto Authentic Mexican Food",
+    "image": "pictures/front-of-building.jpg",
+    "telephone": "+1-403-652-1261",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "118 3 Ave SW",
+      "addressLocality": "High River",
+      "addressRegion": "AB",
+      "postalCode": "T1V 1R3",
+      "addressCountry": "CA"
+    },
+    "servesCuisine": "Mexican",
+    "priceRange": "$$",
+    "url": "",
+    "sameAs": [
+      "https://www.facebook.com/RioAltoHighRiver/"
+    ],
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"11:00","closes":"20:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday","Friday","Saturday"],"opens":"11:00","closes":"21:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"00:00","closes":"00:00"}
+    ]
+  }
+  </script>
+  <script src="assets/js/script.js" defer></script>
+
+</head>
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <img src="pictures/logo.png" alt="Rio Alto logo" class="brand-logo" />
+      </a>
+      <nav class="main-nav">
+        <a href="menu.html">Menu</a>
+        <a href="#story">Our Story</a>
+        <a href="#visit">Visit</a>
+        <a class="cta" href="tel:+14036521261"><i class="fa-solid fa-phone"></i> (403) 652-1261</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><i class="fa fa-bars"></i></button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <img src="pictures/front-of-building.jpg" alt="Rio Alto Mexican Restaurant front in High River" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1 class="hero-title">RIO ALTO</h1>
+        <p class="hero-sub">Authentic Mexican Food — High River, AB</p>
+        
+        <ul class="proof">
+          <li><i class="fa-solid fa-pepper-hot"></i> 10+ years</li>
+          <li><i class="fa-solid fa-cow"></i> Local Alberta beef (90%)</li>
+          <li><i class="fa-solid fa-seedling"></i> No canned ingredients</li>
+        </ul>
+
+        <div class="hero-ctas">
+          <a class="btn primary" href="menu.html"><i class="fa-solid fa-utensils"></i> View Menu</a>
+          <a class="btn ghost" href="#visit"><i class="fa-solid fa-map-location-dot"></i> Directions</a>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <img src="pictures/mascot.png" alt="Rio Alto mascot with sarape and guitar" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Menu Showcase (two-column layout) ===== -->
+<section id="menu-showcase" class="menu-showcase" aria-label="Menu highlights">
+    <div class="container menu-showcase__grid">
+      
+      <!-- Left: copy + CTA -->
+      <aside class="menu-showcase__copy">
+        <p class="eyebrow">Our Menu</p>
+        <h2 class="headline">Fresh Ingredients,<br>Bold Flavors</h2>
+        <p class="lede">
+          We’re known best for our tableside preparations, including our made-to-order
+          guacamole and flame-grilled specialties that arrive sizzling to the table.
+        </p>
+        <a class="btn primary" href="menu.html">
+          <i class="fa-solid fa-utensils"></i> Order Now
+        </a>
+      </aside>
+  
+      <!-- Right: 2×2 card grid -->
+      <div class="menu-showcase__cards">
+        <!-- Card 1 -->
+        <article class="ms-card">
+          <a href="menu.html#appetizers" class="ms-card__link" aria-label="See appetizers like sopes and antojitos">
+            <img src="pictures/Sopes.webp" alt="Handmade sopes topped with crema and salsa" class="ms-card__img" loading="lazy">
+            <h3 class="ms-card__title">Sopes &amp; Antojitos</h3>
+          </a>
+        </article>
+  
+        <!-- Card 2 -->
+        <article class="ms-card">
+          <a href="menu.html#main" class="ms-card__link" aria-label="See enchiladas and mains">
+            <img src="pictures/Enhilada.jpg" alt="Enchiladas with rice and beans" class="ms-card__img" loading="lazy">
+            <h3 class="ms-card__title">Enchiladas</h3>
+          </a>
+        </article>
+  
+        <!-- Card 3 -->
+        <article class="ms-card">
+          <a href="menu.html#appetizers" class="ms-card__link" aria-label="See empanadas and starters">
+            <img src="pictures/empanadas.webp" alt="Golden empanadas with salsa verde and crema" class="ms-card__img" loading="lazy">
+            <h3 class="ms-card__title">Empanadas</h3>
+          </a>
+        </article>
+  
+        <!-- Card 4: Solid accent tile linking to the full menu -->
+        <article class="ms-card ms-card--accent">
+          <a href="menu.html" class="ms-card__link" aria-label="View all menus">
+            <div class="ms-card__accent">
+              <span class="accent-heading">All&nbsp;Menus</span>
+              <span class="accent-rule" aria-hidden="true"></span>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- ===== Our Story ===== -->
+  <section id="story" class="sig" aria-label="Our Story">
+    <div class="container">
+      <h2 class="section-title">Our Story</h2>
+      <p class="menu-intro">
+        Rio Alto brings recipes from <strong>Mexico City</strong> and nearby provinces, cooked in a traditional Mexican furnace you won’t find anywhere else. 
+        We use <strong>local Alberta beef (90% lean)</strong> and vegetables from nearby farms, and never use canned or preprocessed ingredients. 
+        Small batch. Big flavor. Always authentic.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== Visit ===== -->
+  <section id="visit" class="sig" aria-label="Visit">
+    <div class="container">
+      <h2 class="section-title">Visit Us</h2>
+      <p class="menu-intro" style="margin-bottom:20px">
+        118 3 Ave SW, High River, AB T1V 1R3 • 
+        <a href="tel:+14036521261" style="font-weight:700;color:#0F8A5F">(403) 652-1261</a><br />
+        Thu–Sat 11 a.m.–9 p.m. • Sun Closed • Mon–Wed 11 a.m.–8 p.m.
+      </p>
+
+      <!-- Map embed (responsive) -->
+      <div style="position:relative;padding-top:56.25%;border-radius:16px;overflow:hidden;box-shadow:0 10px 24px rgba(0,0,0,.08);background:#fff">
+        <iframe 
+          title="Map to Rio Alto Authentic Mexican Food"
+          src="https://www.google.com/maps?q=118%203%20Ave%20SW%2C%20High%20River%2C%20AB%20T1V%201R3&output=embed"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+        </iframe>
+      </div>
+
+      <div style="text-align:center;margin-top:20px">
+        <a class="btn primary" href="https://www.google.com/maps?q=Rio+Alto+118+3+Ave+SW+High+River+AB" target="_blank" rel="noopener">
+          <i class="fa-solid fa-location-dot"></i> Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="sig" aria-label="Footer" style="background:#fff;padding:40px 0">
+    <div class="container" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;align-items:start">
+      <div>
+        <img src="pictures/logo.png" alt="Rio Alto logo" style="height:64px;object-fit:contain;margin-bottom:10px">
+        <p style="margin:8px 0 0;color:#444">Authentic Mexican food in High River, AB.</p>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 10px;font:800 16px Inter,sans-serif;color:#0F8A5F">Visit</h4>
+        <p style="margin:0;color:#444">
+          118 3 Ave SW<br/>High River, AB T1V 1R3
+        </p>
+        <p style="margin:6px 0 0">
+          <a href="tel:+14036521261" style="color:#0F8A5F;font-weight:700">(403) 652-1261</a>
+        </p>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 10px;font:800 16px Inter,sans-serif;color:#0F8A5F">Hours</h4>
+        <p style="margin:0;color:#444">Mon–Wed 11–8</p>
+        <p style="margin:0;color:#444">Thu–Sat 11–9</p>
+        <p style="margin:0;color:#444">Sun Closed</p>
+      </div>
+
+      <div>
+        <h4 style="margin:0 0 10px;font:800 16px Inter,sans-serif;color:#0F8A5F">Links</h4>
+        <p style="margin:0"><a href="#home" style="color:#C1272D;font-weight:700">Home</a></p>
+        <p style="margin:0"><a href="menu.html" style="color:#C1272D;font-weight:700">Menu</a></p>
+        <p style="margin:0"><a href="#story" style="color:#C1272D;font-weight:700">Our Story</a></p>
+        <p style="margin:0"><a href="#visit" style="color:#C1272D;font-weight:700">Visit</a></p>
+        <p style="margin:0"><a href="https://www.facebook.com/RioAltoHighRiver/" target="_blank" rel="noopener" style="color:#C1272D;font-weight:700"><i class="fa-brands fa-facebook"></i> Facebook</a></p>
+      </div>
+    </div>
+
+    <div class="container" style="text-align:center;margin-top:18px;color:#666;font-size:14px">
+      © <span id="year"></span> Rio Alto. All rights reserved.
+    </div>
+  </footer>
+
+  
+</body>
+</html>
