@@ -86,4 +86,4 @@ Menu JSON usage
 If you want me to:
 - Add example rendering code to `assets/js/script.js` to dynamically load `menu.json` into the Menu section, or
 - Update `index.html` to include image tags and data hooks,
-tell me which and I will prepare the changes.
+tell me which and I will prepare the changes.# rioalto
