@@ -395,7 +395,98 @@
     }
   }
   
-  
+  /* Apply menu-showcase layout & copy styles to the Our Story section */
+  #story .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  #story .menu-intro {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 26px;
+    max-width: 520px;
+  }
+
+  /* Keep the section title styling but ensure it's aligned with the grid cell */
+  #story .section-title { margin-top: 8px; }
+
+  /* Responsive: collapse to a single column on smaller screens */
+  @media (max-width: 940px) {
+    #story .container {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    #story .menu-intro {
+      max-width: none;
+      margin-inline: auto;
+    }
+  }
+
+  /* ===== Visit Section ===== */
+  #visit .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: start;
+  }
+
+  #visit .section-title { margin-top: 6px; text-align:left }
+  #visit .menu-intro {
+    font-size:18px;
+    color:#444;
+    line-height:1.6;
+    max-width:560px;
+    margin:0 0 8px;
+  }
+
+  /* Place text in left column, map and CTA in right column */
+  #visit .menu-intro { grid-column: 1 / 2 }
+  #visit .map-wrap { grid-column: 2 / 3 }
+  #visit .visit-cta { grid-column: 2 / 3; margin-top:16px }
+
+  /* Map card styling */
+  .map-wrap{
+    position:relative;
+    padding-top:56.25%; /* 16:9 */
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow: 0 12px 34px rgba(2,10,6,0.12);
+    background:#fff;
+    border:1px solid rgba(0,0,0,0.04);
+  }
+  .map-wrap iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
+  }
+
+  /* CTA styling — make it visually prominent and centered under the map on mobile */
+  .visit-cta{display:flex;align-items:center;justify-content:flex-start}
+  .visit-cta .btn{padding:.92rem 1.2rem;border-radius:12px;box-shadow:0 10px 24px rgba(15,138,95,0.12)}
+
+  /* Small screens: collapse to single column and stack with sensible spacing */
+  @media (max-width: 940px) {
+    #visit .container{grid-template-columns:1fr;text-align:center}
+    #visit .section-title{ text-align:center }
+    #visit .menu-intro{ grid-column: auto; margin-inline:auto; max-width:680px }
+    #visit .map-wrap{ grid-column:auto; margin-inline:auto; width:100%; padding-top:56.25% }
+    #visit .visit-cta{ grid-column:auto; justify-content:center }
+    .visit-cta .btn{width:100%;max-width:380px}
+  }
+
+  /* Slight refinement for very small phones */
+  @media (max-width: 420px){
+    .map-wrap{border-radius:12px}
+    .visit-cta .btn{font-size:15px;padding:.8rem 1rem}
+  }
+
   /* ===== Signature / Menu Grid ===== */
   .sig{
     padding:68px 0;
