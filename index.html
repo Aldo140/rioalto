@@ -34,14 +34,13 @@
     },
     "servesCuisine": "Mexican",
     "priceRange": "$$",
-    "url": "",
+    "url": "https://rioalto.ca",
     "sameAs": [
       "https://www.facebook.com/RioAltoHighRiver/"
     ],
     "openingHoursSpecification": [
       {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"11:00","closes":"20:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday","Friday","Saturday"],"opens":"11:00","closes":"21:00"},
-      {"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"00:00","closes":"00:00"}
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday","Friday","Saturday"],"opens":"11:00","closes":"21:00"}
     ]
   }
   </script>
@@ -52,47 +51,69 @@
   <!-- ===== Header / Nav ===== -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="#home">
-        <img src="pictures/logo.png" alt="Rio Alto logo" class="brand-logo" />
-      </a>
-      <nav class="main-nav">
+      <!-- Navigation moved first (left) -->
+      <nav id="main-navigation" class="main-nav">
         <a href="menu.html">Menu</a>
         <a href="#story">Our Story</a>
         <a href="#visit">Visit</a>
         <a class="cta" href="tel:+14036521261"><i class="fa-solid fa-phone"></i> (403) 652-1261</a>
       </nav>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><i class="fa fa-bars"></i></button>
+
+      <!-- Nav toggle (keeps same visual but placed between nav and brand) -->
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-navigation"><i class="fa fa-bars"></i></button>
+
+      <!-- Brand moved to the right -->
+      <a class="brand" href="#home">
+        <img src="pictures/logo.png" alt="Rio Alto logo" class="brand-logo" />
+      </a>
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section id="home" class="hero">
-    <div class="hero-bg">
-      <img src="pictures/front-of-building.jpg" alt="Rio Alto Mexican Restaurant front in High River" />
-      <div class="hero-overlay"></div>
+  <!-- ===== Hero (Split) ===== -->
+  <section id="home" class="hero-split" aria-label="Rio Alto hero">
+    <!-- Left: banner (now on left, fills pane) -->
+    <div class="hero-split__panel hero-split__left" aria-label="Rio Alto banner">
+      <img
+        class="hero-banner-img"
+        src="pictures/banner.png"
+        srcset="pictures/banner.png 800w, pictures/banner.png 1200w, pictures/banner.png 2000w"
+        sizes="(max-width: 940px) 100vw, (max-width: 1400px) 60vw, 58vw"
+        alt="Rio Alto — Authentic Mexican Food"
+        loading="eager"
+        decoding="async"
+      />
     </div>
-    <div class="container hero-inner">
-      <div class="hero-copy">
-        <h1 class="hero-title">RIO ALTO</h1>
-        <p class="hero-sub">Authentic Mexican Food — High River, AB</p>
-        
-        <ul class="proof">
-          <li><i class="fa-solid fa-pepper-hot"></i> 10+ years</li>
-          <li><i class="fa-solid fa-cow"></i> Local Alberta beef (90%)</li>
-          <li><i class="fa-solid fa-seedling"></i> No canned ingredients</li>
-        </ul>
 
-        <div class="hero-ctas">
-          <a class="btn primary" href="menu.html"><i class="fa-solid fa-utensils"></i> View Menu</a>
-          <a class="btn ghost" href="#visit"><i class="fa-solid fa-map-location-dot"></i> Directions</a>
+    <!-- Right: slideshow gallery (moved to right) -->
+    <div class="hero-split__panel hero-split__right" aria-label="Gallery">
+      <div class="slideshow" data-autoplay="true" data-interval="4500">
+        <div class="slide" data-index="0">
+          <img src="pictures/soft-tacos-your-choice.jpg"
+               srcset="pictures/soft-tacos-your-choice.jpg 600w, pictures/soft-tacos-your-choice.jpg 1200w"
+               sizes="(max-width:940px) 100vw, 40vw"
+               alt="Assorted street tacos with lime and cilantro" loading="eager">
         </div>
-      </div>
+        <div class="slide" data-index="1">
+          <img src="pictures/empanadas.webp"
+               srcset="pictures/empanadas.webp 600w, pictures/empanadas.webp 1200w"
+               sizes="(max-width:940px) 100vw, 40vw"
+               alt="Golden empanadas served with salsa verde and crema" loading="lazy">
+        </div>
+        <div class="slide" data-index="2">
+          <img src="pictures/Sopes.webp"
+               srcset="pictures/Sopes.webp 600w, pictures/Sopes.webp 1200w"
+               sizes="(max-width:940px) 100vw, 40vw"
+               alt="Handmade sopes topped with chorizo and crema" loading="lazy">
+        </div>
 
-      <div class="hero-art">
-        <img src="pictures/mascot.png" alt="Rio Alto mascot with sarape and guitar" />
+        <button class="slideshow__nav slideshow__nav--prev" aria-label="Previous slide">‹</button>
+        <button class="slideshow__nav slideshow__nav--next" aria-label="Next slide">›</button>
+
+        <div class="slideshow__dots"></div>
       </div>
     </div>
   </section>
+  
 
   <!-- ===== Menu Showcase (two-column layout) ===== -->
 <section id="menu-showcase" class="menu-showcase" aria-label="Menu highlights">

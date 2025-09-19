@@ -9,6 +9,8 @@
     --shadow:0 10px 25px rgba(0,0,0,.15);
     --shadow-lg:0 18px 40px rgba(0,0,0,.16);
     --container:1180px;
+    --header-h: 76px;
+    --parchment: #E7C98E; /* banner frame color */
   }
   
   *{box-sizing:border-box}
@@ -36,22 +38,26 @@
     position:sticky;
     top:0;
     z-index:20;
-    background:#fff;
-    border-bottom:1px solid #eee;
-    backdrop-filter:saturate(1.2) blur(4px);
+    /* dark on-brand header: deep green with subtle red accent on the far edge */
+    background: linear-gradient(90deg, #09281f 0%, #0b3328 55%, #0e2623 100%);
+    color: #fff;
+    border-bottom: none; /* remove light border to keep the dark look */
+    box-shadow: 0 6px 20px rgba(3,10,8,0.45);
+    backdrop-filter:saturate(1.2) blur(6px);
   }
   .site-header .nav{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:16px;
-    min-height:104px;            /* was 76px – room for big logo */
-    padding-block:6px;           /* tiny breathing room */
+    min-height:76px;
   }
   .brand-logo{
-    height: 220px;;                /* BIGGER LOGO */
-    max-height:110px;
+    height:76px;
+    max-height:76px;
     object-fit:contain;
+    /* slight drop shadow so the existing full-color logo pops on dark background */
+    filter:drop-shadow(0 6px 18px rgba(0,0,0,.6));
   }
   .main-nav{
     display:flex;
@@ -59,19 +65,21 @@
     align-items:center;
   }
   .main-nav a{
-    color:#333;
+    color:rgba(255,255,255,0.95);
     text-decoration:none;
     font-weight:600;
-    transition:color .2s ease, opacity .2s ease;
+    transition:color .18s ease, opacity .18s ease;
   }
-  .main-nav a:hover{color:var(--red)}
-  .main-nav a[aria-current="page"]{color:var(--green)}
+  .main-nav a:hover{color:var(--gold)}
+  .main-nav a[aria-current="page"]{color:var(--cream)}
   .main-nav .cta{
     padding:.62rem 1rem;
     border-radius:10px;
-    background:var(--red);
-    color:#fff;
+    /* use a bright on-brand accent for the CTA to stand out on dark background */
+    background:var(--gold);
+    color:var(--charcoal);
     font-weight:800;
+    box-shadow:0 8px 24px rgba(214,163,0,0.12);
   }
   .main-nav .cta:hover{filter:brightness(.95)}
   .nav-toggle{
@@ -80,6 +88,7 @@
     border:0;
     font-size:28px;
     cursor:pointer;
+    color:rgba(255,255,255,0.95);
   }
   
   /* ===== Buttons / Links ===== */
@@ -106,64 +115,142 @@
   .btn.ghost{border:2px solid #fff;color:#fff;background:transparent;box-shadow:none}
   .btn.ghost:hover{background:rgba(255,255,255,.1)}
   .btn:active{transform:translateY(1px)}
+
+  /* Slideshow focus & control styles (accessible and visible) */
+  .slideshow__nav:focus-visible,
+  .slideshow__dots button:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
   
-  /* ===== Hero ===== */
-  .hero{
-    position:relative;
-    isolation:isolate;
-    padding:120px 0 96px;       /* already generous; works with taller header */
-  }
-  .hero-bg{ position:absolute; inset:0; z-index:-2; }
-  .hero-bg img{
-    width:100%; height:100%; object-fit:cover;
-    filter:brightness(.72);
-  }
-  .hero-overlay{
-    position:absolute; inset:0; z-index:-1;
-    background:
-      linear-gradient(0deg, rgba(0,0,0,.25), rgba(0,0,0,.05)) ,
-      linear-gradient(90deg, rgba(15,138,95,.55), rgba(255,255,255,.28), rgba(193,39,45,.55));
-  }
-  .hero-inner{
-    display:grid;
-    grid-template-columns:1.05fr .95fr;
-    align-items:center;
-    gap:28px;
-  }
-  .hero-title{
-    font:700 74px "Alfa Slab One", serif;
-    letter-spacing:.8px;
-    color:#fff;
-    text-shadow:2px 3px 8px rgba(0,0,0,.45);
-    margin:0 0 10px;
-  }
-  .hero-sub{
-    font-weight:800;
-    color:#f5f5f5;
-    font-size:22px;
-    margin:0 0 22px;
-  }
-  .proof{
-    display:flex; flex-wrap:wrap; gap:12px;
-    list-style:none; margin:0 0 22px; padding:0;
-  }
-  .proof li{
-    background:#fff;
-    border:1px solid #f0f0f0;
+  .slideshow__dots button{
+    appearance:none;
+    background: rgba(255,255,255,0.18);
+    border: 0;
+    width:12px;
+    height:12px;
     border-radius:999px;
-    padding:.55rem 1.1rem;
-    font-weight:700;
-    color:var(--charcoal);
-    display:flex; align-items:center; gap:8px;
-    box-shadow:var(--shadow);
-    transition:transform .18s ease;
+    padding:0;
+    cursor:pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   }
-  .proof li:hover{transform:translateY(-2px)}
-  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap}
-  .hero-art img{
-    max-height:420px;
-    filter:drop-shadow(0 16px 34px rgba(0,0,0,.38));
-    transform:translateY(8px);
+  .slideshow__dots button.is-active{background:var(--gold);transform:scale(1.1);width:14px;height:14px}
+  
+  /* Hint aspect-ratio for hero/banner and slides to reduce CLS (safe progressive enhancement) */
+  .hero-banner-img{aspect-ratio:16/9}
+  .slide img{aspect-ratio:4/3}
+  
+  /* ===== Hero / Split layout - consolidated ===== */
+  .hero-split{
+    display:grid;
+    grid-template-columns: minmax(420px, 60%) minmax(320px, 40%);
+    gap:0;
+    align-items:stretch;
+    min-height: calc(100dvh - var(--header-h));
+    overflow:hidden;
+  }
+  
+  .hero-split__panel{
+    height:100%;
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+    overflow:hidden;
+    padding:0;
+    background:var(--parchment);
+  }
+  
+  /* Left: banner (fills panel, no gutters) */
+  .hero-split__left{
+    order:1;
+    padding:0;
+    background:var(--parchment);
+  }
+  
+  .hero-banner-img{
+    width:100%;
+    height:100%;
+    max-height: calc(100dvh - var(--header-h));
+    object-fit: cover; /* banner fills whole panel */
+    object-position: center center;
+    display:block;
+  }
+  
+  /* Right: slideshow */
+  .hero-split__right{
+    order:2;
+    /* remove extra padding and ensure the panel uses the same parchment frame color
+       so the slideshow visually matches the banner background and no white border shows */
+    padding:0;
+    background:var(--parchment);
+  }
+  
+  /* slideshow panel should be flush with the banner frame color; remove rounded corners so no background shows through */
+  .slideshow{position:relative;width:100%;height:100%;display:block;background:var(--parchment);border-radius:0;overflow:hidden;box-shadow:none;margin:0;padding:0}
+  .slide{position:absolute;inset:0;opacity:0;transform:scale(1.02);transition:opacity .6s ease, transform .6s ease;display:flex;align-items:center;justify-content:center}
+  .slide.is-active{opacity:1;transform:scale(1)}
+  /* ensure images always cover the full panel and never leave small gaps */
+  .slide img{width:100%;height:100%;min-width:100%;min-height:100%;object-fit:cover;object-position:center center;display:block;background:var(--parchment);border:0}
+  
+  .slideshow__nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);border:0;color:#fff;padding:10px 14px;border-radius:999px;font-size:28px;cursor:pointer;backdrop-filter:blur(4px);box-shadow:var(--shadow);z-index:6}
+  .slideshow__nav--prev{left:12px}
+  .slideshow__nav--next{right:12px}
+  .slideshow__dots{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;display:flex;gap:8px;z-index:6}
+  
+  /* Responsive: mobile layout (<= 720px) - hide slideshow on small phones only */
+  @media (max-width: 720px){
+    .hero-split{
+      grid-template-columns: 1fr;
+      min-height: calc(100dvh - var(--header-h));
+    }
+    .hero-split__left{order:1;display:flex;min-height:calc(100dvh - var(--header-h));}
+    .hero-split__right{order:2;display:none !important}
+    .hero-banner-img{max-height:none;height:100%;object-fit:cover}
+    .hero-split__panel{background:var(--parchment)}
+    .slideshow__nav{display:none}
+    .slideshow__dots{display:none}
+  }
+  
+  /* Crossfade overlay: slideshow fades over banner on large screens */
+  @media (min-width: 941px) {
+    .hero-split.crossfade {
+      position:relative;
+      /* keep grid but allow overlaying the right panel */
+    }
+    /* make the right panel act as an overlay when crossfading */
+    .hero-split.crossfade .hero-split__right {
+      position:absolute;
+      top:0;
+      right:0;
+      width:40%;
+      height:100%;
+      z-index:6;
+      pointer-events:none; /* when hidden it shouldn't capture events */
+      opacity:0;
+      transition:opacity .9s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .hero-split.crossfade .hero-split__left {
+      transition:opacity .9s ease, transform .9s ease;
+    }
+    /* When active, show the slideshow overlay and slightly dim the banner */
+    .hero-split.crossfade.show-slideshow .hero-split__right {
+      opacity:1;
+      pointer-events:auto;
+    }
+    .hero-split.crossfade.show-slideshow .hero-split__left {
+      opacity:0.12; /* subtle dim so slideshow reads clearly */
+      transform:scale(1.01);
+    }
+    /* Respect reduced motion: no crossfade */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-split.crossfade .hero-split__right,
+      .hero-split.crossfade .hero-split__left { transition:none; }
+      .hero-split.crossfade { opacity:1 }
+    }
   }
   
   /* ===== Sections ===== */
@@ -376,6 +463,22 @@
     .hero-sub{text-align:center}
     .proof{justify-content:center}
     .hero-ctas{justify-content:center}
+
+    /* Hero: single column, banner visible and fills viewport height */
+    .hero-split{grid-template-columns:1fr;min-height:calc(100dvh - var(--header-h));}
+    .hero-split__left{order:1;display:flex;min-height:calc(100dvh - var(--header-h));background:var(--parchment)}
+    /* keep right panel visible on tablet widths; only hide on small phones (<=720px) */
+    .hero-split__right{order:2;display:block}
+
+    /* Banner should take full available height and crop elegantly */
+    .hero-banner-img{width:100%;height:100%;object-fit:cover;object-position:center center;max-height:none}
+
+    /* ensure no black gutters and seamless edges */
+    .hero-split__panel{background:var(--parchment)}
+
+    /* Disable slideshow controls on phones for simplicity */
+    .slideshow__nav{display:none}
+    .slideshow__dots{display:none}
   }
   @media (max-width: 720px){
     .site-header .nav{min-height:84px;}   /* keep header comfy on phones */
@@ -387,4 +490,104 @@
     .hero-sub{font-size:18px}
     .menu-intro{margin-bottom:28px}
   }
-  
+
+  /* Mobile-first overrides (<= 940px) - redesigned header and hero for phones/tablets */
+  @media (max-width: 940px) {
+    /* Header: compact, with centered brand and a left-side toggle */
+    .site-header{
+      z-index:80; /* ensure header and overlay stack above other content */
+    }
+    .site-header .nav{
+      position:relative;
+      align-items:center;
+      padding-inline:12px;
+      min-height: var(--header-h);
+    }
+
+    /* show the toggle on small screens and place it left */
+    .nav-toggle{
+      display:block;
+      color:rgba(255,255,255,0.95);
+      background:transparent;
+      border:0;
+      position:relative;
+      z-index:90;
+      margin-right:8px;
+    }
+
+    /* hide desktop nav by default; when JS sets inline display it will be visible as overlay */
+    .main-nav{display:none}
+
+    /* When nav is opened, show as full-screen overlay using same dark header gradient */
+    .main-nav[style*="display: flex"]{
+      display:flex !important;
+      position:fixed;
+      top:0; /* cover header too for a seamless dark overlay */
+      left:0;
+      right:0;
+      bottom:0;
+      background: linear-gradient(180deg, #09281f 0%, #0b3328 55%, #0e2623 100%);
+      flex-direction:column;
+      gap:18px;
+      padding:calc(var(--header-h) + 18px) 20px 28px; /* leave room for header area */
+      align-items:flex-start;
+      overflow:auto;
+      z-index:80;
+    }
+
+    /* Nav links on dark overlay should be high-contrast and large enough to tap */
+    .main-nav[style*="display: flex"] a{
+      color: #fff;
+      font-size:18px;
+      padding:12px 0;
+      display:block;
+      width:100%;
+      border-bottom:1px solid rgba(255,255,255,0.04);
+    }
+    .main-nav[style*="display: flex"] a.cta{
+      background:var(--gold);
+      color:var(--charcoal);
+      border-radius:10px;
+      padding:.8rem 1rem;
+      align-self:flex-start;
+      margin-top:8px;
+      box-shadow:0 8px 24px rgba(214,163,0,0.12);
+    }
+
+    /* center brand in header for small screens */
+    .brand{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      z-index:75;
+    }
+    .brand-logo{height:56px;max-height:56px}
+
+    /* Hero: single column, banner visible and fills viewport height */
+    .hero-split{grid-template-columns:1fr;min-height:calc(100dvh - var(--header-h));}
+    .hero-split__left{order:1;display:flex;min-height:calc(100dvh - var(--header-h));background:var(--parchment)}
+    /* keep right panel visible on tablet widths; only hide on small phones (<=720px) */
+    .hero-split__right{order:2;display:block}
+
+    /* Banner should take full available height and crop elegantly */
+    .hero-banner-img{width:100%;height:100%;object-fit:cover;object-position:center center;max-height:none}
+
+    /* ensure no black gutters and seamless edges */
+    .hero-split__panel{background:var(--parchment)}
+
+    /* Disable slideshow controls on phones for simplicity */
+    .slideshow__nav{display:none}
+    .slideshow__dots{display:none}
+  }
+
+  /* slightly tighten hero gutters on very large screens so banner reaches edges better */
+  @media (min-width:1400px){
+    /* make hero span the full viewport so the two panels meet exactly in the center */
+    .hero-split{width:100vw;margin-left:calc(50% - 50vw);grid-template-columns:50% 50%;}
+    .hero-split__left{padding-left:0;padding-right:0}
+    .hero-split__right{padding-left:0;padding-right:0}
+    /* ensure slideshow panel is flush and images fill to the edge */
+    .slideshow{border-radius:0}
+    .slide img{object-position:center center}
+  }
