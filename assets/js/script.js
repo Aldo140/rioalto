@@ -205,6 +205,64 @@
         lastY = window.scrollY || 0;
       });
     }
+
+    // ===== Back to Top Button =====
+    const createBackToTopButton = () => {
+      // Create the button element
+      const backToTopBtn = document.createElement('button');
+      backToTopBtn.className = 'back-to-top';
+      backToTopBtn.setAttribute('aria-label', 'Back to top');
+      backToTopBtn.setAttribute('title', 'Back to top');
+      backToTopBtn.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      `;
+      
+      // Add to page
+      document.body.appendChild(backToTopBtn);
+      
+      let backToTopVisible = false;
+      let backToTopTicking = false;
+      
+      const updateBackToTop = () => {
+        backToTopTicking = false;
+        const currentY = window.scrollY || 0;
+        const shouldShow = currentY > 300; // Show after scrolling 300px
+        
+        if (shouldShow && !backToTopVisible) {
+          backToTopBtn.classList.add('visible');
+          backToTopVisible = true;
+        } else if (!shouldShow && backToTopVisible) {
+          backToTopBtn.classList.remove('visible');
+          backToTopVisible = false;
+        }
+      };
+      
+      const onBackToTopScroll = () => {
+        if (!backToTopTicking) {
+          window.requestAnimationFrame(updateBackToTop);
+          backToTopTicking = true;
+        }
+      };
+      
+      // Smooth scroll to top when clicked
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Listen for scroll events
+      window.addEventListener('scroll', onBackToTopScroll, { passive: true });
+      
+      // Initial check
+      updateBackToTop();
+    };
+    
+    // Initialize back to top button
+    createBackToTopButton();
   
     // ===== Keep --header-h synced to sticky header height (no gap under header) =====
     (function keepHeaderHeightSynced() {
@@ -549,3 +607,93 @@
   
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', populateBusinessData);
+
+  // Mobile Navigation Handler
+  function initializeMobileNav() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const body = document.body;
+  
+    if (!navToggle || !mobileMenuOverlay) return;
+  
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+      const isOpen = mobileMenuOverlay.classList.contains('active');
+      
+      if (isOpen) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    }
+  
+    // Open mobile menu
+    function openMobileMenu() {
+      mobileMenuOverlay.classList.add('active');
+      navToggle.classList.add('active');
+      navToggle.setAttribute('aria-expanded', 'true');
+      body.classList.add('mobile-menu-open');
+      
+      // Focus management
+      mobileMenuClose.focus();
+    }
+  
+    // Close mobile menu
+    function closeMobileMenu() {
+      mobileMenuOverlay.classList.remove('active');
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      body.classList.remove('mobile-menu-open');
+      
+      // Return focus to toggle button
+      navToggle.focus();
+    }
+  
+    // Event listeners
+    navToggle.addEventListener('click', toggleMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+  
+    // Close menu when clicking on overlay background
+    mobileMenuOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileMenuOverlay) {
+        closeMobileMenu();
+      }
+    });
+  
+    // Close menu when clicking nav links
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    });
+  
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
+  
+    // Handle window resize - close mobile menu if resizing to desktop
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth > 940 && mobileMenuOverlay.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      }, 250);
+    });
+  }
+  
+  // Initialize everything when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    // ...existing initialization code...
+    
+    // Initialize mobile navigation
+    initializeMobileNav();
+    
+    // ...existing code...
+  });

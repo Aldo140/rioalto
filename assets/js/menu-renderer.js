@@ -20,22 +20,14 @@
       .replace(/'/g, '&#39;');
   }
 
-  // Try common image extensions for best-effort thumbnails without enlarging dataset
-  const IMG_EXTS = ['.webp', '.jpg', '.jpeg', '.png'];
-
-  function buildImgTag(base, id, name){
-    // Don't render any image element if no base path or id - cleaner approach
-    return '';
-  }
-
-  function renderItem(item, base){
+  function renderItem(item, base, index = 0){
     const price = item.price != null ? `<span class="sig-price">${formatPrice(item.price)}</span>` : '';
     const desc = item.description ? `<p>${escapeHtml(item.description)}</p>` : '';
     
-    // Only add image if we have actual image files for specific items
-    const hasKnownImage = ['empanadas'].includes(item.id); // Only empanadas has image for now
-    const media = hasKnownImage ? `<div class="sig-card-media"><img loading="lazy" decoding="async" src="${escapeHtml(base)}${escapeHtml(item.id)}.webp" alt="${escapeHtml(item.name)}"></div>` : '';
-    const cardClass = hasKnownImage ? 'sig-card' : 'sig-card no-media';
+    // Check if item has an image specified in the JSON
+    const hasImage = item.image && item.image.trim();
+    const media = hasImage ? `<div class="sig-card-media"><img loading="lazy" decoding="async" src="${escapeHtml(base)}${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}"></div>` : '';
+    const cardClass = hasImage ? 'sig-card' : 'sig-card no-media';
     
     return `
       <article class="${cardClass}">
@@ -48,15 +40,69 @@
       </article>`;
   }
 
+  function renderSubcategory(subcat, base) {
+    if (!subcat.items || !subcat.items.length) return '';
+    
+    const sortedItems = subcat.items.slice().sort((a, b) => {
+      const aHasImage = !!(a.image && a.image.trim());
+      const bHasImage = !!(b.image && b.image.trim());
+      if (aHasImage && !bHasImage) return -1;
+      if (!aHasImage && bHasImage) return 1;
+      return 0;
+    });
+    
+    const items = sortedItems.map((i, index) => renderItem(i, base, index)).join('');
+    
+    return `
+      <div class="subcategory">
+        <h3 class="subcategory-title">${escapeHtml(subcat.name)}</h3>
+        <div class="sig-grid">${items}</div>
+      </div>`;
+  }
+
   function renderCategory(cat, base){
-    const items = (cat.items || []).map(i => renderItem(i, base)).join('');
+    let content = '';
+    
+    // Handle categories with subcategories (like alcoholic drinks)
+    if (cat.subcategories && cat.subcategories.length) {
+      content = cat.subcategories.map(subcat => renderSubcategory(subcat, base)).join('');
+    } 
+    // Handle regular categories with direct items
+    else if (cat.items && cat.items.length) {
+      const sortedItems = cat.items.slice().sort((a, b) => {
+        const aHasImage = !!(a.image && a.image.trim());
+        const bHasImage = !!(b.image && b.image.trim());
+        if (aHasImage && !bHasImage) return -1;
+        if (!aHasImage && bHasImage) return 1;
+        return 0;
+      });
+      
+      const items = sortedItems.map((i, index) => renderItem(i, base, index)).join('');
+      content = `<div class="sig-grid">${items}</div>`;
+    }
+    
+    const catDesc = cat.description ? `<p class="category-description">${escapeHtml(cat.description)}</p>` : '';
+    const extras = cat.extras ? renderExtras(cat.extras) : '';
+    
     return `
       <section class="sig" id="cat-${escapeHtml(cat.id)}" aria-labelledby="cat-${escapeHtml(cat.id)}-title">
         <div class="container">
           <h2 id="cat-${escapeHtml(cat.id)}-title" class="section-title">${escapeHtml(cat.name)}</h2>
-          <div class="sig-grid">${items}</div>
+          ${catDesc}
+          ${content}
+          ${extras}
         </div>
       </section>`;
+  }
+
+  function renderExtras(extras){
+    if (!extras || !extras.length) return '';
+    const extrasItems = extras.map(extra => {
+      const price = extra.price != null ? ` … ${formatPrice(extra.price)}` : '';
+      return `<span class="extra-item">${escapeHtml(extra.name)}${price}</span>`;
+    }).join(' | ');
+    
+    return `<div class="menu-extras"><strong>Add:</strong> ${extrasItems}</div>`;
   }
 
   function renderCategoryNav(categories){

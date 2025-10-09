@@ -1,108 +1,166 @@
 {
   "currency": "CAD",
-  "imagesBasePath": "pictures/",
+  "imagesBasePath": "pictures/Rio alto /web-optimized/",
   "categories": [
+    {
+      "id": "cold-drinks",
+      "name": "Cold Drinks",
+      "items": [
+        { "id":"cranberry-sparkling", "name":"Cranberry juice with sparkling water", "price":4.0 },
+        { "id":"mango-sparkling", "name":"Mango juice with sparkling water", "price":4.0 },
+        { "id":"san-pellegrino", "name":"Bottle of San Pellegrino", "price":4.0 },
+        { "id":"iced-tea", "name":"Iced Tea", "price":3.0, "tags":["popular"] },
+        { "id":"soft-drinks", "name":"Soft drinks", "description":"Coca-Cola, Diet Coke, Sprite, Ginger Ale, Agua de Jamaica, Horchata, Sidral", "price":3.0 },
+        { "id":"agua-fresca", "name":"Agua fresca del día", "description":"Summer only - ask server. No free refills", "price":4.0, "tags":["popular", "seasonal"] }
+      ]
+    },
+    {
+      "id": "alcoholic-drinks",
+      "name": "Alcoholic Drinks",
+      "subcategories": [
+        {
+          "name": "Beer",
+          "items": [
+            { "id":"corona", "name":"Corona", "description":"Imported Mexican Beer", "price":8.0 },
+            { "id":"negra-modelo", "name":"Negra Modelo", "description":"Imported Mexican Beer", "price":8.0 },
+            { "id":"modelo-especial", "name":"Modelo Especial", "description":"Imported Mexican Beer", "price":8.0 },
+            { "id":"pacifico", "name":"Pacifico", "description":"Imported Mexican Beer", "price":8.0 },
+            { "id":"dos-equis", "name":"Dos Equis XX", "description":"Imported Mexican Beer", "price":8.0 },
+            { "id":"budweiser", "name":"Budweiser", "description":"Domestic Beer", "price":6.0 }
+          ]
+        },
+        {
+          "name": "Wine",
+          "items": [
+            { "id":"house-red", "name":"House Red", "description":"6oz glass", "price":10.0 },
+            { "id":"house-white", "name":"House White", "description":"6oz glass", "price":10.0 },
+            { "id":"sangria", "name":"Sangria", "description":"1oz Brandy + 1oz House Red Wine", "price":12.0 }
+          ]
+        },
+        {
+          "name": "Cocktails & Spirits",
+          "items": [
+            { "id":"margarita-lime", "name":"Lime Margarita", "description":"1oz White Tequila (Gold +$1.50)", "price":12.0, "tags":["popular"] },
+            { "id":"margarita-mango", "name":"Mango Margarita", "description":"1oz White Tequila (Gold +$1.50)", "price":12.0 },
+            { "id":"margarita-jalapeno", "name":"Jalapeño Margarita", "description":"On the rocks with a hint of jalapeño", "price":12.0 },
+            { "id":"bulldog", "name":"Bulldog", "description":"Lime margarita with an upside-down Coronita", "price":14.0 },
+            { "id":"submarino", "name":"Submarino", "description":"Upside-down tequila shot w/ lime + a Pacifico beer", "price":14.0 },
+            { "id":"paloma", "name":"Paloma", "description":"Tequila on ice w/ lime, salt & Squirt", "price":14.0 },
+            { "id":"charro-negro", "name":"Charro Negro", "description":"2oz tequila reposado, lime, salt & Coke", "price":12.0 },
+            { "id":"pina-colada", "name":"Piña Colada", "description":"2oz White Rum", "price":12.0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hot-drinks",
+      "name": "Hot Drinks",
+      "items": [
+        { "id":"peru-coffee", "name":"Peru medium roast coffee", "description":"+ Canadian rye whiskey shot +$4.00", "price":4.0, "image":"coffee-drink-specialty.jpg", "tags":["popular"] },
+        { "id":"peru-espresso", "name":"Peru medium roast espresso", "price":4.0 },
+        { "id":"home-espresso", "name":"Home blend espresso", "price":4.0 },
+        { "id":"cappuccino", "name":"Cappuccino", "price":5.0 },
+        { "id":"mocha-latte", "name":"Mocha latte", "price":5.0 },
+        { "id":"premium-tea", "name":"Premium tea", "price":4.0 }
+      ]
+    },
     {
       "id": "appetizers",
       "name": "Appetizers",
       "items": [
-        { "id":"empanadas", "name":"Empanadas", "description":"Corn dough filled with chicken tinga and cheese. Topped with cabbage, pico de gallo and crema fresca.", "price":14.0, "tags":["starter"] },
-        { "id":"sopes", "name":"Sopes", "description":"Three handmade corn tortillas topped with refried beans, potato, chorizo, lettuce, and salsa.", "price":14.0 },
-        { "id":"tacos-dorados", "name":"Tacos Dorados (Flautas)", "description":"2 homemade corn tortillas rolled and fried — beef, chicken or veggie. Lunch only.", "price":16.0 },
-        { "id":"chorinacho", "name":"Chorinacho", "description":"Layers of tortilla chips and chorizo, served with pico de gallo, cheese and crema fresca.", "price":16.0 },
-        { "id":"five-layer-nacho", "name":"Five Layer Nacho Dip", "description":"Refried beans, guacamole, sour cream, cheddar, salsa verde, queso fresco.", "price":15.0 },
-        { "id":"queso-fundido", "name":"Chorizo Queso Fundido", "description":"Chorizo with homemade guajillo sauce and melted cheese. Served with tortillas.", "price":15.0 },
-        { "id":"molletes", "name":"Molletes", "description":"Open-faced bread with refried beans, cheddar, pico de gallo, salsa verde and crema.", "price":12.0 },
-        { "id":"guac-chips", "name":"Guacamole and Chips", "description":"House guacamole and tortilla chips.", "price":15.0 }
+        { "id":"empanadas", "name":"Empanadas", "description":"Corn dough filled w/ chicken tinga & cheese; cabbage, pico de gallo, crema fresca. 3 for", "price":14.0, "tags":["starter"] },
+        { "id":"sopes", "name":"Sopes", "description":"3 handmade corn tortillas topped w/ refried beans, potato, chorizo, lettuce, crema, feta, salsa", "price":14.0 },
+        { "id":"flautas", "name":"Flautas", "description":"2 homemade corn tortillas (Beef / Chicken / Veggie) w/ special green sauce. Lunch hours only", "price":16.0, "tags":["lunch-only"] },
+        { "id":"chorinachos", "name":"Chorinachos", "description":"Layers of tortilla chips + chorizo, pico, cheese, crema", "price":16.0 },
+        { "id":"five-layer-nacho", "name":"Five Layer Nacho Dip", "description":"Beans, guac, crema, pico, cheddar, mozzarella, guajillo sauce", "price":15.0 },
+        { "id":"chorizo-queso", "name":"Chorizo Queso Fundido", "description":"Chorizo in guajillo sauce, melted cheese, tortilla chips", "price":15.0 },
+        { "id":"quesadilla", "name":"Homemade Quesadilla", "description":"Corn tortilla w/ roasted poblano, mushrooms, corn, mozzarella, cheddar; side salsa verde. Choice of tortilla: Guajillo, Nopal, Beets, Cactus. Add Beef or Chicken +$3.00", "price":14.0 },
+        { "id":"molletes", "name":"Molletes", "description":"Open-faced sandwich (Beef or Chicken) w/ refried beans, cheddar, pico, salsa verde, crema", "price":12.0 },
+        { "id":"guac-chips", "name":"Guacamole & Chips", "price":15.0 }
       ]
     },
     {
       "id": "soup",
       "name": "Soup",
       "items": [
-        { "id":"sopa-dia","name":"Sopa del día","description":"Chef's daily soup.","price":12.0},
-        { "id":"sopa-tortilla","name":"Sopa de Tortilla","description":"Tomato & ancho chile soup with chicken, corn chips, cheddar, avocado, crema.","price":12.0}
+        { "id":"sopa-dia", "name":"Sopa del Día", "price":12.0 },
+        { "id":"sopa-tortilla", "name":"Sopa de Tortilla", "description":"Tomato & ancho chile soup, chicken, corn chips, cheddar, avocado, crema", "price":12.0 }
       ]
     },
     {
       "id": "salads",
-      "name": "Salads",
+      "name": "Salad",
       "items": [
-        { "id":"nopales","name":"Nopales (Cactus Salad)","description":"Butter lettuce, pickled nopales, red onions, pico de gallo, radish, guajillo vinaigrette.","price":13.0},
-        { "id":"rioalto-salad","name":"Rio Alto Salad","description":"Romaine, avocado, radishes, apples & red onions with lemon jalapeño dressing.","price":13.0}
+        { "id":"nopales", "name":"Nopales (Cactus Salad)", "description":"Butter lettuce, pickled nopales, red onions, pico, radish, guajillo vinaigrette", "price":13.0, "image":"nopales-cactus-salad.jpg" },
+        { "id":"rio-alto-salad", "name":"Rio Alto Salad", "description":"Romaine, avocados, radishes, apples, red onions, lemon jalapeño creamy dressing", "price":13.0 }
       ]
     },
     {
       "id": "lunch",
       "name": "Lunch",
       "items": [
-        { "id":"huevos-rancheros","name":"Huevos Rancheros","description":"Two fried eggs on corn tortilla, refried beans, cheddar, salsa verde, rice, crema.","price":15.0},
-        { "id":"chilaquiles","name":"Chilaquiles Rio Style","description":"Corn tortilla chips in salsa, topped with chicken, cheese, onion & crema.","price":14.0}
+        { "id":"huevos-rancheros", "name":"Huevos Rancheros", "description":"2 fried eggs on corn tortilla, refried beans, cheddar, salsa verde, rice, crema", "price":15.0, "image":"huevos-rancheros-plate.jpg" },
+        { "id":"chilaquiles", "name":"Chilaquiles Rio Style", "description":"Corn tortilla chips in salsa, topped with chicken, cheese, onion & crema. Choice of salsa verde or salsa roja", "price":14.0, "tags":["popular"] }
       ]
     },
     {
-      "id": "main",
+      "id": "main-course",
       "name": "Main Course",
       "items": [
-        { "id":"amigas-enchiladas","name":"Amigas Enchiladas","description":"Corn tortillas filled with Chicken Tinga / Beef Brisket / Pork / Veggie. Choice of salsa.", "price":18.5},
-        { "id":"carne-asada","name":"Carne Asada","description":"7oz Mexican-style grilled steak with sautéed onions, nopales, 6oz chorizo; rice, pico and tortillas.","price":30.0},
-        { "id":"mole","name":"Mole","description":"Stuffed duck with traditional mole. May contain nuts. Served with rice & beans.","price":27.0},
-        { "id":"chile-relleno","name":"Chile Relleno","description":"Stuffed poblano with smoked gouda; ancho chile tomato sauce; rice & beans.","price":20.0},
-        { "id":"azteca-lasagna","name":"Azteca Lasagna","description":"Corn tortillas, beef tenderloin, spinach, smoked gouda & mascarpone, roasted corn, poblano sauce.","price":20.0},
-        { "id":"rioalto-sombrero","name":"Rio Alto Sombrero Platter","description":"A taste of antojitos: empanadas, tacos, sope, enchiladas, soft tacos with pico & guac.","price":29.0}
+        { "id":"amigas-enchiladas", "name":"Amigas Enchiladas", "description":"Corn tortillas filled w/ Chicken Tinga, Beef Brisket, Pork or Veggie + salsa verde, salsa roja, mole, or guajillo sauce. Add side of rice & beans +$3.00", "price":18.5, "image":"enchilada-plate.jpg" },
+        { "id":"carne-asada", "name":"Carne Asada", "description":"7oz Mexican style grilled steak + sautéed onions, nopales, 6oz chorizo; side rice, pico, 3 tortillas", "price":30.0 },
+        { "id":"mole", "name":"Mole", "description":"Stuffed duck with cranberries. Traditional mole sauce (3 chiles, garlic, onions, seeds, cinnamon, chocolate, banana, plantain, spices). May contain nuts. Served w/ rice & beans", "price":27.0 },
+        { "id":"chile-relleno", "name":"Chile Relleno", "description":"Stuffed poblano w/ smoked gouda, cooked in ancho chili tomato sauce. Served w/ rice & beans", "price":20.0, "image":"chile-relleno-meal.jpg" },
+        { "id":"azteca-lasagna", "name":"Azteca Lasagna", "description":"Corn tortillas layered w/ beef tenderloin, spinach, caramelized onions, feta, smoked gouda, mascarpone, roasted corn, creamy poblano sauce. Served w/ side salad", "price":20.0 },
+        { "id":"sombrero-platter", "name":"Rio Alto Sombrero Platter", "description":"A taste of Mexican antojitos: 2 Empanadas, 2 Hard Tacos, 1 Sope, 2 Enchiladas, 2 Soft Tacos. Served w/ pico & guac", "price":29.0 }
       ]
     },
     {
       "id": "tortas",
-      "name": "Tortas",
+      "name": "Tortas (Mexican Sandwiches)",
       "items": [
-        { "id":"three-farmers","name":"Three Farmers Torta","description":"Shredded chicken tinga, refried beans, lettuce, tomato, avocado, mayo.","price":16.0},
-        { "id":"ranchero-torta","name":"Ranchero Torta","description":"Slow-cooked marinated beef, refried beans, lettuce, tomato, avocado, chipotle mayo.","price":16.0},
-        { "id":"crazy-horse","name":"Crazy Horse","description":"Refried beans, caramelized onions, roasted pineapple, chipotle mayo. Choice of pork or chorizo.","price":16.0},
-        { "id":"rioalto-burritos","name":"Rio Alto Burritos","description":"Whole wheat tortilla with beans, rice, chipotle mayo, choice of protein. Lunch only.","price":15.0}
+        { "id":"three-farmers", "name":"Three Farmers Torta", "description":"Bun, shredded chicken tinga, refried beans, butter lettuce, tomato, avocado, mayo", "price":16.0 },
+        { "id":"ranchero-torta", "name":"Ranchero Torta", "description":"Bun, slow-cooked marinated beef, refried beans, butter lettuce, tomato, avocado, chipotle mayo", "price":16.0 },
+        { "id":"crazy-horse", "name":"Crazy Horse", "description":"Bun, refried beans, caramelized onions, roasted pineapple, lettuce, tomato, lime, chipotle mayo. Choice of pork or chorizo", "price":16.0 },
+        { "id":"rio-alto-burritos", "name":"Rio Alto Burritos", "description":"Lunch only — Whole wheat tortilla, refried beans, rice, chipotle mayo, lettuce, cheddar cheese. Choice of Chicken Tinga, Shredded Beef, Pork or Veggie. Served with tortilla chips, crema fresca & pico", "price":15.0, "tags":["lunch-only"] }
       ]
     },
     {
       "id": "soft-tacos",
       "name": "Soft Tacos",
+      "description": "Eat as many as you want!",
       "items": [
-        { "id":"taco-beef","name":"Beef Taco","description":"Shredded beef, cilantro, onions, lime."},
-        { "id":"taco-chicken","name":"Chicken Taco","description":"Chicken tinga, cilantro, onions, roasted pineapple."},
-        { "id":"taco-pork","name":"Pork Taco","description":"Roasted pineapple, salsa verde, lime."},
-        { "id":"taco-chorizo","name":"Chorizo Taco","description":"Chorizo, onions, cilantro, lime."},
-        { "id":"taco-beans","name":"Beans Taco","description":"Refried beans, feta cheese, pico de gallo."},
-        { "id":"taco-veggie","name":"Veggie Taco","description":"Mushrooms, roasted poblano, roasted corn, crema fresca, feta."}
+        { "id":"taco-beef", "name":"Beef", "description":"Shredded beef, cilantro, onions, lime" },
+        { "id":"taco-chicken", "name":"Chicken", "description":"Chicken tinga, cilantro, onions, roasted pineapple" },
+        { "id":"taco-pork", "name":"Pork", "description":"Roasted pineapple, salsa verde, lime" },
+        { "id":"taco-chorizo", "name":"Chorizo", "description":"Onions, cilantro, lime" },
+        { "id":"taco-beans", "name":"Beans", "description":"Refried beans, feta, pico de gallo" },
+        { "id":"taco-veggie", "name":"Veggie", "description":"Mushrooms, roasted poblano, roasted corn, crema fresca, feta, salsa verde" },
+        { "id":"taco-cactus", "name":"Cactus", "description":"Fresh cactus, onions, feta, pico de gallo" }
+      ],
+      "extras": [
+        { "id":"side-salad-addon", "name":"Add side salad", "price":6.5 },
+        { "id":"pico-addon", "name":"Pico de gallo", "price":3.5 },
+        { "id":"crema-addon", "name":"Crema fresca", "price":3.5 },
+        { "id":"guac-addon", "name":"Guacamole", "price":4.0, "tags":["popular"] }
       ]
     },
     {
       "id": "sides",
       "name": "Sides",
       "items": [
-        { "id":"pico","name":"Pico de gallo","description":"Small","price":3.5},
-        { "id":"crema","name":"Crema fresca","description":"Small","price":3.5},
-        { "id":"guac","name":"Fresh guacamole","price":4.0},
-        { "id":"chips","name":"Extra chips","price":4.0},
-        { "id":"side-salad","name":"Side salad","price":6.5}
+        { "id":"pico", "name":"Pico de gallo", "price":3.5 },
+        { "id":"crema", "name":"Crema fresca", "price":3.5 },
+        { "id":"guac", "name":"Fresh guacamole", "price":4.0 },
+        { "id":"chips", "name":"Extra chips", "price":4.0 },
+        { "id":"side-salad", "name":"Side salad", "price":6.5 }
       ]
     },
     {
-      "id": "drinks",
-      "name": "Drinks",
+      "id": "kids-menu",
+      "name": "Kids Menu",
       "items": [
-        { "id":"cran-spark","name":"Cranberry + sparkling","price":4.0},
-        { "id":"mango-spark","name":"Mango + sparkling","price":4.0},
-        { "id":"soda","name":"Soft drinks","description":"Coke, Diet Coke, Sprite, Ginger Ale, Agua de Jamaica, Horchata, Sidral","price":3.0},
-        { "id":"beer-import","name":"Imported Mexican Beer","description":"Corona, Negra Modelo, Modelo Especial, Pacifico, Dos Equis","price":8.0},
-        { "id":"margarita-lime","name":"Margarita (Lime)","description":"Tequila, fresh lime, orange liqueur","price":12.0}
-      ]
-    },
-    {
-      "id": "desserts",
-      "name": "Desserts",
-      "items": [
-        { "id":"churros","name":"Churros","description":"Cinnamon sugar, cream","price":10.0},
-        { "id":"flan","name":"Mexican Baked Flan","price":10.0},
-        { "id":"tres-leches","name":"Tres Leches Cake","price":10.0}
+        { "id":"kids-quesadilla", "name":"Mexican Quesadilla", "description":"Corn tortilla w/ mixed cheese, tomato slices, crema fresca. Order of 2. Add meat: Chicken, Beef or Pork +$3.00", "price":9.0 }
       ]
     }
   ]

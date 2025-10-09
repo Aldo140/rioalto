@@ -50,14 +50,45 @@
         <a href="#visit">Visit</a>
         <a class="cta" href="tel:+14036521261"><svg class="icon icon-phone" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.55.57 1 1 0 011 1v3.5a1 1 0 01-1 1A19 19 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.24 1.01l-2.2 2.23z"/></svg> <span class="phone-number"></span></a>
       </nav>
-      <!-- Nav toggle (keeps same visual but placed between nav and brand) -->
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-navigation"><svg class="icon icon-menu" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/></svg></button>
+      <!-- Nav toggle with hamburger spans -->
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       <!-- Brand moved to the right -->
       <a class="brand" href="#home">
         <img src="pictures/logo.png" alt="Rio Alto logo" class="brand-logo" />
       </a>
     </div>
   </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-logo">
+        <img src="pictures/logo.png" alt="Rio Alto logo" />
+      </div>
+      
+      <button class="mobile-menu-close" aria-label="Close menu">×</button>
+      
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item">
+          <a href="menu.html" class="mobile-nav-link">Menu</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#story" class="mobile-nav-link">Our Story</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#visit" class="mobile-nav-link">Visit</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="tel:+14036521261" class="mobile-nav-link cta">Call Now</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <!-- ===== Hero (Split) ===== -->
   <section id="home" class="hero-split" aria-label="Rio Alto hero">
     <!-- Left: banner (now on left, fills pane) -->
