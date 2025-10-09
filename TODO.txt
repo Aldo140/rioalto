@@ -1,0 +1,209 @@
+RIO ALTO IMAGE UPGRADE - TODO LIST
+==========================================
+
+STATUS: Task 1 (Hero Banner) COMPLETED ✅
+REMAINING: Tasks 2-6 PENDING
+
+==========================================
+TASK 2: SLIDESHOW DIVERSIFICATION 🔄
+==========================================
+
+DESCRIPTION: Replace main hero slideshow images with web-optimized versions
+LOCATION: index.html - hero section slideshow
+
+CURRENT IMAGES (OLD):
+- pictures/soft-tacos-your-choice.jpg
+- pictures/empanadas.webp  
+- pictures/Sopes.webp
+
+REPLACE WITH (WEB-OPTIMIZED):
+- pictures/Rio alto /web-optimized/taco-meal-plated.jpg
+- pictures/Rio alto /web-optimized/chile-relleno-plated.jpg
+- pictures/Rio alto /web-optimized/dessert-sweets-stack.jpg
+
+IMPLEMENTATION STEPS:
+1. Edit index.html hero slideshow section
+2. Update src attributes for all 3 slide images
+3. Update alt text descriptions to match new images:
+   - "Beautifully plated taco meal with authentic Mexican sides"
+   - "Traditional chile relleno stuffed with cheese and herbs"
+   - "Authentic Mexican desserts and sweets selection"
+4. Update srcset attributes if needed
+5. Test slideshow functionality
+
+==========================================
+TASK 3: MENU SHOWCASE CARDS UPDATE 🔄
+==========================================
+
+DESCRIPTION: Replace menu showcase section cards with web-optimized images
+LOCATION: index.html - menu showcase section
+
+CURRENT CARDS (OLD):
+Card 1: pictures/Sopes.webp → "Sopes & Antojitos"
+Card 2: pictures/Enhilada.jpg → "Enchiladas" 
+Card 3: pictures/empanadas.webp → "Empanadas"
+Card 4: Keep unchanged (All Menus accent card)
+
+REPLACE WITH (WEB-OPTIMIZED):
+Card 1: pictures/Rio alto /web-optimized/taco-meal-plated_thumb.jpg → "Tacos & Mains"
+Card 2: pictures/Rio alto /web-optimized/chile-relleno-plated_thumb.jpg → "Chile Rellenos"
+Card 3: pictures/Rio alto /web-optimized/dessert-sweets-stack_thumb.jpg → "Desserts"
+
+IMPLEMENTATION STEPS:
+1. Edit index.html menu showcase section
+2. Update img src attributes for cards 1, 2, 3
+3. Update card titles and link text
+4. Update alt text descriptions
+5. Update href links to match new categories:
+   - Card 1: href="menu.html#main" (tacos are main dishes)
+   - Card 2: href="menu.html#main" (chile rellenos are mains)
+   - Card 3: href="menu.html#desserts" (if dessert section exists)
+6. Test card hover effects and links
+
+==========================================
+TASK 4: MOBILE GALLERY SYNC 🔄
+==========================================
+
+DESCRIPTION: Update mobile gallery images to match main slideshow
+LOCATION: index.html - mobile gallery section
+
+CURRENT MOBILE GALLERY (OLD):
+- pictures/soft-tacos-your-choice.jpg → "Street Tacos"
+- pictures/empanadas.webp → "Fresh Empanadas"
+- pictures/Sopes.webp → "Traditional Sopes"
+
+REPLACE WITH (WEB-OPTIMIZED):
+- pictures/Rio alto /web-optimized/taco-meal-plated.jpg → "Signature Tacos"
+- pictures/Rio alto /web-optimized/chile-relleno-plated.jpg → "Chile Rellenos"
+- pictures/Rio alto /web-optimized/dessert-sweets-stack.jpg → "Sweet Endings"
+
+IMPLEMENTATION STEPS:
+1. Edit index.html mobile gallery section
+2. Update mobile slide img src attributes
+3. Update mobile slide captions:
+   - H3: "Signature Tacos" / P: "Perfectly seasoned and beautifully plated"
+   - H3: "Chile Rellenos" / P: "Traditional stuffed peppers with authentic flavors"
+   - H3: "Sweet Endings" / P: "Authentic Mexican desserts and treats"
+4. Update alt text descriptions
+5. Test mobile slideshow functionality
+6. Verify mobile gallery only shows on screens <730px
+
+==========================================
+TASK 5: PERFORMANCE OPTIMIZATION 🆕
+==========================================
+
+DESCRIPTION: Optimize image loading and remove unused files
+PRIORITY: Medium
+
+IMPLEMENTATION STEPS:
+1. Add proper srcset attributes with multiple sizes:
+   - Use both regular and _thumb versions for responsive loading
+   - Example: srcset="image_thumb.jpg 400w, image.jpg 800w"
+2. Verify loading="lazy" on non-critical images
+3. Check loading="eager" on hero images only
+4. Review and potentially remove old unused images:
+   - Keep originals as backup in separate folder
+   - Document which images are no longer used
+5. Compress any remaining large images if needed
+6. Test page loading speed before/after
+
+==========================================
+TASK 6: SEO & ACCESSIBILITY UPDATES 🆕
+==========================================
+
+DESCRIPTION: Update metadata and improve accessibility
+PRIORITY: Medium
+
+IMPLEMENTATION STEPS:
+1. Update schema.org structured data in index.html:
+   - Change "image": "pictures/front-of-building.jpg" to new hero image
+   - Verify restaurant information is accurate
+2. Enhance alt text descriptions for all new images:
+   - Make them descriptive and specific
+   - Include relevant keywords naturally
+3. Check Open Graph meta tags (if they exist):
+   - Update og:image if present
+4. Verify ARIA labels and accessibility:
+   - Check slideshow ARIA attributes
+   - Ensure mobile gallery is properly labeled
+5. Test with screen reader if possible
+
+==========================================
+IMPLEMENTATION ORDER & TESTING
+==========================================
+
+RECOMMENDED SEQUENCE:
+1. Task 2 (Slideshow) - Most visible change
+2. Task 3 (Menu Cards) - Second most visible  
+3. Task 4 (Mobile Gallery) - Consistency completion
+4. Task 5 (Performance) - Optimization
+5. Task 6 (SEO/A11y) - Final polish
+
+TESTING CHECKLIST:
+□ Hero slideshow works on desktop
+□ Hero slideshow works on tablet (731px-940px) 
+□ Mobile gallery appears on mobile (<730px)
+□ Menu showcase cards display correctly
+□ All links work properly
+□ Images load quickly
+□ No console errors
+□ Responsive behavior works across breakpoints
+□ Back-to-top button still functions
+□ Navigation remains functional
+
+==========================================
+COMMIT STRATEGY
+==========================================
+
+INDIVIDUAL COMMITS:
+- "Task 2: Update hero slideshow with web-optimized images"
+- "Task 3: Update menu showcase cards with new images"  
+- "Task 4: Sync mobile gallery with optimized images"
+- "Task 5: Optimize image loading and performance"
+- "Task 6: Update SEO metadata and accessibility"
+
+FINAL COMMIT:
+- "Complete image upgrade: all sections now use web-optimized images"
+
+==========================================
+BACKUP PLAN
+==========================================
+
+BEFORE STARTING:
+□ Current state is committed and pushed
+□ Know how to revert individual changes
+□ Test local server setup works
+
+IF ISSUES ARISE:
+1. Revert last commit: git reset --hard HEAD~1
+2. Check file paths are correct (spaces in "Rio alto " folder)
+3. Verify images exist and are accessible
+4. Test on multiple screen sizes
+5. Check browser console for errors
+
+==========================================
+QUESTIONS TO RESOLVE
+==========================================
+
+1. Should dessert section link exist in menu.html?
+2. Remove old images after replacement or keep as backup?
+3. Should we add new images to other sections (Our Story, Visit)?
+4. Any specific alt text preferences or SEO keywords to include?
+5. Should loading animations be added for image transitions?
+
+==========================================
+ESTIMATED TIME
+==========================================
+
+Task 2: 15-20 minutes
+Task 3: 15-20 minutes  
+Task 4: 10-15 minutes
+Task 5: 20-30 minutes
+Task 6: 15-25 minutes
+Testing: 20-30 minutes
+
+TOTAL: 1.5-2.5 hours
+
+==========================================
+READY TO EXECUTE: Awaiting instruction to proceed with Task 2
+==========================================

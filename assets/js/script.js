@@ -292,30 +292,41 @@
     
     // ===== New: accessible slideshow component (supports multiple) =====
     const initSlideshows = () => {
-      const slideshows = Array.from(document.querySelectorAll('.slideshow'));
+      const slideshows = Array.from(document.querySelectorAll('.slideshow, .mobile-slideshow'));
       if (!slideshows.length) return;
       slideshows.forEach((container, sidx) => {
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const slides = Array.from(container.querySelectorAll('.slide'));
+        const slides = Array.from(container.querySelectorAll('.slide, .mobile-slide'));
         if (!slides.length) return;
+        
+        // Determine if this is a mobile slideshow
+        const isMobileSlideshow = container.classList.contains('mobile-slideshow');
+        const navPrevSelector = isMobileSlideshow ? '.mobile-slideshow__nav--prev' : '.slideshow__nav--prev';
+        const navNextSelector = isMobileSlideshow ? '.mobile-slideshow__nav--next' : '.slideshow__nav--next';
+        const dotsSelector = isMobileSlideshow ? '.mobile-slideshow__dots' : '.slideshow__dots';
+        
         // ensure container is keyboard focusable for accessibility
         if (!container.hasAttribute('tabindex')) container.setAttribute('tabindex', '0');
         container.setAttribute('role', 'region');
         container.setAttribute('aria-label', container.getAttribute('aria-label') || 'Image slideshow');
         container.setAttribute('aria-roledescription', 'carousel');
+        
         // nav
-        const prevBtn = container.querySelector('.slideshow__nav--prev');
-        const nextBtn = container.querySelector('.slideshow__nav--next');
-        const dotsWrap = container.querySelector('.slideshow__dots');
+        const prevBtn = container.querySelector(navPrevSelector);
+        const nextBtn = container.querySelector(navNextSelector);
+        const dotsWrap = container.querySelector(dotsSelector);
+        
         // ensure dots container is accessible
         if (dotsWrap && !dotsWrap.hasAttribute('aria-label')) dotsWrap.setAttribute('aria-label', 'Slide navigation');
         let interval = parseInt(container.dataset.interval || '4500', 10);
         if (Number.isNaN(interval) || interval < 800) interval = 4500;
         const autoplay = container.dataset.autoplay !== 'false' && !prefersReduced;
+        
         // state
         let index = 0;
         let timer = null;
         let playingSince = 0; // timestamp when autoplay timer was started
+        
         const goTo = (i, userInitiated = false) => {
           index = (i + slides.length) % slides.length;
           slides.forEach((sl, si) => {
@@ -324,6 +335,7 @@
             // hide non-active slides from assistive tech
             sl.setAttribute('aria-hidden', active ? 'false' : 'true');
           });
+          
           // dots
           if (dotsWrap) {
             Array.from(dotsWrap.children).forEach((b, bi) => {
@@ -333,20 +345,24 @@
               if (active) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
             });
           }
+          
           // update live region with slide info for screen readers
           if (container._sr) {
             const img = slides[index].querySelector('img');
             const alt = img ? img.alt : '';
             container._sr.textContent = `Slide ${index + 1} of ${slides.length}: ${alt}`;
           }
+          
           // reset autoplay timer on user interaction
           if (autoplay && userInitiated) {
             stopTimer();
             startTimer();
           }
         };
+        
         const next = (user = false) => goTo(index + 1, user);
         const prev = (user = false) => goTo(index - 1, user);
+        
         // timer
         let startTimer = () => {
           if (!autoplay || timer) return;
@@ -359,6 +375,7 @@
           timer = null;
           playingSince = 0;
         };
+        
         // build dots
         if (dotsWrap) {
           dotsWrap.innerHTML = '';
@@ -373,31 +390,47 @@
             dotsWrap.appendChild(btn);
           });
         }
+        
         // wire buttons
         if (prevBtn) prevBtn.addEventListener('click', () => prev(true));
         if (nextBtn) nextBtn.addEventListener('click', () => next(true));
+        
         // pause on hover/focus
         container.addEventListener('mouseenter', stopTimer, { passive: true });
         container.addEventListener('mouseleave', startTimer, { passive: true });
         container.addEventListener('focusin', stopTimer);
         container.addEventListener('focusout', startTimer);
+        
         // keyboard support (left/right)
         container.addEventListener('keydown', (e) => {
           if (e.key === 'ArrowLeft') { prev(true); e.preventDefault(); }
           if (e.key === 'ArrowRight') { next(true); e.preventDefault(); }
         });
-        // set initial active slide
+        
+        // set initial active slide - ensure first slide is immediately visible
         slides.forEach((sl, i) => {
           // ensure slide has data-index numeric
           sl.dataset.index = String(i);
-          sl.classList.toggle('is-active', i === 0);
+          const isFirst = i === 0;
+          sl.classList.toggle('is-active', isFirst);
           // hide from AT when not active
-          sl.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
+          sl.setAttribute('aria-hidden', isFirst ? 'false' : 'true');
+          
+          // Force immediate visibility for first slide to prevent flash
+          if (isFirst) {
+            sl.style.opacity = '1';
+            if (isMobileSlideshow) {
+              sl.style.transform = 'translateX(0)';
+            } else {
+              sl.style.transform = 'scale(1)';
+            }
+          }
         });
+        
         // create an inline live region for screen reader announcements
         if (!container._sr) {
           const sr = document.createElement('div');
-          sr.className = 'slideshow__sr';
+          sr.className = isMobileSlideshow ? 'mobile-slideshow__sr' : 'slideshow__sr';
           sr.setAttribute('aria-live', 'polite');
           sr.setAttribute('aria-atomic', 'true');
           // visually-hide but keep available to screen readers
@@ -416,35 +449,43 @@
           const firstImg = slides[0].querySelector('img');
           container._sr.textContent = `Slide 1 of ${slides.length}: ${firstImg ? firstImg.alt : ''}`;
         }
-        // --- Crossfade integration: toggle hero-split classes when slideshow is active on large screens ---
-        const heroSplit = container.closest('.hero-split');
-        const largeScreenMq = window.matchMedia('(min-width:941px)');
-        const updateCrossfadeState = () => {
-          if (!heroSplit) return;
-          const isLarge = largeScreenMq.matches;
-          // consider 'playing' only if timer has been active for a short grace period
-          const isPlaying = !!timer && playingSince && (Date.now() - playingSince > 400);
-          if (isLarge && isPlaying) {
-            // enable crossfade overlay and show slideshow when on large screens and playing
-            heroSplit.classList.add('crossfade', 'show-slideshow');
-          } else {
-            // hide overlay and remove crossfade state
-            heroSplit.classList.remove('show-slideshow');
-            heroSplit.classList.remove('crossfade');
-          }
-        };
-        // call on relevant transitions
-        const origStartTimer = startTimer;
-        const origStopTimer = stopTimer;
-        startTimer = () => { origStartTimer(); updateCrossfadeState(); };
-        stopTimer = () => { origStopTimer(); updateCrossfadeState(); };
-        // update when slides change (in case autoplay not used)
-        container.addEventListener('focusin', updateCrossfadeState);
-        container.addEventListener('mouseenter', updateCrossfadeState);
-        // respond to screen size changes
-        try { largeScreenMq.addEventListener('change', updateCrossfadeState); } catch(e) { largeScreenMq.addListener(updateCrossfadeState); }
-        // defer initial crossfade state update slightly to avoid visual flash on load
-        setTimeout(updateCrossfadeState, 450);
+        
+        // --- Crossfade integration: only for regular slideshows, not mobile ---
+        if (!isMobileSlideshow) {
+          const heroSplit = container.closest('.hero-split');
+          const largeScreenMq = window.matchMedia('(min-width:941px)');
+          const updateCrossfadeState = () => {
+            if (!heroSplit) return;
+            const isLarge = largeScreenMq.matches;
+            // Reduce grace period to prevent white flash - was 400ms, now 200ms
+            const isPlaying = !!timer && playingSince && (Date.now() - playingSince > 200);
+            if (isLarge && isPlaying) {
+              // enable crossfade overlay and show slideshow when on large screens and playing
+              heroSplit.classList.add('crossfade', 'show-slideshow');
+            } else {
+              // hide overlay and remove crossfade state
+              heroSplit.classList.remove('show-slideshow');
+              heroSplit.classList.remove('crossfade');
+            }
+          };
+          // call on relevant transitions
+          const origStartTimer = startTimer;
+          const origStopTimer = stopTimer;
+          startTimer = () => { origStartTimer(); updateCrossfadeState(); };
+          stopTimer = () => { origStopTimer(); updateCrossfadeState(); };
+          // update when slides change (in case autoplay not used)
+          container.addEventListener('focusin', updateCrossfadeState);
+          container.addEventListener('mouseenter', updateCrossfadeState);
+          // respond to screen size changes
+          try { largeScreenMq.addEventListener('change', updateCrossfadeState); } catch(e) { largeScreenMq.addListener(updateCrossfadeState); }
+          // Reduce initial crossfade delay from 450ms to 100ms to prevent flash
+          setTimeout(updateCrossfadeState, 100);
+        }
+        
+        // Start autoplay
+        if (autoplay) {
+          startTimer();
+        }
       });
     };
     // init when DOM ready

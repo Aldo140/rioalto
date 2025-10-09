@@ -93,40 +93,94 @@
   <section id="home" class="hero-split" aria-label="Rio Alto hero">
     <!-- Left: banner (now on left, fills pane) -->
     <div class="hero-split__panel hero-split__left" aria-label="Rio Alto banner">
-      <img
-        class="hero-banner-img"
-        src="pictures/banner.png"
-        srcset="pictures/banner.png 800w, pictures/banner.png 1200w, pictures/banner.png 2000w"
-        sizes="(max-width: 940px) 100vw, (max-width: 1400px) 60vw, 58vw"
-        alt="Rio Alto — Authentic Mexican Food"
-        loading="eager"
-        decoding="async"
-      />
+      <picture class="hero-banner-picture">
+        <!-- Large screens (1130px+) use banner-copy.png -->
+        <source media="(min-width: 1130px)" srcset="pictures/Rio_alto/web-optimized/banner-copy.png">
+        <!-- All other screens use regular banner.png -->
+        <img 
+          class="hero-banner-img" 
+          src="pictures/Rio_alto/web-optimized/banner.png" 
+          alt="Rio Alto — Authentic Mexican Food"
+          loading="eager"
+          decoding="async"
+        />
+      </picture>
     </div>
     <!-- Right: slideshow gallery (moved to right) -->
     <div class="hero-split__panel hero-split__right" aria-label="Gallery">
       <div class="slideshow" data-autoplay="true" data-interval="4500">
         <div class="slide" data-index="0">
-          <img src="pictures/soft-tacos-your-choice.jpg"
-               srcset="pictures/soft-tacos-your-choice.jpg 600w, pictures/soft-tacos-your-choice.jpg 1200w"
+          <img src="pictures/Rio_alto/web-optimized/five-tacos-colorful-tortillas.jpg"
+               srcset="pictures/Rio_alto/web-optimized/five-tacos-colorful-tortillas.jpg 600w, pictures/Rio_alto/web-optimized/five-tacos-colorful-tortillas.jpg 1200w"
                sizes="(max-width:940px) 100vw, 40vw"
-               alt="Assorted street tacos with lime and cilantro" loading="eager">
+               alt="Beautifully plated taco meal with authentic Mexican sides" loading="eager">
         </div>
         <div class="slide" data-index="1">
-          <img src="pictures/empanadas.webp"
-               srcset="pictures/empanadas.webp 600w, pictures/empanadas.webp 1200w"
+          <img src="pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg"
+               srcset="pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg 600w, pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg 1200w"
                sizes="(max-width:940px) 100vw, 40vw"
-               alt="Golden empanadas served with salsa verde and crema" loading="lazy">
+               alt="Traditional chile relleno stuffed with cheese and herbs" loading="lazy">
         </div>
         <div class="slide" data-index="2">
-          <img src="pictures/Sopes.webp"
-               srcset="pictures/Sopes.webp 600w, pictures/Sopes.webp 1200w"
+          <img src="pictures/Rio_alto/web-optimized/dessert-sweets-stack.jpg"
+               srcset="pictures/Rio_alto/web-optimized/dessert-sweets-stack.jpg 600w, pictures/Rio_alto/web-optimized/dessert-sweets-stack.jpg 1200w"
                sizes="(max-width:940px) 100vw, 40vw"
-               alt="Handmade sopes topped with chorizo and crema" loading="lazy">
+               alt="Authentic Mexican desserts and sweets selection" loading="lazy">
         </div>
         <button class="slideshow__nav slideshow__nav--prev" aria-label="Previous slide">‹</button>
         <button class="slideshow__nav slideshow__nav--next" aria-label="Next slide">›</button>
         <div class="slideshow__dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Mobile Gallery Section (shows below hero on small screens) ===== -->
+  <section class="mobile-gallery" aria-label="Featured dishes gallery">
+    <div class="container">
+      <div class="mobile-gallery__intro">
+        <h2 class="mobile-gallery__title">Taste the Authentic</h2>
+        <p class="mobile-gallery__subtitle">Fresh ingredients, bold flavors, traditional recipes</p>
+      </div>
+
+      <div class="mobile-gallery__slideshow">
+        <div class="mobile-slideshow" data-autoplay="true" data-interval="5000">
+          <div class="mobile-slide" data-index="1">
+            <img src="pictures/Rio_alto/web-optimized/five-tacos-colorful-tortillas.jpg"
+                 alt="Signature Tacos" loading="lazy">
+            <div class="mobile-slide__caption">
+              <h3>Signature Tacos</h3>
+              <p>Perfectly seasoned and beautifully plated</p>
+            </div>
+          </div>
+          <div class="mobile-slide" data-index="0">
+            <img src="pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg"
+                 alt="Chile Rellenos" loading="lazy">
+            <div class="mobile-slide__caption">
+              <h3>Chile Rellenos</h3>
+              <p>Traditional stuffed peppers with authentic flavors</p>
+            </div>
+          </div>
+          <div class="mobile-slide" data-index="2">
+            <img src="pictures/Rio_alto/web-optimized/dessert-sweets-stack.jpg"
+                 alt="Sweet Endings" loading="lazy">
+            <div class="mobile-slide__caption">
+              <h3>Sweet Endings</h3>
+              <p>Authentic Mexican desserts and treats</p>
+            </div>
+          </div>
+          <button class="mobile-slideshow__nav mobile-slideshow__nav--prev" aria-label="Previous dish">‹</button>
+          <button class="mobile-slideshow__nav mobile-slideshow__nav--next" aria-label="Next dish">›</button>
+          <div class="mobile-slideshow__dots"></div>
+        </div>
+      </div>
+
+      <div class="mobile-gallery__cta">
+        <a class="btn primary" href="menu.html">
+          <svg class="icon icon-utensils" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M7 2h2v10H7zM3 2h2v7H3zm10 0h2v10h-2zM5 19c1.66 0 3-1.34 3-3V8H2v8c0 1.66 1.34 3 3 3z"/>
+          </svg> 
+          Explore Full Menu
+        </a>
       </div>
     </div>
   </section>
