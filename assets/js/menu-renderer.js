@@ -133,6 +133,8 @@
     }
 
     const base = (data.imagesBasePath || './pictures/');
+    console.log('Fetching menu.json from paths:', paths);
+    console.log('Using imagesBasePath:', base);
 
     // Build top category nav
     const navHtml = renderCategoryNav(data.categories);
