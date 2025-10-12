@@ -48,6 +48,7 @@
         <a href="menu.html">Menu</a>
         <a href="#story">Our Story</a>
         <a href="#visit">Visit</a>
+        <a href="#" class="gallery-link">Gallery</a>
         <a class="cta" href="tel:+14036521261"><svg class="icon icon-phone" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.55.57 1 1 0 011 1v3.5a1 1 0 01-1 1A19 19 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.24 1.01l-2.2 2.23z"/></svg> <span class="phone-number"></span></a>
       </nav>
       <!-- Nav toggle with hamburger spans -->
@@ -81,6 +82,9 @@
         </li>
         <li class="mobile-nav-item">
           <a href="#visit" class="mobile-nav-link">Visit</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#" class="mobile-nav-link gallery-link">Gallery</a>
         </li>
         <li class="mobile-nav-item">
           <a href="tel:+14036521261" class="mobile-nav-link cta">Call Now</a>
@@ -126,6 +130,20 @@
                srcset="pictures/Rio_alto/web-optimized/dessert-sweets-stack.jpg 600w, pictures/Rio_alto/web-optimized/dessert-sweets-stack.jpg 1200w"
                sizes="(max-width:940px) 100vw, 40vw"
                alt="Authentic Mexican desserts and sweets selection" loading="lazy">
+        </div>
+        <div class="slide" data-index="3" style="background: var(--gold); display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 40px; text-align: center; position: relative; overflow: hidden; width: 100%; height: 100%;">
+          <!-- Decorative accents -->
+          <div style="position: absolute; top: -50px; left: -50px; width: 150px; height: 150px; background: var(--charcoal); border-radius: 50%; opacity: 0.1;"></div>
+          <div style="position: absolute; bottom: -50px; right: -50px; width: 200px; height: 200px; background: var(--charcoal); border-radius: 50%; opacity: 0.1;"></div>
+
+          <h2 class="section-title" style="color: var(--charcoal); margin-bottom: 16px; font-size: 2.5rem;">Explore Our Dishes</h2>
+          <p class="menu-intro" style="color: var(--charcoal); margin-bottom: 24px; font-size: 1.25rem; max-width: 600px;">Discover authentic Mexican flavors and vibrant atmosphere through our curated gallery. Let your taste buds embark on a flavorful journey!</p>
+          <a href="gallery.html" class="btn primary" style="box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); padding: 12px 24px; font-size: 1.1rem;">View Gallery</a>
+          <div style="margin-top: 20px;">
+            <div style="width: 80%; height: 2px; background: var(--charcoal); margin: 16px auto;"></div>
+            <p style="color: var(--charcoal); font-style: italic; font-size: 1rem;">"A feast for the eyes and the palate. Experience the vibrant culture of Mexico in every dish."</p>
+            <div style="width: 80%; height: 2px; background: var(--charcoal); margin: 16px auto;"></div>
+          </div>
         </div>
         <button class="slideshow__nav slideshow__nav--prev" aria-label="Previous slide">‹</button>
         <button class="slideshow__nav slideshow__nav--next" aria-label="Next slide">›</button>
@@ -175,11 +193,11 @@
       </div>
 
       <div class="mobile-gallery__cta">
-        <a class="btn primary" href="menu.html">
-          <svg class="icon icon-utensils" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M7 2h2v10H7zM3 2h2v7H3zm10 0h2v10h-2zM5 19c1.66 0 3-1.34 3-3V8H2v8c0 1.66 1.34 3 3 3z"/>
-          </svg> 
-          Explore Full Menu
+        <a class="btn primary" href="gallery.html">
+          <svg class="icon icon-gallery" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM8 12l2.5 3.01L14 10l4 5H4l4-5z"/>
+          </svg>
+          See Gallery
         </a>
       </div>
     </div>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery — Rio Alto</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/gallery.css" />
+  <script src="assets/js/script.js" defer></script>
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container nav">
+      <nav id="main-navigation" class="main-nav">
+        <a href="menu.html">Menu</a>
+        <a href="#story">Our Story</a>
+        <a href="#visit">Visit</a>
+        <a href="gallery.html" class="gallery-link">Gallery</a>
+        <a class="cta" href="tel:+14036521261">
+          <svg class="icon icon-phone" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24 11.36 11.36 0 003.55.57 1 1 0 011 1v3.5a1 1 0 01-1 1A19 19 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.24 1.01l-2.2 2.23z"/>
+          </svg>
+          <span class="phone-number">(403) 652-1261</span>
+        </a>
+      </nav>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <a class="brand" href="#home">
+        <img src="pictures/logo.png" alt="Rio Alto logo" class="brand-logo" />
+      </a>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-logo">
+        <img src="pictures/logo.png" alt="Rio Alto logo" />
+      </div>
+      
+      <button class="mobile-menu-close" aria-label="Close menu">×</button>
+      
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item">
+          <a href="menu.html" class="mobile-nav-link">Menu</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#story" class="mobile-nav-link">Our Story</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#visit" class="mobile-nav-link">Visit</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="tel:+14036521261" class="mobile-nav-link cta">Call Now</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <section class="gallery" aria-label="Gallery">
+      <div class="container">
+        <h1 class="section-title">Gallery</h1>
+        <p class="menu-intro">Explore our vibrant dishes and authentic Mexican atmosphere.</p>
+        <!-- Gallery content will go here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <img src="pictures/logo-full.png" alt="Rio Alto logo">
+        <p>Authentic Mexican food in High River, AB.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <p>
+          118 3 Ave SW<br/>
+          High River, AB T1V 1R3
+        </p>
+        <p style="margin-top:6px">
+          <a href="tel:+14036521261">(403) 652-1261</a>
+        </p>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <p>Mon–Wed 11–8</p>
+        <p>Thu–Sat 11–9</p>
+        <p>Sun Closed</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <p><a href="index.html#home">Home</a></p>
+        <p><a href="menu.html">Menu</a></p>
+        <p><a href="index.html#story">Our Story</a></p>
+        <p><a href="index.html#visit">Visit</a></p>
+        <p><a href="https://www.facebook.com/RioAltoHighRiver/" target="_blank" rel="noopener">
+          <svg class="icon icon-facebook" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.1V12h2.1V9.6c0-2.1 1.2-3.3 3-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.9h-1.8v7A10 10 0 0022 12z"/>
+          </svg> Facebook</a></p>
+      </div>
+    </div>
+    <div class="legal">© <span id="year">2023</span> Rio Alto. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Ensure dynamic updates still apply
+    document.addEventListener('DOMContentLoaded', () => {
+      populateBusinessData();
+    });
+  </script>
+</body>
+</html>
