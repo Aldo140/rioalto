@@ -386,6 +386,9 @@ a{transition:opacity .18s ease}a:hover{opacity:.95}
   .nav-toggle{display:flex;flex-direction:column;justify-content:center}
   .main-nav{display:none}
 
+  /* Make sure the nav-toggle sits above the centered brand on narrow screens */
+  .nav-toggle{position:relative;z-index:120}
+
   /* Remove old mobile nav styles - replace with new overlay system */
   /* Old horizontal scrolling nav removed */
 }

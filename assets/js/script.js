@@ -85,13 +85,35 @@
       document.documentElement.classList.remove('nav-open');
       if (toggle) toggle.setAttribute('aria-expanded', 'false');
   
+      // Handle toggle click for both mobile overlay (small screens) and
+      // desktop nav (larger screens). On small screens the .mobile-menu-overlay
+      // is used; toggle its .active state and manage body scroll / aria attrs.
       toggle.addEventListener('click', () => {
-        const open = toggle.getAttribute('aria-expanded') === 'true';
-        if (open) {
-          closeNav();
-        } else {
-          openNav();
+        const isSmall = window.matchMedia('(max-width: 940px)').matches;
+        if (isSmall) {
+          const overlay = document.querySelector('.mobile-menu-overlay');
+          if (!overlay) return;
+          const wasActive = overlay.classList.contains('active');
+          if (wasActive) {
+            overlay.classList.remove('active');
+            document.body.classList.remove('mobile-menu-open');
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.classList.remove('active');
+            toggle.focus();
+          } else {
+            overlay.classList.add('active');
+            document.body.classList.add('mobile-menu-open');
+            toggle.setAttribute('aria-expanded', 'true');
+            toggle.classList.add('active');
+            // focus the first interactive item inside the overlay
+            const first = overlay.querySelector('.mobile-nav-link, .mobile-menu-close');
+            if (first) first.focus();
+          }
+          return;
         }
+        // Desktop behavior
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        if (open) { closeNav(); } else { openNav(); }
       });
   
       // Close menu when a nav link is clicked (on mobile)
@@ -109,9 +131,43 @@
       });
     }
 
+    // Mobile overlay controls: close button and links
+    (function wireMobileOverlayControls(){
+      const overlay = document.querySelector('.mobile-menu-overlay');
+      if (!overlay) return;
+      const closeBtn = overlay.querySelector('.mobile-menu-close');
+      const mobileLinks = Array.from(overlay.querySelectorAll('.mobile-nav-link'));
+      function closeMobile() {
+        overlay.classList.remove('active');
+        document.body.classList.remove('mobile-menu-open');
+        if (toggle) { toggle.setAttribute('aria-expanded', 'false'); toggle.classList.remove('active'); }
+      }
+      function openMobile() {
+        overlay.classList.add('active');
+        document.body.classList.add('mobile-menu-open');
+        if (toggle) { toggle.setAttribute('aria-expanded', 'true'); toggle.classList.add('active'); }
+      }
+      if (closeBtn) closeBtn.addEventListener('click', (e) => { e.preventDefault(); closeMobile(); if (toggle) toggle.focus(); });
+      mobileLinks.forEach(a => a.addEventListener('click', () => { closeMobile(); }));
+      // Close overlay when clicking backdrop area outside content
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) { closeMobile(); }
+      });
+      // Expose helpers for other handlers (escape key)
+      document._closeMobileMenu = closeMobile;
+      document._openMobileMenu = openMobile;
+    })();
+
     // Close overlay on Escape key when open (global listener as fallback)
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
+        // Prefer closing mobile overlay if active
+        const overlay = document.querySelector('.mobile-menu-overlay');
+        const mobileActive = overlay && overlay.classList.contains('active');
+        if (mobileActive) {
+          try { document._closeMobileMenu && document._closeMobileMenu(); } catch(_) {}
+          return;
+        }
         const isOpen = toggle && toggle.getAttribute('aria-expanded') === 'true';
         if (isOpen) closeNav();
       }
@@ -488,10 +544,82 @@
         }
       });
     };
+
+    // ===== New: Randomize slides (images & videos) and mark videos =====
+    function randomizeMediaInContainers() {
+      const containers = Array.from(document.querySelectorAll('.slideshow, .mobile-slideshow'));
+      if (!containers.length) return;
+
+      const videoExtRe = /\.(mp4|webm|mov|m4v)(\?|$)/i;
+
+      function isVideoSlide(slide) {
+        // Prefer explicit dataset.type
+        if (slide.dataset && slide.dataset.type === 'video') return true;
+        // Check any data-full on contained images
+        const img = slide.querySelector('img');
+        const src = img?.dataset?.full || img?.getAttribute('src') || '';
+        return videoExtRe.test(src);
+      }
+
+      function addVideoBadge(slide) {
+        if (slide.querySelector('.media-type-badge')) return;
+        const badge = document.createElement('div');
+        badge.className = 'media-type-badge';
+        badge.setAttribute('aria-hidden', 'true');
+        badge.textContent = 'VIDEO';
+        Object.assign(badge.style, {
+          position: 'absolute',
+          top: '10px',
+          left: '10px',
+          background: 'rgba(0,0,0,0.62)',
+          color: '#fff',
+          padding: '6px 8px',
+          borderRadius: '8px',
+          fontSize: '12px',
+          fontWeight: '800',
+          zIndex: '12',
+          letterSpacing: '0.6px'
+        });
+        // ensure slide is positioned so badge sits correctly
+        if (getComputedStyle(slide).position === 'static') {
+          slide.style.position = 'relative';
+        }
+        slide.appendChild(badge);
+      }
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      containers.forEach(container => {
+        const slides = Array.from(container.querySelectorAll('.slide, .mobile-slide'));
+        if (!slides.length) return;
+
+        // annotate slides that appear to be video
+        slides.forEach(sl => {
+          if (isVideoSlide(sl)) addVideoBadge(sl);
+        });
+
+        // Shuffle slides completely randomly
+        const shuffled = shuffleArray(slides.slice());
+        // Append in new order (this reorders DOM nodes)
+        shuffled.forEach(sl => container.appendChild(sl));
+      });
+    }
+
     // init when DOM ready
+    // Run randomizer first, then initialize slideshows so dots and state match the new order
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initSlideshows);
+      document.addEventListener('DOMContentLoaded', () => {
+        try { randomizeMediaInContainers(); } catch (e) { /* fail safe */ }
+        initSlideshows();
+      });
     } else {
+      try { randomizeMediaInContainers(); } catch (e) { /* fail safe */ }
       initSlideshows();
     }
   })();
@@ -648,27 +776,3 @@
   
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', populateBusinessData);
-
-  // Ensure consistent navigation toggle functionality
-  document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.querySelector('.main-nav');
-
-    if (navToggle && nav) {
-      navToggle.addEventListener('click', () => {
-        const isOpen = nav.classList.contains('open');
-        nav.classList.toggle('open', !isOpen);
-        navToggle.setAttribute('aria-expanded', !isOpen);
-      });
-
-      // Close navigation when a link is clicked (on mobile)
-      nav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth <= 940) {
-            nav.classList.remove('open');
-            navToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      });
-    }
-  });
