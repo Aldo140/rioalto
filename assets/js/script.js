@@ -515,7 +515,10 @@
             const isLarge = largeScreenMq.matches;
             // Reduce grace period to prevent white flash - was 400ms, now 200ms
             const isPlaying = !!timer && playingSince && (Date.now() - playingSince > 200);
-            if (isLarge && isPlaying) {
+            // If the currently active slide contains an interactive gallery CTA, ensure overlay is shown so pointer-events are enabled
+            const activeSlide = slides[index];
+            const hasActiveCTA = !!(activeSlide && (activeSlide.querySelector('.btn.primary') || activeSlide.dataset.keepLast === 'true'));
+            if (isLarge && (isPlaying || hasActiveCTA)) {
               // enable crossfade overlay and show slideshow when on large screens and playing
               heroSplit.classList.add('crossfade', 'show-slideshow');
             } else {
@@ -605,7 +608,16 @@
         });
 
         // Shuffle slides completely randomly
-        const shuffled = shuffleArray(slides.slice());
+        let shuffled = shuffleArray(slides.slice());
+        // Keep any slide that should always be last (gallery CTA or explicit marker) at the end
+        // Detect by: element contains a .btn.primary or has data-keep-last="true"
+        const lastSlides = [];
+        shuffled = shuffled.filter(sl => {
+          const keep = sl.querySelector('.btn.primary') || sl.dataset.keepLast === 'true';
+          if (keep) { lastSlides.push(sl); return false; }
+          return true;
+        });
+        if (lastSlides.length) shuffled = shuffled.concat(lastSlides);
         // Append in new order (this reorders DOM nodes)
         shuffled.forEach(sl => container.appendChild(sl));
       });

@@ -162,6 +162,18 @@
       "items": [
         { "id":"kids-quesadilla", "name":"Mexican Quesadilla", "description":"Corn tortilla w/ mixed cheese, tomato slices, crema fresca. Order of 2. Add meat: Chicken, Beef or Pork +$3.00", "price":9.0 }
       ]
+    },
+    {
+      "id": "dessert",
+      "name": "Dessert",
+      "items": [
+        { "id":"churros", "name":"Churros", "description":"Rolled in cinnamon sugar, served with cream", "price":10.0 },
+        { "id":"mexican-baked-flan", "name":"Mexican Baked Flan", "description":"A creamy rich vanilla custard topped with caramel", "price":10.0 },
+        { "id":"mexican-cheese-tart", "name":"Mexican Cheese Tart", "description":"Served with whipped cream and fresh fruit", "price":10.0 },
+        { "id":"impossible-cake", "name":"Impossible Cake", "description":"Two layer cake, chocolate and vanilla flan", "price":10.0 },
+        { "id":"tres-leches-cake", "name":"Tres Leches Cake", "description":"Vanilla sponge cake soaked in three kinds of milk, served with whipped cream", "price":10.0 },
+        { "id":"rios-copa-de-ice-cream", "name":"Rio’s Copa de Ice Cream", "description":"Homemade ice cream with fruit. Ask server for flavour of the day", "price":10.0 }
+      ]
     }
   ]
 }
