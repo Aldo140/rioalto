@@ -1,0 +1,43 @@
+{
+  "images": [
+    {"id":"empanadas","caption":"Empanadas","category":"mains","srcFull":"pictures/gallery/empanadas.webp","srcThumb":"pictures/gallery/empanadas.webp","type":"image/webp","width":1200,"height":900,"note":"thumb = same file; consider creating 400/800 webp thumbs"},
+    {"id":"enchilada","caption":"Enchilada","category":"mains","srcFull":"pictures/gallery/enchilada-plate.jpg","srcThumb":"pictures/gallery/enchilada-plate_thumb.jpg","type":"image/jpeg","width":720,"height":960},
+    {"id":"soft-tacos","caption":"Soft Tacos","category":"tacos","srcFull":"pictures/gallery/soft-tacos-your-choice.jpg","srcThumb":"pictures/gallery/soft-tacos-your-choice.webp","type":"image/webp","width":2000,"height":1333},
+    {"id":"sopes","caption":"Sopes","category":"mains","srcFull":"pictures/gallery/Sopes.webp","srcThumb":"pictures/gallery/Sopes.webp","type":"image/webp","width":680,"height":322},
+    {"id":"chile-relleno-meal","caption":"Chile Relleno Meal","category":"mains","srcFull":"pictures/gallery/chile-relleno-meal.jpg","srcThumb":"pictures/gallery/chile-relleno-meal_thumb.jpg","type":"image/jpeg","width":1200,"height":900},
+    {"id":"chile-relleno-plated","caption":"Chile Relleno Plated","category":"mains","srcFull":"pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg","srcThumb":"pictures/Rio_alto/web-optimized/chile-relleno-plated_thumb.jpg","type":"image/jpeg","note":"recommend copy to pictures/gallery/"},
+    {"id":"dessert-sweets-stack","caption":"Dessert Sweets Stack","category":"desserts","srcFull":"pictures/gallery/dessert-sweets-stack.jpg","srcThumb":"pictures/gallery/dessert-sweets-stack_thumb.jpg","type":"image/jpeg","width":900,"height":1200},
+    {"id":"coffee-specialty","caption":"Specialty Coffee","category":"drinks","srcFull":"pictures/gallery/coffee-drink-specialty.jpg","srcThumb":"pictures/gallery/coffee-drink-specialty_thumb.jpg","type":"image/jpeg","width":925,"height":1200},
+    {"id":"five-tacos","caption":"Five Tacos (colorful)","category":"tacos","srcFull":"pictures/gallery/five-tacos-colorful-tortillas.jpg","srcThumb":"pictures/gallery/five-tacos-colorful-tortillas_thumb.jpg","type":"image/jpeg","width":1200,"height":940},
+    {"id":"huevos-rancheros","caption":"Huevos Rancheros","category":"mains","srcFull":"pictures/gallery/huevos-rancheros-plate.jpg","srcThumb":"pictures/gallery/huevos-rancheros-plate_thumb.jpg","type":"image/jpeg","width":1200,"height":900},
+    {"id":"taco-meal","caption":"Taco Meal","category":"mains","srcFull":"pictures/gallery/taco-meal-plated.jpg","srcThumb":"pictures/gallery/taco-meal-plated_thumb.jpg","type":"image/jpeg","width":720,"height":960},
+    {"id":"sample-plate-1","caption":"Sample Dish Plate 1","category":"mains","srcFull":"pictures/gallery/sample-dish-plate-1.jpg","srcThumb":"pictures/gallery/sample-dish-plate-1_thumb.jpg","type":"image/jpeg","width":1200,"height":900},
+    {"id":"nopales-salad","caption":"Nopales Cactus Salad","category":"sides","srcFull":"pictures/Rio_alto/web-optimized/nopales-cactus-salad.jpg","srcThumb":"pictures/Rio_alto/web-optimized/nopales-cactus-salad_thumb.jpg","type":"image/jpeg","note":"recommend copy to pictures/gallery/"},
+    {"id":"outdoor-patio","caption":"Outdoor Patio Dining","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/outdoor-patio-dining.jpg","srcThumb":"pictures/gallery/outdoor-patio-dining_thumb.jpg","type":"image/jpeg","note":"thumb exists in gallery; recommend copying full into gallery"},
+    {"id":"fresh-bread","caption":"Fresh Bread Basket","category":"sides","srcFull":"pictures/Rio_alto/web-optimized/fresh-bread-basket.jpg","srcThumb":"pictures/Rio_alto/web-optimized/fresh-bread-basket_thumb.jpg","type":"image/jpeg","note":"recommend copy to pictures/gallery/"},
+    {"id":"dessert","caption":"Dessert","category":"desserts","srcFull":"pictures/Rio_alto/web-optimized/Dessert.webp","srcThumb":"pictures/gallery/Dessert_thumb.webp","type":"image/webp"},
+    {"id":"coffee","caption":"Coffee","category":"drinks","srcFull":"pictures/Rio_alto/web-optimized/coffee.webp","srcThumb":"pictures/gallery/coffee_thumb.webp","type":"image/webp"},
+    {"id":"full-course","caption":"Full Course","category":"mains","srcFull":"pictures/Rio_alto/web-optimized/full.course.webp","srcThumb":"pictures/gallery/full.course_thumb.webp","type":"image/webp"},
+    {"id":"full-course-2","caption":"Full Course 2","category":"mains","srcFull":"pictures/Rio_alto/web-optimized/full.course2.webp","srcThumb":"pictures/gallery/full.course2_thumb.webp","type":"image/webp"},
+    {"id":"full-course-3","caption":"Full Course 3","category":"mains","srcFull":"pictures/Rio_alto/web-optimized/full.course3.webp","srcThumb":"pictures/gallery/full.course3_thumb.webp","type":"image/webp"},
+    {"id":"img_8931","caption":"IMG_8931","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_8931.webp","srcThumb":"pictures/gallery/IMG_8931_thumb.webp","type":"image/webp"},
+    {"id":"img_9412","caption":"IMG_9412","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_9412.webp","srcThumb":"pictures/gallery/IMG_9412_thumb.webp","type":"image/webp"}
+  ],
+  "videos": [
+    {"id":"IMG_5783","caption":"Behind the Scenes","category":"videos","srcFull":"pictures/gallery/IMG_5783.mp4","posterFull":"pictures/gallery/IMG_5783_poster.jpg","posterThumb":"pictures/gallery/IMG_5783_poster_thumb.jpg","posterWebP":"pictures/gallery/IMG_5783_poster.webp","posterThumbWebP":"pictures/gallery/IMG_5783_poster_thumb.webp","duration":"8.63s","note":"poster/thumb generated via scripts/generate-video-thumbs.sh"},
+    {"id":"IMG_7057","caption":"Outdoor Dining","category":"videos","srcFull":"pictures/gallery/IMG_7057.mp4","posterFull":"pictures/gallery/IMG_7057_poster.jpg","posterThumb":"pictures/gallery/IMG_7057_poster_thumb.jpg","posterWebP":"pictures/gallery/IMG_7057_poster.webp","posterThumbWebP":"pictures/gallery/IMG_7057_poster_thumb.webp","duration":"4.13s","note":"poster/thumb generated via scripts/generate-video-thumbs.sh"}
+  ],
+  "scripts": {
+    "generate_video_thumbs": "scripts/generate-video-thumbs.sh [seek_seconds] [file1.mp4 file2.mp4 ...]",
+    "notes": "Use script to create poster (1280px) + poster_thumb (640px) and WebP variants. Place outputs into pictures/gallery/."
+  },
+  "recommended_actions": [
+    "Copy remaining full-res web-optimized images from Rio_alto/web-optimized into pictures/gallery/ and add corresponding *_thumb.jpg or *_thumb.webp.",
+    "Generate WebP thumbnails for all thumbs to use in <picture> for bandwidth savings.",
+    "(Optional) Transcode MP4s to H.264 720p for broader compatibility: pictures/gallery/<name>_720.mp4",
+    "Ensure gallery.html uses thumbnails for grid and data-full for full-res in lightbox (already implemented).",
+    "Confirm gallery.js loads data-full on demand and UI uses poster_thumb for video cards."
+  ],
+  "manifest_generated_by": "GitHub Copilot",
+  "manifest_date": "2025-10-12"
+}

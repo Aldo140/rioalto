@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="assets/css/gallery.css" />
   <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/gallery.js" defer></script>
 </head>
 <body>
   <!-- Header / Nav -->
@@ -41,33 +42,306 @@
       <div class="mobile-menu-logo">
         <img src="pictures/logo.png" alt="Rio Alto logo" />
       </div>
-      
       <button class="mobile-menu-close" aria-label="Close menu">×</button>
-      
       <ul class="mobile-nav-list">
-        <li class="mobile-nav-item">
-          <a href="menu.html" class="mobile-nav-link">Menu</a>
-        </li>
-        <li class="mobile-nav-item">
-          <a href="index.html#story" class="mobile-nav-link">Our Story</a>
-        </li>
-        <li class="mobile-nav-item">
-          <a href="index.html#visit" class="mobile-nav-link">Visit</a>
-        </li>
-        <li class="mobile-nav-item">
-          <a href="tel:+14036521261" class="mobile-nav-link cta">Call Now</a>
-        </li>
+        <li class="mobile-nav-item"><a href="menu.html" class="mobile-nav-link">Menu</a></li>
+        <li class="mobile-nav-item"><a href="index.html#story" class="mobile-nav-link">Our Story</a></li>
+        <li class="mobile-nav-item"><a href="index.html#visit" class="mobile-nav-link">Visit</a></li>
+        <li class="mobile-nav-item"><a href="tel:+14036521261" class="mobile-nav-link cta">Call Now</a></li>
       </ul>
     </div>
   </div>
 
   <!-- Main Content -->
   <main>
-    <section class="gallery" aria-label="Gallery">
+    <section class="gallery" role="list" aria-label="Restaurant photo gallery">
       <div class="container">
         <h1 class="section-title">Gallery</h1>
-        <p class="menu-intro">Explore our vibrant dishes and authentic Mexican atmosphere.</p>
-        <!-- Gallery content will go here -->
+        <p class="menu-intro">Explore our vibrant dishes, drinks, and the ambience of our cocina.</p>
+
+        <!-- Filter Controls -->
+        <div class="gallery-controls" aria-label="Filter gallery">
+          <div class="chips" role="tablist">
+            <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="chip" data-filter="tacos" role="tab">Tacos</button>
+            <button class="chip" data-filter="mains" role="tab">Mains</button>
+            <button class="chip" data-filter="sides" role="tab">Sides</button>
+            <button class="chip" data-filter="desserts" role="tab">Desserts</button>
+            <button class="chip" data-filter="drinks" role="tab">Drinks</button>
+            <button class="chip" data-filter="ambience" role="tab">Ambience</button>
+            <button class="chip" data-filter="videos" role="tab">Videos</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid">
+          <!-- IMAGES (built from your inventory) -->
+
+          <!-- Empanadas -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/gallery/empanadas.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <source type="image/webp" srcset="pictures/gallery/empanadas.webp">
+                <img src="pictures/gallery/empanadas.webp" alt="Empanadas served with fresh garnish and dipping sauce" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Empanadas</figcaption>
+          </figure>
+
+          <!-- Enchilada -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/gallery/enchilada-plate.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <source type="image/webp" srcset="pictures/gallery/enchilada-plate_thumb.jpg 600w">
+                <img src="pictures/gallery/enchilada-plate_thumb.jpg" data-full="pictures/gallery/enchilada-plate.jpg" alt="Enchilada with red sauce and cheese" width="720" height="960" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Enchilada</figcaption>
+          </figure>
+
+          <!-- Soft Tacos -->
+          <figure class="card" role="listitem" data-category="tacos" data-full="pictures/gallery/soft-tacos-your-choice.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <source type="image/webp" srcset="pictures/gallery/soft-tacos-your-choice.webp">
+                <img src="pictures/gallery/soft-tacos-your-choice.webp" data-full="pictures/gallery/soft-tacos-your-choice.jpg" alt="Soft tacos with various fillings" width="2000" height="1333" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Soft Tacos</figcaption>
+          </figure>
+
+          <!-- Sopes -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/gallery/Sopes.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <source type="image/webp" srcset="pictures/gallery/Sopes.webp">
+                <img src="pictures/gallery/Sopes.webp" alt="Sopes with beans, lettuce, and cheese" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Sopes</figcaption>
+          </figure>
+
+          <!-- Chile Relleno Meal -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/gallery/chile-relleno-meal.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/chile-relleno-meal_thumb.jpg" data-full="pictures/gallery/chile-relleno-meal.jpg" alt="Chile Relleno meal with rice and beans" width="1200" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Chile Relleno Meal</figcaption>
+          </figure>
+
+          <!-- Chile Relleno Plated (note: lives in Rio_alto/web-optimized) -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/Rio_alto/web-optimized/chile-relleno-plated_thumb.jpg" data-full="pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg" alt="Chile Relleno plated close-up" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Chile Relleno Plated</figcaption>
+          </figure>
+
+          <!-- Dessert Sweets Stack -->
+          <figure class="card" role="listitem" data-category="desserts" data-full="pictures/gallery/dessert-sweets-stack.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/dessert-sweets-stack_thumb.jpg" data-full="pictures/gallery/dessert-sweets-stack.jpg" alt="Dessert sweets stack with chocolate drizzle" width="900" height="1200" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Dessert Sweets Stack</figcaption>
+          </figure>
+
+          <!-- Specialty Coffee -->
+          <figure class="card" role="listitem" data-category="drinks" data-full="pictures/gallery/coffee-drink-specialty.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/coffee-drink-specialty_thumb.jpg" data-full="pictures/gallery/coffee-drink-specialty.jpg" alt="Specialty coffee drink with whipped cream" width="925" height="1200" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Specialty Coffee</figcaption>
+          </figure>
+
+          <!-- Five Tacos (colorful) -->
+          <figure class="card" role="listitem" data-category="tacos" data-full="pictures/gallery/five-tacos-colorful-tortillas.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/five-tacos-colorful-tortillas_thumb.jpg" data-full="pictures/gallery/five-tacos-colorful-tortillas.jpg" alt="Five tacos with colorful tortillas" width="1200" height="940" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Five Tacos (colorful)</figcaption>
+          </figure>
+
+          <!-- Huevos Rancheros -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/gallery/huevos-rancheros-plate.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/huevos-rancheros-plate_thumb.jpg" data-full="pictures/gallery/huevos-rancheros-plate.jpg" alt="Huevos Rancheros plate with salsa and beans" width="1200" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Huevos Rancheros</figcaption>
+          </figure>
+
+          <!-- Taco Meal -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/gallery/taco-meal-plated.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/taco-meal-plated_thumb.jpg" data-full="pictures/gallery/taco-meal-plated.jpg" alt="Taco meal plated with rice and beans" width="720" height="960" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Taco Meal</figcaption>
+          </figure>
+
+          <!-- Sample Dish Plate 1 -->
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/gallery/sample-dish-plate-1.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/sample-dish-plate-1_thumb.jpg" data-full="pictures/gallery/sample-dish-plate-1.jpg" alt="Sample dish plate with house sauces" width="1200" height="900" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Sample Dish Plate 1</figcaption>
+          </figure>
+
+          <!-- Nopales Cactus Salad (Rio_alto/web-optimized) -->
+          <figure class="card" role="listitem" data-category="sides" data-full="pictures/Rio_alto/web-optimized/nopales-cactus-salad.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/Rio_alto/web-optimized/nopales-cactus-salad_thumb.jpg" data-full="pictures/Rio_alto/web-optimized/nopales-cactus-salad.jpg" alt="Nopales cactus salad with tomato and onion" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Nopales Cactus Salad</figcaption>
+          </figure>
+
+          <!-- Outdoor Patio Dining (full suggested to be copied into gallery) -->
+          <figure class="card" role="listitem" data-category="ambience" data-full="pictures/Rio_alto/web-optimized/outdoor-patio-dining.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/outdoor-patio-dining_thumb.jpg" data-full="pictures/Rio_alto/web-optimized/outdoor-patio-dining.jpg" alt="Outdoor patio dining area with festive decor" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Outdoor Patio Dining</figcaption>
+          </figure>
+
+          <!-- Fresh Bread Basket (Rio_alto/web-optimized) -->
+          <figure class="card" role="listitem" data-category="sides" data-full="pictures/Rio_alto/web-optimized/fresh-bread-basket.jpg" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/Rio_alto/web-optimized/fresh-bread-basket_thumb.jpg" data-full="pictures/Rio_alto/web-optimized/fresh-bread-basket.jpg" alt="Fresh bread basket" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Fresh Bread Basket</figcaption>
+          </figure>
+
+          <!-- Added: assets from pictures/Rio alto- new -->
+          <!-- Note: folder name contains spaces; use URL-encoded path (%20) in the HTML references -->
+          <figure class="card" role="listitem" data-category="desserts" data-full="pictures/Rio_alto/web-optimized/Dessert.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/Dessert_thumb.webp" alt="Dessert" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Dessert (Rio alto - new)</figcaption>
+          </figure>
+
+          <figure class="card" role="listitem" data-category="drinks" data-full="pictures/Rio_alto/web-optimized/coffee.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/coffee_thumb.webp" alt="Coffee" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Coffee</figcaption>
+          </figure>
+
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/Rio_alto/web-optimized/full.course.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/full.course_thumb.webp" alt="Full course" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Full Course</figcaption>
+          </figure>
+
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/Rio_alto/web-optimized/full.course2.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/full.course2_thumb.webp" alt="Full course 2" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Full Course 2</figcaption>
+          </figure>
+
+          <figure class="card" role="listitem" data-category="mains" data-full="pictures/Rio_alto/web-optimized/full.course3.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/full.course3_thumb.webp" alt="Full course 3" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Full Course 3</figcaption>
+          </figure>
+
+          <figure class="card" role="listitem" data-category="ambience" data-full="pictures/Rio_alto/web-optimized/IMG_8931.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/IMG_8931_thumb.webp" alt="IMG_8931" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">IMG_8931</figcaption>
+          </figure>
+
+          <figure class="card" role="listitem" data-category="ambience" data-full="pictures/Rio_alto/web-optimized/IMG_9412.webp" data-type="image">
+            <div class="card-media">
+              <picture>
+                <img src="pictures/gallery/IMG_9412_thumb.webp" alt="IMG_9412" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">IMG_9412</figcaption>
+          </figure>
+
+          <!-- Videos from Rio alto - new (use banner.png as a safe visible thumbnail fallback) -->
+          <figure class="card" role="listitem" data-category="videos" data-full="pictures/Rio_alto/new/joined_video_aa0116f4df2f4d8dbd9ad8354786cd60.mp4" data-type="video">
+            <div class="card-media">
+              <picture>
+                <source type="image/webp" srcset="pictures/gallery/joined_video_aa0116f4df2f4d8dbd9ad8354786cd60_poster_thumb.webp">
+                <img src="pictures/gallery/joined_video_aa0116f4df2f4d8dbd9ad8354786cd60_poster_thumb.jpg" alt="Joined video poster" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Joined Video</figcaption>
+          </figure>
+
+          <figure class="card" role="listitem" data-category="videos" data-full="pictures/Rio_alto/new/video.mp4" data-type="video">
+            <div class="card-media">
+              <picture>
+                <source type="image/webp" srcset="pictures/gallery/video_poster_thumb.webp">
+                <img src="pictures/gallery/video_poster_thumb.jpg" alt="Video poster" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Video (Rio alto - new)</figcaption>
+          </figure>
+
+          <!-- VIDEOS (use poster thumbs as thumbnail; open MP4 in lightbox) -->
+
+          <!-- Behind the Scenes -->
+          <figure class="card" role="listitem" data-category="videos" data-full="pictures/gallery/IMG_5783.mp4" data-type="video">
+            <div class="card-media">
+              <picture>
+                <!-- Prefer WebP thumb if present -->
+                <source type="image/webp" srcset="pictures/gallery/IMG_5783_poster_thumb.webp">
+                <img src="pictures/gallery/IMG_5783_poster_thumb.jpg" alt="Behind the scenes video poster" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Behind the Scenes</figcaption>
+          </figure>
+
+          <!-- Outdoor Dining (video) -->
+          <figure class="card" role="listitem" data-category="videos" data-full="pictures/gallery/IMG_7057.mp4" data-type="video">
+            <div class="card-media">
+              <picture>
+                <source type="image/webp" srcset="pictures/gallery/IMG_7057_poster_thumb.webp">
+                <img src="pictures/gallery/IMG_7057_poster_thumb.jpg" alt="Outdoor dining video poster" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <figcaption class="card-figcaption">Outdoor Dining</figcaption>
+          </figure>
+
+        </div>
       </div>
     </section>
   </main>
@@ -103,7 +377,7 @@
         <p><a href="index.html#visit">Visit</a></p>
         <p><a href="https://www.facebook.com/RioAltoHighRiver/" target="_blank" rel="noopener">
           <svg class="icon icon-facebook" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.1V12h2.1V9.6c0-2.1 1.2-3.3 3-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.9h-1.8v7A10 10 0 0022 12z"/>
+            <path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.1V12h2.9V9.6c0-2.1 1.2-3.3 3-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.9h-1.8v7A10 10 0 0022 12z"/>
           </svg> Facebook</a></p>
       </div>
     </div>
@@ -111,9 +385,8 @@
   </footer>
 
   <script>
-    // Ensure dynamic updates still apply
     document.addEventListener('DOMContentLoaded', () => {
-      populateBusinessData();
+      populateBusinessData?.();
     });
   </script>
 </body>

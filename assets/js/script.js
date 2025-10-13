@@ -649,92 +649,26 @@
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', populateBusinessData);
 
-  // Mobile Navigation Handler
-  function initializeMobileNav() {
+  // Ensure consistent navigation toggle functionality
+  document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
-    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-    const body = document.body;
-  
-    if (!navToggle || !mobileMenuOverlay) return;
-  
-    // Toggle mobile menu
-    function toggleMobileMenu() {
-      const isOpen = mobileMenuOverlay.classList.contains('active');
-      
-      if (isOpen) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    }
-  
-    // Open mobile menu
-    function openMobileMenu() {
-      mobileMenuOverlay.classList.add('active');
-      navToggle.classList.add('active');
-      navToggle.setAttribute('aria-expanded', 'true');
-      body.classList.add('mobile-menu-open');
-      
-      // Focus management
-      mobileMenuClose.focus();
-    }
-  
-    // Close mobile menu
-    function closeMobileMenu() {
-      mobileMenuOverlay.classList.remove('active');
-      navToggle.classList.remove('active');
-      navToggle.setAttribute('aria-expanded', 'false');
-      body.classList.remove('mobile-menu-open');
-      
-      // Return focus to toggle button
-      navToggle.focus();
-    }
-  
-    // Event listeners
-    navToggle.addEventListener('click', toggleMobileMenu);
-    mobileMenuClose.addEventListener('click', closeMobileMenu);
-  
-    // Close menu when clicking on overlay background
-    mobileMenuOverlay.addEventListener('click', (e) => {
-      if (e.target === mobileMenuOverlay) {
-        closeMobileMenu();
-      }
-    });
-  
-    // Close menu when clicking nav links
-    mobileNavLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        closeMobileMenu();
+    const nav = document.querySelector('.main-nav');
+
+    if (navToggle && nav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = nav.classList.contains('open');
+        nav.classList.toggle('open', !isOpen);
+        navToggle.setAttribute('aria-expanded', !isOpen);
       });
-    });
-  
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
-        closeMobileMenu();
-      }
-    });
-  
-    // Handle window resize - close mobile menu if resizing to desktop
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 940 && mobileMenuOverlay.classList.contains('active')) {
-          closeMobileMenu();
-        }
-      }, 250);
-    });
-  }
-  
-  // Initialize everything when DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
-    // ...existing initialization code...
-    
-    // Initialize mobile navigation
-    initializeMobileNav();
-    
-    // ...existing code...
+
+      // Close navigation when a link is clicked (on mobile)
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 940) {
+            nav.classList.remove('open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      });
+    }
   });
