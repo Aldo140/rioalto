@@ -221,4 +221,60 @@
   @media (prefers-color-scheme: dark) {
     :root { --card-bg: #0f172a; --card-shadow: 0 8px 28px rgba(0,0,0,.35); }
   }
+
+  /* Video-specific UI: badge + play icon overlay */
+  .card[data-type="video"] {
+    /* make sure stacking context places badge above media */
+    isolation: isolate;
+  }
   
+  /* Top-left pill badge that says VIDEO */
+  .card[data-type="video"]::before {
+    content: "VIDEO";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 8;
+    background: linear-gradient(135deg, rgba(214,163,0,1), rgba(193,39,45,1));
+    color: #fff;
+    font-weight: 800;
+    font-size: 11px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    pointer-events: none;
+  }
+  
+  /* Centered circular play icon overlay on the thumbnail */
+  .card[data-type="video"] .card-media::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.56) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23FFFFFF' d='M8 5v14l11-7z'/></svg>") no-repeat center/42%;
+    z-index: 7;
+    transition: transform .18s ease, background-color .18s ease, opacity .18s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    pointer-events: none;
+  }
+  
+  /* Slight enlarge on hover to emphasize interactivity */
+  .card[data-type="video"]:hover .card-media::before {
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+  
+  /* Reduce badge size on small screens */
+  @media (max-width: 720px) {
+    .card[data-type="video"]::before { font-size: 10px; padding: 5px 8px; }
+    .card[data-type="video"] .card-media::before { width: 52px; height: 52px; background-size: 36%; }
+  }
+  
+  /* Dark mode adjustments for badge */
+  @media (prefers-color-scheme: dark) {
+    .card[data-type="video"]::before { background: linear-gradient(135deg, rgba(214,163,0,0.95), rgba(193,39,45,0.95)); }
+  }

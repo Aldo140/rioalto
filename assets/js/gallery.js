@@ -7,6 +7,27 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const filterButtons = document.querySelectorAll(".chip");
     const galleryItems = Array.from(galleryGrid.querySelectorAll(".card"));
+
+    // Utility: Fisher-Yates shuffle
+    function shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    // Shuffle DOM nodes and keep galleryItems in same randomized order
+    function shuffleGalleryInDOM() {
+      const shuffled = shuffleArray(galleryItems.slice());
+      shuffled.forEach(item => galleryGrid.appendChild(item));
+      // mutate galleryItems to match DOM order so lightbox/navigation follows
+      galleryItems.length = 0;
+      galleryItems.push(...shuffled);
+    }
+
+    // Initial shuffle on each page load to present random order
+    shuffleGalleryInDOM();
   
     /* ---------------------------
        Thumbnail load → stop skeleton
@@ -57,6 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
           b.classList.toggle("is-active", b === btn);
           b.setAttribute("aria-selected", b === btn ? "true" : "false");
         });
+        // If switching to 'all', reshuffle the gallery for a fresh random order
+        if (filter === 'all') {
+          shuffleGalleryInDOM();
+        }
         applyFilter(filter);
       });
     });
