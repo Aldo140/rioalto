@@ -515,10 +515,8 @@
             const isLarge = largeScreenMq.matches;
             // Reduce grace period to prevent white flash - was 400ms, now 200ms
             const isPlaying = !!timer && playingSince && (Date.now() - playingSince > 200);
-            // If the currently active slide contains an interactive gallery CTA, ensure overlay is shown so pointer-events are enabled
-            const activeSlide = slides[index];
-            const hasActiveCTA = !!(activeSlide && (activeSlide.querySelector('.btn.primary') || activeSlide.dataset.keepLast === 'true'));
-            if (isLarge && (isPlaying || hasActiveCTA)) {
+            const shouldCrossfade = isLarge && slides.length > 3 && isPlaying;
+            if (shouldCrossfade) {
               // enable crossfade overlay and show slideshow when on large screens and playing
               heroSplit.classList.add('crossfade', 'show-slideshow');
             } else {
