@@ -11,25 +11,53 @@
     }
   }
 
-  function escapeHtml(str){
-    return String(str || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
+function escapeHtml(str){
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
 
-  function renderItem(item, base, index = 0){
-    const price = item.price != null ? `<span class="sig-price">${formatPrice(item.price)}</span>` : '';
-    const desc = item.description ? `<p>${escapeHtml(item.description)}</p>` : '';
-    
-    // Check if item has an image specified in the JSON
-    const hasImage = item.image && item.image.trim();
-    const media = hasImage ? `<div class="sig-card-media"><img loading="lazy" decoding="async" src="${escapeHtml(base)}${escapeHtml(item.image)}" alt="${escapeHtml(item.name)}"></div>` : '';
-    const cardClass = hasImage ? 'sig-card' : 'sig-card no-media';
-    
-    return `
+const TAG_LABEL_MAP = {
+  'popular': '★ Popular choice',
+  'seasonal': '🌿 Seasonal item',
+  'lunch-only': '🕛 Lunch only',
+  'starter': '🥗 Perfect starter',
+  'special': '🔥 House special'
+};
+
+const CATEGORY_ICONS = {
+  'cold-drinks': '🥤',
+  'alcoholic-drinks': '🍹',
+  'hot-drinks': '☕',
+  'appetizers': '🥟',
+  'soup': '🍜',
+  'salads': '🥗',
+  'lunch': '🍱',
+  'main-course': '🍽️',
+  'tortas': '🥪',
+  'soft-tacos': '🌮',
+  'sides': '🥑',
+  'kids-menu': '🧸',
+  'dessert': '🍮'
+};
+
+function renderItem(item, base, index = 0){
+  const price = item.price != null ? `<span class="sig-price">${formatPrice(item.price)}</span>` : '';
+  const desc = item.description ? `<p>${escapeHtml(item.description)}</p>` : '';
+  // Images are intentionally suppressed on the menu page to keep layout consistent.
+  const media = '';
+  const tags = Array.isArray(item.tags) && item.tags.length
+    ? `<div class="menu-item-tags">${item.tags.map(tag => {
+        const label = TAG_LABEL_MAP[tag] || tag.replace(/-/g, ' ');
+        return `<span class="menu-tag ${escapeHtml(tag)}">${label}</span>`;
+      }).join('')}</div>`
+    : '';
+  const cardClass = 'sig-card no-media';
+  
+  return `
       <article class="${cardClass}">
         ${media}
         <div class="sig-body">
@@ -37,21 +65,14 @@
           ${desc}
           ${price}
         </div>
+        ${tags}
       </article>`;
   }
 
   function renderSubcategory(subcat, base) {
     if (!subcat.items || !subcat.items.length) return '';
     
-    const sortedItems = subcat.items.slice().sort((a, b) => {
-      const aHasImage = !!(a.image && a.image.trim());
-      const bHasImage = !!(b.image && b.image.trim());
-      if (aHasImage && !bHasImage) return -1;
-      if (!aHasImage && bHasImage) return 1;
-      return 0;
-    });
-    
-    const items = sortedItems.map((i, index) => renderItem(i, base, index)).join('');
+    const items = subcat.items.map((i, index) => renderItem(i, base, index)).join('');
     
     return `
       <div class="subcategory">
@@ -69,15 +90,7 @@
     } 
     // Handle regular categories with direct items
     else if (cat.items && cat.items.length) {
-      const sortedItems = cat.items.slice().sort((a, b) => {
-        const aHasImage = !!(a.image && a.image.trim());
-        const bHasImage = !!(b.image && b.image.trim());
-        if (aHasImage && !bHasImage) return -1;
-        if (!aHasImage && bHasImage) return 1;
-        return 0;
-      });
-      
-      const items = sortedItems.map((i, index) => renderItem(i, base, index)).join('');
+      const items = cat.items.map((i, index) => renderItem(i, base, index)).join('');
       content = `<div class="sig-grid">${items}</div>`;
     }
     
@@ -108,7 +121,7 @@
   function renderCategoryNav(categories){
     if (!categories || !categories.length) return '';
     const buttons = categories.map(cat => `<a class="btn ghost" href="#cat-${escapeHtml(cat.id)}">${escapeHtml(cat.name)}</a>`).join(' ');
-    return `<div class="menu-cats" style="margin:18px 0;text-align:center">${buttons}</div>`;
+    return `<div class="menu-cats">${buttons}</div>`;
   }
 
   function showError(msg){
@@ -143,6 +156,10 @@
     const catsHtml = data.categories.map(cat => renderCategory(cat, base)).join('');
 
     root.innerHTML = navHtml + catsHtml;
+    const srCount = document.createElement('span');
+    srCount.className = 'sr-only';
+    srCount.textContent = `${data.categories.length} menu sections loaded`;
+    root.appendChild(srCount);
 
     // Smooth scrolling for category links + active state handling
     const catLinks = Array.from(root.querySelectorAll('.menu-cats a'));

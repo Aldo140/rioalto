@@ -1,10 +1,5 @@
 pictures/archive/moved_files.log | UNREFERENCED
-pictures/banner.png | referenced in:
-./index.html:103:        <!-- All other screens use regular banner.png -->
-./index.html:106:          src="pictures/Rio_alto/web-optimized/banner.png" 
-./gallery.html:298:          <!-- Videos from Rio alto - new (use banner.png as a safe visible thumbnail fallback) -->
-./gallery.html:302:                <img src="pictures/banner.png" alt="Joined video" loading="lazy" decoding="async">
-./gallery.html:311:                <img src="pictures/banner.png" alt="Video" loading="lazy" decoding="async">
+pictures/banner.png | moved to pictures/archive/unused/banner.png (unused duplicate of web-optimized hero)
 ---
 pictures/empanadas.webp | referenced in:
 ./pictures/gallery/media_manifest.txt:3:    {"id":"empanadas","caption":"Empanadas","category":"mains","srcFull":"pictures/gallery/empanadas.webp","srcThumb":"pictures/gallery/empanadas.webp","type":"image/webp","width":1200,"height":900,"note":"thumb = same file; consider creating 400/800 webp thumbs"},
@@ -411,7 +406,7 @@ pictures/gallery/video_poster.jpg | UNREFERENCED
 pictures/gallery/video_poster_thumb.jpg | UNREFERENCED
 pictures/gallery/video_poster_thumb.webp | UNREFERENCED
 pictures/gallery/video_poster.webp | UNREFERENCED
-pictures/icon.png | UNREFERENCED
+pictures/icon.png | moved to pictures/archive/unused/icon.png (legacy asset)
 pictures/logo-full.png | referenced in:
 ./assets/js/script.js:580:          <img src="pictures/logo-full.png" alt="Rio Alto logo">
 ./gallery.html:351:        <img src="pictures/logo-full.png" alt="Rio Alto logo">
@@ -431,59 +426,34 @@ pictures/logo.png | referenced in:
 ./gallery.html:34:        <img src="pictures/logo.png" alt="Rio Alto logo" class="brand-logo" />
 ./gallery.html:43:        <img src="pictures/logo.png" alt="Rio Alto logo" />
 ---
-pictures/mascot.png | UNREFERENCED
-pictures/no-back1.jpg | UNREFERENCED
-pictures/no-back2.jpg | UNREFERENCED
-pictures/Rio_alto/new/coffee.heic | referenced in:
-./gallery.html:244:          <figure class="card" role="listitem" data-category="drinks" data-full="pictures/Rio_alto/new/coffee.heic" data-type="image">
-./gallery.html:247:                <img src="pictures/Rio_alto/new/coffee.heic" alt="Coffee" loading="lazy" decoding="async">
+pictures/mascot.png | moved to pictures/archive/unused/mascot.png (legacy asset)
+pictures/no-back1.jpg | moved to pictures/archive/unused/no-back1.jpg (legacy asset)
+pictures/no-back2.jpg | moved to pictures/archive/unused/no-back2.jpg (legacy asset)
+pictures/Rio_alto/new/coffee.heic | converted to pictures/Rio_alto/web-optimized/coffee.webp
 ---
-pictures/Rio_alto/new/Dessert.heic | referenced in:
-./gallery.html:235:          <figure class="card" role="listitem" data-category="desserts" data-full="pictures/Rio_alto/new/Dessert.heic" data-type="image">
-./gallery.html:238:                <img src="pictures/Rio_alto/new/Dessert.heic" alt="Dessert" loading="lazy" decoding="async">
+pictures/Rio_alto/new/Dessert.heic | converted to pictures/Rio_alto/web-optimized/Dessert.webp
 ---
-pictures/Rio_alto/new/full.course2.heic | referenced in:
-./gallery.html:262:          <figure class="card" role="listitem" data-category="mains" data-full="pictures/Rio_alto/new/full.course2.heic" data-type="image">
-./gallery.html:265:                <img src="pictures/Rio_alto/new/full.course2.heic" alt="Full course 2" loading="lazy" decoding="async">
+pictures/Rio_alto/new/full.course2.heic | converted to pictures/Rio_alto/web-optimized/full.course2.webp
 ---
-pictures/Rio_alto/new/full.course3.heic | referenced in:
-./gallery.html:271:          <figure class="card" role="listitem" data-category="mains" data-full="pictures/Rio_alto/new/full.course3.heic" data-type="image">
-./gallery.html:274:                <img src="pictures/Rio_alto/new/full.course3.heic" alt="Full course 3" loading="lazy" decoding="async">
+pictures/Rio_alto/new/full.course3.heic | converted to pictures/Rio_alto/web-optimized/full.course3.webp
 ---
-pictures/Rio_alto/new/full.course.heic | referenced in:
-./gallery.html:253:          <figure class="card" role="listitem" data-category="mains" data-full="pictures/Rio_alto/new/full.course.heic" data-type="image">
-./gallery.html:256:                <img src="pictures/Rio_alto/new/full.course.heic" alt="Full course" loading="lazy" decoding="async">
+pictures/Rio_alto/new/full.course.heic | converted to pictures/Rio_alto/web-optimized/full.course.webp
 ---
-pictures/Rio_alto/new/IMG_8931.heic | referenced in:
-./gallery.html:280:          <figure class="card" role="listitem" data-category="ambience" data-full="pictures/Rio_alto/new/IMG_8931.heic" data-type="image">
-./gallery.html:283:                <img src="pictures/Rio_alto/new/IMG_8931.heic" alt="IMG_8931" loading="lazy" decoding="async">
+pictures/Rio_alto/new/IMG_8931.heic | converted to pictures/Rio_alto/web-optimized/IMG_8931.webp
 ---
-pictures/Rio_alto/new/IMG_9412.heic | referenced in:
-./gallery.html:289:          <figure class="card" role="listitem" data-category="ambience" data-full="pictures/Rio_alto/new/IMG_9412.heic" data-type="image">
-./gallery.html:292:                <img src="pictures/Rio_alto/new/IMG_9412.heic" alt="IMG_9412" loading="lazy" decoding="async">
+pictures/Rio_alto/new/IMG_9412.heic | converted to pictures/Rio_alto/web-optimized/IMG_9412.webp
 ---
-pictures/Rio_alto/new/joined_video_aa0116f4df2f4d8dbd9ad8354786cd60.mp4 | referenced in:
-./gallery.html:299:          <figure class="card" role="listitem" data-category="videos" data-full="pictures/Rio_alto/new/joined_video_aa0116f4df2f4d8dbd9ad8354786cd60.mp4" data-type="video">
+pictures/Rio_alto/new/joined_video_aa0116f4df2f4d8dbd9ad8354786cd60.mp4 | moved to pictures/Rio_alto/web-optimized/joined_video_aa0116f4df2f4d8dbd9ad8354786cd60.mp4
 ---
-pictures/Rio_alto/new/video.mp4 | referenced in:
-./gallery.html:308:          <figure class="card" role="listitem" data-category="videos" data-full="pictures/Rio_alto/new/video.mp4" data-type="video">
+pictures/Rio_alto/new/video.mp4 | moved to pictures/Rio_alto/web-optimized/video.mp4
 ---
 pictures/Rio_alto/web-optimized/banner-copy.png | referenced in:
 ./index.html:101:        <!-- Large screens (1130px+) use banner-copy.png -->
 ./index.html:102:        <source media="(min-width: 1130px)" srcset="pictures/Rio_alto/web-optimized/banner-copy.png">
 ---
 pictures/Rio_alto/web-optimized/banner.png | referenced in:
-./pictures/media_manifest.txt:2:pictures/banner.png | referenced in:
-./pictures/media_manifest.txt:3:./index.html:103:        <!-- All other screens use regular banner.png -->
-./pictures/media_manifest.txt:4:./index.html:106:          src="pictures/Rio_alto/web-optimized/banner.png" 
-./pictures/media_manifest.txt:5:./gallery.html:298:          <!-- Videos from Rio alto - new (use banner.png as a safe visible thumbnail fallback) -->
-./pictures/media_manifest.txt:6:./gallery.html:302:                <img src="pictures/banner.png" alt="Joined video" loading="lazy" decoding="async">
-./pictures/media_manifest.txt:7:./gallery.html:311:                <img src="pictures/banner.png" alt="Video" loading="lazy" decoding="async">
 ./index.html:103:        <!-- All other screens use regular banner.png -->
 ./index.html:106:          src="pictures/Rio_alto/web-optimized/banner.png" 
-./gallery.html:298:          <!-- Videos from Rio alto - new (use banner.png as a safe visible thumbnail fallback) -->
-./gallery.html:302:                <img src="pictures/banner.png" alt="Joined video" loading="lazy" decoding="async">
-./gallery.html:311:                <img src="pictures/banner.png" alt="Video" loading="lazy" decoding="async">
 ---
 pictures/Rio_alto/web-optimized/chile-relleno-meal.jpg | referenced in:
 ./pictures/gallery/media_manifest.txt:7:    {"id":"chile-relleno-meal","caption":"Chile Relleno Meal","category":"mains","srcFull":"pictures/gallery/chile-relleno-meal.jpg","srcThumb":"pictures/gallery/chile-relleno-meal_thumb.jpg","type":"image/jpeg","width":1200,"height":900},
