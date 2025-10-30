@@ -712,41 +712,75 @@
     const footer = document.querySelector('.site-footer');
     if (!footer) return;
     
+    const navLinks = [
+      { href: 'index.html#home', label: 'Home' },
+      { href: 'menu.html', label: 'Menu' },
+      { href: 'index.html#story', label: 'Our Story' },
+      { href: 'index.html#visit', label: 'Visit' }
+    ];
+    
+    const hoursHtml = Object.entries(BUSINESS_DATA.hoursDisplay)
+      .map(([days, hours]) => `
+        <li class="footer-hours__item">
+          <span class="footer-hours__days">${days}</span>
+          <span class="footer-hours__time">${hours}</span>
+        </li>`)
+      .join('');
+    
+    const linksHtml = navLinks
+      .map(({ href, label }) => `<li><a href="${href}">${label}</a></li>`)
+      .join('');
+    
+    const currentYear = new Date().getFullYear();
+    
     const footerHTML = `
-      <div class="container">
-        <div>
-          <img src="pictures/logo-full.png" alt="Rio Alto logo">
-          <p>${BUSINESS_DATA.tagline}</p>
+      <div class="footer-shell container">
+        <div class="footer-top">
+          <section class="footer-col footer-col--brand">
+            <img src="pictures/logo-full.png" alt="Rio Alto logo" class="footer-logo">
+            <p class="footer-tagline">${BUSINESS_DATA.tagline}</p>
+            <a class="footer-cta" href="${BUSINESS_DATA.contact.phoneLink}">
+              <span class="footer-cta__label">Call us</span>
+              <span class="footer-cta__value">${BUSINESS_DATA.contact.phoneDisplay}</span>
+            </a>
+          </section>
+          <section class="footer-col footer-col--visit">
+            <h3 class="footer-heading">Visit</h3>
+            <address class="footer-address">
+              <span>${BUSINESS_DATA.address.street}</span>
+              <span>${BUSINESS_DATA.address.city}, ${BUSINESS_DATA.address.province} ${BUSINESS_DATA.address.postalCode}</span>
+            </address>
+          </section>
+          <section class="footer-col footer-col--hours">
+            <h3 class="footer-heading">Hours</h3>
+            <ul class="footer-hours">
+              ${hoursHtml}
+            </ul>
+          </section>
+          <section class="footer-col footer-col--links">
+            <h3 class="footer-heading">Connect</h3>
+            <nav aria-label="Footer navigation">
+              <ul class="footer-links">
+                ${linksHtml}
+              </ul>
+            </nav>
+            <div class="footer-social">
+              <a href="${BUSINESS_DATA.social.facebook}" target="_blank" rel="noopener" class="footer-social__link">
+                <span class="sr-only">Facebook</span>
+                <svg class="icon icon-facebook" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7H8.4V12h2.1V9.6c0-2.1 1.2-3.3 3-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.9h-1.8v7A10 10 0 0022 12z"/>
+                </svg>
+              </a>
+            </div>
+          </section>
         </div>
-        <div>
-          <h4>Visit</h4>
-          <p>
-            ${BUSINESS_DATA.address.street}<br/>
-            ${BUSINESS_DATA.address.city}, ${BUSINESS_DATA.address.province} ${BUSINESS_DATA.address.postalCode}
-          </p>
-          <p style="margin-top:6px">
-            <a href="${BUSINESS_DATA.contact.phoneLink}">${BUSINESS_DATA.contact.phoneDisplay}</a>
-          </p>
-        </div>
-        <div>
-          <h4>Hours</h4>
-          ${Object.entries(BUSINESS_DATA.hoursDisplay)
-            .map(([days, hours]) => `<p>${days} ${hours}</p>`)
-            .join('')}
-        </div>
-        <div>
-          <h4>Links</h4>
-          <p><a href="index.html#home">Home</a></p>
-          <p><a href="menu.html">Menu</a></p>
-          <p><a href="index.html#story">Our Story</a></p>
-          <p><a href="index.html#visit">Visit</a></p>
-          <p><a href="${BUSINESS_DATA.social.facebook}" target="_blank" rel="noopener">
-            <svg class="icon icon-facebook" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path fill="currentColor" d="M22 12a10 10 0 10-11.5 9.9v-7h-2.1V12h2.1V9.6c0-2.1 1.2-3.3 3-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.2l-.4 2.9h-1.8v7A10 10 0 0022 12z"/>
-            </svg> Facebook</a></p>
+        <div class="footer-bottom">
+          <p>© <span id="year">${currentYear}</span> Rio Alto. All rights reserved.</p>
+          <ul class="footer-inline-links">
+            ${linksHtml}
+          </ul>
         </div>
       </div>
-      <div class="legal">© <span id="year">${new Date().getFullYear()}</span> Rio Alto. All rights reserved.</div>
     `;
     
     footer.innerHTML = footerHTML;
