@@ -7,6 +7,9 @@
     {"id":"chile-relleno-meal","caption":"Chile Relleno Meal","category":"mains","srcFull":"pictures/gallery/chile-relleno-meal.jpg","srcThumb":"pictures/gallery/chile-relleno-meal_thumb.jpg","type":"image/jpeg","width":1200,"height":900},
     {"id":"chile-relleno-plated","caption":"Chile Relleno Plated","category":"mains","srcFull":"pictures/Rio_alto/web-optimized/chile-relleno-plated.jpg","srcThumb":"pictures/Rio_alto/web-optimized/chile-relleno-plated_thumb.jpg","type":"image/jpeg","note":"recommend copy to pictures/gallery/"},
     {"id":"dessert-sweets-stack","caption":"Dessert Sweets Stack","category":"desserts","srcFull":"pictures/gallery/dessert-sweets-stack.jpg","srcThumb":"pictures/gallery/dessert-sweets-stack_thumb.jpg","type":"image/jpeg","width":900,"height":1200},
+    {"id":"dessert-cake-zoomed","caption":"Dessert Cake Detail","category":"desserts","srcFull":"pictures/Rio_alto/web-optimized/Dessert_Cake_Zoomed.webp","srcThumb":"pictures/gallery/Dessert_Cake_Zoomed_thumb.jpg","type":"image/webp","note":"Thumbnail WebP available at pictures/gallery/Dessert_Cake_Zoomed_thumb.webp"},
+    {"id":"flan","caption":"House Flan","category":"desserts","srcFull":"pictures/Rio_alto/web-optimized/Flan.webp","srcThumb":"pictures/gallery/Flan_thumb.jpg","type":"image/webp","note":"Thumbnail WebP available at pictures/gallery/Flan_thumb.webp"},
+    {"id":"sweet-bread","caption":"Sweet Bread Treat","category":"desserts","srcFull":"pictures/Rio_alto/web-optimized/Sweet_Bread.webp","srcThumb":"pictures/gallery/Sweet_Bread_thumb.jpg","type":"image/webp","note":"Thumbnail WebP available at pictures/gallery/Sweet_Bread_thumb.webp"},
     {"id":"coffee-specialty","caption":"Specialty Coffee","category":"drinks","srcFull":"pictures/gallery/coffee-drink-specialty.jpg","srcThumb":"pictures/gallery/coffee-drink-specialty_thumb.jpg","type":"image/jpeg","width":925,"height":1200},
     {"id":"five-tacos","caption":"Five Tacos (colorful)","category":"tacos","srcFull":"pictures/gallery/five-tacos-colorful-tortillas.jpg","srcThumb":"pictures/gallery/five-tacos-colorful-tortillas_thumb.jpg","type":"image/jpeg","width":1200,"height":940},
     {"id":"huevos-rancheros","caption":"Huevos Rancheros","category":"mains","srcFull":"pictures/gallery/huevos-rancheros-plate.jpg","srcThumb":"pictures/gallery/huevos-rancheros-plate_thumb.jpg","type":"image/jpeg","width":1200,"height":900},
@@ -21,23 +24,33 @@
     {"id":"full-course-2","caption":"Full Course 2","category":"mains","srcFull":"pictures/Rio_alto/web-optimized/full.course2.webp","srcThumb":"pictures/gallery/full.course2_thumb.webp","type":"image/webp"},
     {"id":"full-course-3","caption":"Full Course 3","category":"mains","srcFull":"pictures/Rio_alto/web-optimized/full.course3.webp","srcThumb":"pictures/gallery/full.course3_thumb.webp","type":"image/webp"},
     {"id":"img_8931","caption":"IMG_8931","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_8931.webp","srcThumb":"pictures/gallery/IMG_8931_thumb.webp","type":"image/webp"},
-    {"id":"img_9412","caption":"IMG_9412","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_9412.webp","srcThumb":"pictures/gallery/IMG_9412_thumb.webp","type":"image/webp"}
+    {"id":"img_9412","caption":"IMG_9412","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_9412.webp","srcThumb":"pictures/gallery/IMG_9412_thumb.webp","type":"image/webp"},
+    {"id":"img_5455","caption":"Kitchen Prep Moment","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_5455.webp","srcThumb":"pictures/gallery/IMG_5455_thumb.jpg","type":"image/webp","note":"Thumbnail WebP available at pictures/gallery/IMG_5455_thumb.webp"},
+    {"id":"img_5757","caption":"Team at Work","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_5757.webp","srcThumb":"pictures/gallery/IMG_5757_thumb.jpg","type":"image/webp","note":"Thumbnail WebP available at pictures/gallery/IMG_5757_thumb.webp"},
+    {"id":"img_7300","caption":"Kitchen Detail","category":"ambience","srcFull":"pictures/Rio_alto/web-optimized/IMG_7300.webp","srcThumb":"pictures/gallery/IMG_7300_thumb.jpg","type":"image/webp","note":"Thumbnail WebP available at pictures/gallery/IMG_7300_thumb.webp"}
   ],
   "videos": [
     {"id":"IMG_5783","caption":"Behind the Scenes","category":"videos","srcFull":"pictures/gallery/IMG_5783.mp4","posterFull":"pictures/gallery/IMG_5783_poster.jpg","posterThumb":"pictures/gallery/IMG_5783_poster_thumb.jpg","posterWebP":"pictures/gallery/IMG_5783_poster.webp","posterThumbWebP":"pictures/gallery/IMG_5783_poster_thumb.webp","duration":"8.63s","note":"poster/thumb generated via scripts/generate-video-thumbs.sh"},
-    {"id":"IMG_7057","caption":"Outdoor Dining","category":"videos","srcFull":"pictures/gallery/IMG_7057.mp4","posterFull":"pictures/gallery/IMG_7057_poster.jpg","posterThumb":"pictures/gallery/IMG_7057_poster_thumb.jpg","posterWebP":"pictures/gallery/IMG_7057_poster.webp","posterThumbWebP":"pictures/gallery/IMG_7057_poster_thumb.webp","duration":"4.13s","note":"poster/thumb generated via scripts/generate-video-thumbs.sh"}
+    {"id":"IMG_7057","caption":"Outdoor Dining","category":"videos","srcFull":"pictures/gallery/IMG_7057.mp4","posterFull":"pictures/gallery/IMG_7057_poster.jpg","posterThumb":"pictures/gallery/IMG_7057_poster_thumb.jpg","posterWebP":"pictures/gallery/IMG_7057_poster.webp","posterThumbWebP":"pictures/gallery/IMG_7057_poster_thumb.webp","duration":"4.13s","note":"poster/thumb generated via scripts/generate-video-thumbs.sh"},
+    {"id":"dessert-cake","caption":"Dessert Cake Plating","category":"videos","srcFull":"pictures/Rio_alto/web-optimized/Dessert_Cake.mp4","posterFull":"pictures/gallery/Dessert_Cake_poster.jpg","posterThumb":"pictures/gallery/Dessert_Cake_poster_thumb.jpg","posterWebP":"pictures/gallery/Dessert_Cake_poster.webp","posterThumbWebP":"pictures/gallery/Dessert_Cake_poster_thumb.webp"},
+    {"id":"prep","caption":"Prep Session","category":"videos","srcFull":"pictures/Rio_alto/web-optimized/Prep.mp4","posterFull":"pictures/gallery/Prep_poster.jpg","posterThumb":"pictures/gallery/Prep_poster_thumb.jpg","posterWebP":"pictures/gallery/Prep_poster.webp","posterThumbWebP":"pictures/gallery/Prep_poster_thumb.webp"},
+    {"id":"prep-2","caption":"Prep Session 2","category":"videos","srcFull":"pictures/Rio_alto/web-optimized/Prep_2.mp4","posterFull":"pictures/gallery/Prep_2_poster.jpg","posterThumb":"pictures/gallery/Prep_2_poster_thumb.jpg","posterWebP":"pictures/gallery/Prep_2_poster.webp","posterThumbWebP":"pictures/gallery/Prep_2_poster_thumb.webp"},
+    {"id":"prep-3","caption":"Prep Session 3","category":"videos","srcFull":"pictures/Rio_alto/web-optimized/Prep_3.mp4","posterFull":"pictures/gallery/Prep_3_poster.jpg","posterThumb":"pictures/gallery/Prep_3_poster_thumb.jpg","posterWebP":"pictures/gallery/Prep_3_poster.webp","posterThumbWebP":"pictures/gallery/Prep_3_poster_thumb.webp"},
+    {"id":"prep-4","caption":"Prep Session 4","category":"videos","srcFull":"pictures/Rio_alto/web-optimized/Prep_4.mp4","posterFull":"pictures/gallery/Prep_4_poster.jpg","posterThumb":"pictures/gallery/Prep_4_poster_thumb.jpg","posterWebP":"pictures/gallery/Prep_4_poster.webp","posterThumbWebP":"pictures/gallery/Prep_4_poster_thumb.webp"},
+    {"id":"prep-5","caption":"Prep Session 5","category":"videos","srcFull":"pictures/Rio_alto/web-optimized/Prep_5.mp4","posterFull":"pictures/gallery/Prep_5_poster.jpg","posterThumb":"pictures/gallery/Prep_5_poster_thumb.jpg","posterWebP":"pictures/gallery/Prep_5_poster.webp","posterThumbWebP":"pictures/gallery/Prep_5_poster_thumb.webp"},
+    {"id":"tortilla-variety","caption":"Tortilla Variety","category":"videos","srcFull":"pictures/Rio_alto/web-optimized/Tortilla_Variety.mp4","posterFull":"pictures/gallery/Tortilla_Variety_poster.jpg","posterThumb":"pictures/gallery/Tortilla_Variety_poster_thumb.jpg","posterWebP":"pictures/gallery/Tortilla_Variety_poster.webp","posterThumbWebP":"pictures/gallery/Tortilla_Variety_poster_thumb.webp"}
   ],
   "scripts": {
     "generate_video_thumbs": "scripts/generate-video-thumbs.sh [seek_seconds] [file1.mp4 file2.mp4 ...]",
     "notes": "Use script to create poster (1280px) + poster_thumb (640px) and WebP variants. Place outputs into pictures/gallery/."
   },
   "recommended_actions": [
-    "Copy remaining full-res web-optimized images from Rio_alto/web-optimized into pictures/gallery/ and add corresponding *_thumb.jpg or *_thumb.webp.",
-    "Generate WebP thumbnails for all thumbs to use in <picture> for bandwidth savings.",
-    "(Optional) Transcode MP4s to H.264 720p for broader compatibility: pictures/gallery/<name>_720.mp4",
-    "Ensure gallery.html uses thumbnails for grid and data-full for full-res in lightbox (already implemented).",
-    "Confirm gallery.js loads data-full on demand and UI uses poster_thumb for video cards."
+    "Review new alt text/captions in gallery.html and adjust descriptions once assets are QA’d.",
+    "Optionally remove archived originals from pictures/archive after backup verification.",
+    "(Optional) Transcode MP4s to H.264 720p for broader compatibility: pictures/Rio_alto/web-optimized/<name>_720.mp4",
+    "Keep running scripts/generate-video-thumbs.sh when new clips are added so posters stay consistent.",
+    "Confirm gallery.js still lazy-loads and filters correctly after shuffling in new media."
   ],
   "manifest_generated_by": "GitHub Copilot",
-  "manifest_date": "2025-10-12"
+  "manifest_date": "2025-10-30"
 }
