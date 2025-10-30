@@ -44,6 +44,17 @@ const CATEGORY_ICONS = {
   'dessert': '🍮'
 };
 
+const CATEGORY_GROUPS = [
+  { id: 'refreshments', label: 'Refreshments', categories: ['cold-drinks', 'alcoholic-drinks', 'hot-drinks'] },
+  { id: 'starters', label: 'Starters & Greens', categories: ['appetizers', 'soup', 'salads'] },
+  { id: 'plates', label: 'Daytime Plates', categories: ['lunch', 'main-course'] },
+  { id: 'street', label: 'Street Favourites', categories: ['tortas', 'soft-tacos'] },
+  { id: 'sides', label: 'Sides & Treats', categories: ['sides', 'dessert'] },
+  { id: 'kids', label: 'Kids Menu', categories: ['kids-menu'] }
+];
+
+const TILE_ARROW_SVG = `<svg class="menu-tile__arrow-icon" viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M8 6h10v10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
 function renderItem(item, base, index = 0){
   const price = item.price != null ? `<span class="sig-price">${formatPrice(item.price)}</span>` : '';
   const desc = item.description ? `<p>${escapeHtml(item.description)}</p>` : '';
@@ -120,8 +131,75 @@ function renderItem(item, base, index = 0){
 
   function renderCategoryNav(categories){
     if (!categories || !categories.length) return '';
-    const buttons = categories.map(cat => `<a class="btn ghost" href="#cat-${escapeHtml(cat.id)}">${escapeHtml(cat.name)}</a>`).join(' ');
-    return `<div class="menu-cats">${buttons}</div>`;
+    const categoryById = new Map(categories.map(cat => [cat.id, cat]));
+    const grouped = [];
+    const used = new Set();
+
+    CATEGORY_GROUPS.forEach(group => {
+      const collected = group.categories
+        .map(id => categoryById.get(id))
+        .filter(Boolean);
+      if (!collected.length) return;
+      collected.forEach(cat => used.add(cat.id));
+      grouped.push({ id: group.id, label: group.label, categories: collected });
+    });
+
+    const leftovers = categories.filter(cat => !used.has(cat.id));
+    if (leftovers.length){
+      grouped.push({ id: 'more', label: 'More', categories: leftovers });
+    }
+
+    const renderCard = (cat, groupId, groupLabel) => {
+      const icon = CATEGORY_ICONS[cat.id] || '🍽️';
+      return `
+        <a class="menu-card" data-group="${escapeHtml(groupId)}" href="#cat-${escapeHtml(cat.id)}">
+          <span class="menu-card-icon" aria-hidden="true">${escapeHtml(icon)}</span>
+          <span class="menu-card-content">
+            <span class="menu-card-label">${escapeHtml(cat.name)}</span>
+            <span class="menu-card-meta">${escapeHtml(groupLabel)}</span>
+          </span>
+          <span class="menu-card-chevron" aria-hidden="true">›</span>
+        </a>`;
+    };
+
+    const renderTile = (group) => {
+      const contentId = `menu-tile-${group.id}`;
+      const categoryIds = group.categories.map(cat => cat.id);
+      const options = group.categories.map(cat => `
+          <a class="menu-tile__option" href="#cat-${escapeHtml(cat.id)}" data-category="${escapeHtml(cat.id)}">
+            ${escapeHtml(cat.name)}
+          </a>`).join('');
+      const guardOptions = options
+        ? `<div class="menu-tile__options">${options}</div>`
+        : `<p class="menu-tile__empty">More coming soon.</p>`;
+
+      return `
+        <article class="menu-tile" data-group="${escapeHtml(group.id)}" data-categories="${categoryIds.map(id => escapeHtml(id)).join(',')}">
+          <button class="menu-tile__header" type="button" aria-expanded="false" aria-controls="${escapeHtml(contentId)}">
+            <span class="menu-tile__label">${escapeHtml(group.label)}</span>
+            <span class="menu-tile__arrow" aria-hidden="true">${TILE_ARROW_SVG}</span>
+          </button>
+          <div class="menu-tile__content" id="${escapeHtml(contentId)}" hidden>
+            <div class="menu-tile__body">
+              ${guardOptions}
+            </div>
+          </div>
+        </article>`;
+    };
+
+    const cards = grouped.map(group => group.categories.map(cat => renderCard(cat, group.id, group.label)).join('')).join('');
+    const tiles = grouped.map(renderTile).join('');
+
+    return `
+      <section class="menu-links" aria-label="Menu quick links">
+        <div class="menu-cards">
+          ${cards}
+        </div>
+        <h2 class="menu-list-title" aria-hidden="true">Menu Quick Links</h2>
+        <div class="menu-list">
+          ${tiles}
+        </div>
+      </section>`;
   }
 
   function showError(msg){
@@ -162,32 +240,196 @@ function renderItem(item, base, index = 0){
     root.appendChild(srCount);
 
     // Smooth scrolling for category links + active state handling
-    const catLinks = Array.from(root.querySelectorAll('.menu-cats a'));
-    catLinks.forEach(a => {
-      a.addEventListener('click', (e) => {
-        const targetId = a.getAttribute('href').slice(1);
+    const cardLinks = Array.from(root.querySelectorAll('.menu-cards .menu-card'));
+    const tiles = Array.from(root.querySelectorAll('.menu-list .menu-tile'));
+    const tileHeaders = tiles.map(tile => tile.querySelector('.menu-tile__header')).filter(Boolean);
+    const tileLinks = Array.from(root.querySelectorAll('.menu-tile__option'));
+    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let manualTileLockUntil = 0;
+
+    const prefersReducedMotion = () => reducedMotionQuery.matches;
+
+    const closeTile = (tile, { animate = true } = {}) => {
+      if (!tile || !tile.classList.contains('is-open')) return;
+      const header = tile.querySelector('.menu-tile__header');
+      const content = tile.querySelector('.menu-tile__content');
+      if (!header || !content) return;
+
+      tile.classList.remove('is-open');
+      header.setAttribute('aria-expanded', 'false');
+
+      const finishClose = () => {
+        content.hidden = true;
+        content.style.maxHeight = '';
+        content.style.opacity = '';
+        content.style.transform = '';
+        tile.querySelectorAll('.menu-tile__option').forEach(link => link.classList.remove('active'));
+      };
+
+      if (!animate || prefersReducedMotion()){
+        content.style.maxHeight = '0px';
+        finishClose();
+        return;
+      }
+
+      const currentHeight = content.scrollHeight;
+      content.style.maxHeight = `${currentHeight}px`;
+      requestAnimationFrame(() => {
+        content.style.maxHeight = '0px';
+        content.style.opacity = '0';
+        content.style.transform = 'translateY(-6px)';
+      });
+
+      const onTransitionEnd = (evt) => {
+        if (evt.propertyName !== 'max-height') return;
+        content.removeEventListener('transitionend', onTransitionEnd);
+        finishClose();
+      };
+      content.addEventListener('transitionend', onTransitionEnd);
+    };
+
+    const openTile = (tile, { animate = true } = {}) => {
+      if (!tile || tile.classList.contains('is-open')) return;
+      const header = tile.querySelector('.menu-tile__header');
+      const content = tile.querySelector('.menu-tile__content');
+      if (!header || !content) return;
+
+      tile.classList.add('is-open');
+      header.setAttribute('aria-expanded', 'true');
+      content.hidden = false;
+
+      if (!animate || prefersReducedMotion()){
+        content.style.maxHeight = 'none';
+        content.style.opacity = '1';
+        content.style.transform = 'none';
+        return;
+      }
+
+      content.style.maxHeight = '0px';
+      content.style.opacity = '0';
+      content.style.transform = 'translateY(-6px)';
+
+      const onTransitionEnd = (evt) => {
+        if (evt.propertyName !== 'max-height') return;
+        content.removeEventListener('transitionend', onTransitionEnd);
+        if (tile.classList.contains('is-open')) {
+          content.style.maxHeight = 'none';
+        }
+      };
+      content.addEventListener('transitionend', onTransitionEnd);
+
+      requestAnimationFrame(() => {
+        const fullHeight = content.scrollHeight;
+        content.style.maxHeight = `${fullHeight}px`;
+        content.style.opacity = '1';
+        content.style.transform = 'translateY(0)';
+      });
+    };
+
+    const closeOtherTiles = (except) => {
+      tiles.forEach(tile => {
+        if (tile !== except) {
+          closeTile(tile);
+        }
+      });
+    };
+
+    const highlightTileOption = (hash) => {
+      tileLinks.forEach(link => {
+        if (!link.hash) return;
+        if (link.hash === hash) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    };
+
+    const setActiveLink = (targetId, { fromScroll = false } = {}) => {
+      const hash = `#${targetId}`;
+      const now = Date.now();
+      const skipTileSync = fromScroll && now < manualTileLockUntil;
+
+      cardLinks.forEach(link => {
+        const linkTarget = link.getAttribute('href') || '';
+        if (linkTarget.replace(/^#/, '') === targetId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      const matchingLink = tileLinks.find(link => (link.getAttribute('href') || '') === hash);
+      if (skipTileSync){
+        highlightTileOption(hash);
+        return;
+      }
+
+      if (matchingLink){
+        const tile = matchingLink.closest('.menu-tile');
+        if (tile){
+          closeOtherTiles(tile);
+          openTile(tile, { animate: !fromScroll });
+          highlightTileOption(hash);
+        }
+      } else {
+        highlightTileOption('');
+      }
+    };
+
+    cardLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = (link.getAttribute('href') || '').slice(1);
         const target = document.getElementById(targetId);
         if (target) {
           e.preventDefault();
-          // update active class immediately
-          catLinks.forEach(l => l.classList.remove('active'));
-          a.classList.add('active');
+          setActiveLink(targetId);
           target.scrollIntoView({behavior:'smooth', block:'start'});
         }
+      });
+    });
+
+    tileHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const tile = header.closest('.menu-tile');
+        if (!tile) return;
+        const shouldOpen = !tile.classList.contains('is-open');
+        if (shouldOpen){
+          manualTileLockUntil = Date.now() + 1800;
+          closeOtherTiles(tile);
+          openTile(tile);
+        } else {
+          closeTile(tile);
+          highlightTileOption('');
+          manualTileLockUntil = Date.now() + 400;
+        }
+      });
+    });
+
+    tileLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const targetId = (link.getAttribute('href') || '').slice(1);
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        e.preventDefault();
+        manualTileLockUntil = 0;
+        setActiveLink(targetId);
+        target.scrollIntoView({behavior:'smooth', block:'start'});
       });
     });
 
     // Update active link while scrolling using IntersectionObserver
     try{
       const sections = Array.from(root.querySelectorAll('section[id^="cat-"]'));
-      const idToLink = new Map(sections.map(s => [s.id, root.querySelector(`.menu-cats a[href="#${s.id}"]`)]));
+      const idToLink = new Map(
+        sections.map(section => [section.id, cardLinks.find(link => (link.getAttribute('href') || '') === `#${section.id}`)])
+      );
       let observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (!entry.target || !entry.isIntersecting) return;
           const link = idToLink.get(entry.target.id);
           if (link) {
-            catLinks.forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
+            setActiveLink(entry.target.id, { fromScroll: true });
           }
         });
       }, { root: null, rootMargin: '0px 0px -40% 0px', threshold: 0.25 });
