@@ -670,7 +670,11 @@
     },
     website: "https://rioalto.ca",
     priceRange: "$$",
-    cuisine: "Mexican"
+    cuisine: ["Mexican", "Latin American"],
+    geo: {
+      lat: 50.5803088,
+      lng: -113.8732897
+    }
   };
   
   // Populate business data into page elements
@@ -789,10 +793,14 @@
   function updateStructuredData() {
     const schema = {
       "@context": "https://schema.org",
-      "@type": "Restaurant", 
+      "@type": ["Restaurant","LocalBusiness"],
+      "@id": "https://rioalto.ca/#restaurant",
       "name": BUSINESS_DATA.name,
       "image": "pictures/front-of-building.jpg",
       "telephone": BUSINESS_DATA.contact.phone,
+      "url": BUSINESS_DATA.website,
+      "hasMenu": "https://rioalto.ca/menu.html",
+      "sameAs": [BUSINESS_DATA.website, BUSINESS_DATA.social.facebook],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": BUSINESS_DATA.address.street,
@@ -801,10 +809,13 @@
         "postalCode": BUSINESS_DATA.address.postalCode,
         "addressCountry": BUSINESS_DATA.address.country
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": BUSINESS_DATA.geo.lat,
+        "longitude": BUSINESS_DATA.geo.lng
+      },
       "servesCuisine": BUSINESS_DATA.cuisine,
       "priceRange": BUSINESS_DATA.priceRange,
-      "url": BUSINESS_DATA.website,
-      "sameAs": [BUSINESS_DATA.social.facebook],
       "openingHoursSpecification": [
         {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"11:00","closes":"20:00"},
         {"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday","Friday","Saturday"],"opens":"11:00","closes":"21:00"}

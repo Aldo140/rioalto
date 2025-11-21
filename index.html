@@ -15,6 +15,9 @@
   <meta name="twitter:title" content="Rio Alto — Authentic Mexican Food in High River, AB" />
   <meta name="twitter:description" content="Authentic Mexican restaurant in High River, AB serving tacos, enchiladas, and flame-grilled specialties." />
   <meta name="twitter:image" content="https://rioalto.ca/pictures/front-of-building.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="pictures/Rio_alto/web-optimized/banner.webp" imagesrcset="pictures/Rio_alto/web-optimized/banner.webp 1024w, pictures/Rio_alto/web-optimized/banner-copy.webp 1130w" imagesizes="(max-width: 1129px) 100vw, 50vw" />
   <!-- Google Fonts (removed for lighter load; using system fonts) -->
   <!-- Icons (Font Awesome removed; using inline SVGs) -->
   <!-- Styles -->
@@ -24,10 +27,17 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
+    "@type": ["Restaurant","LocalBusiness"],
+    "@id": "https://rioalto.ca/#restaurant",
     "name": "Rio Alto Authentic Mexican Food",
     "image": "pictures/front-of-building.jpg",
     "telephone": "+1-403-652-1261",
+    "url": "https://rioalto.ca",
+    "hasMenu": "https://rioalto.ca/menu.html",
+    "sameAs": [
+      "https://rioalto.ca/",
+      "https://www.facebook.com/RioAltoHighRiver/"
+    ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "118 3 Ave SW",
@@ -36,12 +46,13 @@
       "postalCode": "T1V 1R3",
       "addressCountry": "CA"
     },
-    "servesCuisine": "Mexican",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 50.5803088,
+      "longitude": -113.8732897
+    },
+    "servesCuisine": ["Mexican", "Latin American"],
     "priceRange": "$$",
-    "url": "https://rioalto.ca",
-    "sameAs": [
-      "https://www.facebook.com/RioAltoHighRiver/"
-    ],
     "openingHoursSpecification": [
       {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"11:00","closes":"20:00"},
       {"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday","Friday","Saturday"],"opens":"11:00","closes":"21:00"}
@@ -109,12 +120,17 @@
     <!-- Left: banner (now on left, fills pane) -->
     <div class="hero-split__panel hero-split__left" aria-label="Rio Alto banner">
       <picture class="hero-banner-picture">
+        <source type="image/webp" media="(min-width: 1130px)" srcset="pictures/Rio_alto/web-optimized/banner-copy.webp" sizes="50vw">
         <!-- Large screens (1130px+) use banner-copy.png -->
         <source media="(min-width: 1130px)" srcset="pictures/Rio_alto/web-optimized/banner-copy.png">
+        <source type="image/webp" srcset="pictures/Rio_alto/web-optimized/banner.webp" sizes="(max-width: 1129px) 100vw, 50vw">
         <!-- All other screens use regular banner.png -->
         <img 
           class="hero-banner-img" 
           src="pictures/Rio_alto/web-optimized/banner.png" 
+          srcset="pictures/Rio_alto/web-optimized/banner.png 1024w"
+          sizes="(max-width: 1129px) 100vw, 50vw"
+          fetchpriority="high"
           alt="Rio Alto — Authentic Mexican Food"
           loading="eager"
           decoding="async"

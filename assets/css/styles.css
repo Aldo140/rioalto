@@ -928,6 +928,23 @@ a{transition:opacity .18s ease}a:hover{opacity:.95}
   line-height:1.6;
 }
 
+@media (max-width:1099px){
+  .footer-top{display:none;}
+  .site-footer{padding:32px 0;}
+  .footer-shell{padding-inline:20px;}
+  .footer-bottom{
+    flex-direction:column;
+    gap:16px;
+    align-items:center;
+    text-align:center;
+  }
+  .footer-inline-links{
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:10px;
+  }
+}
+
 @media (max-width:1100px){
   .footer-top{
     grid-template-columns:repeat(2,minmax(0,1fr));
@@ -1639,6 +1656,13 @@ a{transition:opacity .18s ease}a:hover{opacity:.95}
   box-shadow:0 18px 32px rgba(15,138,95,0.22);
 }
 
+@media (min-width:720px){
+  .visit-card{text-align:left;align-items:flex-start}
+  .visit-card__icon{margin:0 0 18px}
+  .visit-card a{align-self:flex-start}
+  .visit-card__button{align-self:flex-start}
+}
+
 /* Map section with overlay */
 .map-section{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 16px 48px rgba(0,0,0,0.12);width:min(100%,760px);margin:28px auto 0}
 
@@ -1653,14 +1677,6 @@ a{transition:opacity .18s ease}a:hover{opacity:.95}
 .map-btn{padding:.8rem 1.2rem;font-size:14px;border-radius:12px;transform:scale(1);transition:transform .2s ease}
 .map-btn:hover{transform:scale(1.05)}
 
-@media (min-width:720px){
-  .visit-card{text-align:left;align-items:flex-start}
-  .visit-card__icon{margin:0 0 18px}
-  .visit-card a{align-self:flex-start}
-  .visit-card__button{align-self:flex-start}
-}
-
-/* Popular badge styling for menu items */
 .popular-badge {
   position: absolute;
   top: 8px;
