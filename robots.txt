@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rioalto.ca/sitemap.xml
