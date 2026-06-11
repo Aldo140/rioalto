@@ -12,20 +12,26 @@
   <meta name="author" content="Rio Alto" />
   <link rel="canonical" href="https://rioalto.ca{{ page.url | default('/') }}" />
   
+  {% if noindex %}<meta name="robots" content="noindex, follow" />{% endif %}
+
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://rioalto.ca{{ page.url | default('/') }}" />
   <meta property="og:title" content="{{ title | default('Rio Alto — Authentic Mexican Food in High River, AB') }}" />
   <meta property="og:description" content="{{ description | default('Meet friends over tacos, enchiladas, chile rellenos and made-to-order guacamole at Rio Alto in High River, Alberta.') }}" />
-  <meta property="og:image" content="https://rioalto.ca/pictures/front-of-building.jpg" />
+  <meta property="og:image" content="https://rioalto.ca{{ og_image | default('/pictures/front-of-building.jpg') }}" />
+  <meta property="og:image:width" content="{{ og_image_w | default('960') }}" />
+  <meta property="og:image:height" content="{{ og_image_h | default('720') }}" />
+  <meta property="og:image:alt" content="{{ og_image_alt | default('The Rio Alto restaurant storefront in High River, Alberta') }}" />
   <meta property="og:locale" content="en_CA" />
   <meta property="og:site_name" content="Rio Alto" />
-  
+
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ title | default('Rio Alto — Authentic Mexican Food in High River, AB') }}" />
   <meta name="twitter:description" content="{{ description | default('Authentic Mexican restaurant in High River, AB serving tacos, enchiladas, and flame-grilled specialties.') }}" />
-  <meta name="twitter:image" content="https://rioalto.ca/pictures/front-of-building.jpg" />
+  <meta name="twitter:image" content="https://rioalto.ca{{ og_image | default('/pictures/front-of-building.jpg') }}" />
+  <meta name="twitter:image:alt" content="{{ og_image_alt | default('The Rio Alto restaurant storefront in High River, Alberta') }}" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,7 +43,9 @@
   {% endif %}
 
   {% if preload_banner %}
-  <link rel="preload" as="image" href="/pictures/Rio_alto/web-optimized/banner.webp" imagesrcset="/pictures/Rio_alto/web-optimized/banner.webp 1024w, /pictures/Rio_alto/web-optimized/banner-copy.webp 1130w" imagesizes="(max-width: 1129px) 100vw, 50vw" />
+  <!-- LCP preloads: mobile gets the banner, desktop gets the film poster -->
+  <link rel="preload" as="image" href="/pictures/Rio_alto/web-optimized/banner.webp" media="(max-width: 940px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/pictures/hero-loop-poster.webp" media="(min-width: 941px)" fetchpriority="high" />
   {% endif %}
   
   <link rel="stylesheet" href="/assets/css/styles.css" />
