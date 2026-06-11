@@ -404,34 +404,9 @@ document.addEventListener('DOMContentLoaded', () => {
      ---------------------------------------------------------------------- */
   const dock = document.getElementById('mobileDock');
   if (dock) {
-    let lastY = window.scrollY;
-    let dockTick = false;
-
     const dockUpdate = () => {
-      dockTick = false;
-      const y = window.scrollY;
-      if (desktop()) {
-        dock.classList.remove('is-visible');
-        lastY = y;
-        return;
-      }
-      const delta = y - lastY;
-      const goingDown = delta > 6;
-      const goingUp = delta < -6;
-
-      if (y < 120) {
-        dock.classList.add('is-visible');               // at the top: greet
-      } else if (goingDown) {
-        dock.classList.remove('is-visible');            // reading — step aside
-      } else if (goingUp) {
-        dock.classList.add('is-visible');               // navigating — return
-      }
-      lastY = y;
+      dock.classList.toggle('is-visible', !desktop());
     };
-
-    window.addEventListener('scroll', () => {
-      if (!dockTick) { dockTick = true; requestAnimationFrame(dockUpdate); }
-    }, { passive: true });
     window.addEventListener('resize', dockUpdate);
     dockUpdate();
   }

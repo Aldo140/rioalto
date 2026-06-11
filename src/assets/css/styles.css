@@ -2520,13 +2520,14 @@ h1, h2, h3, h4, h5, h6 {
 .scroll-rail {
   display: none;
   position: fixed;
-  right: 7px;
+  right: 6px;
   top: 50%;
   transform: translateY(-50%);
-  width: 3px;
-  height: 36vh;
-  border-radius: 3px;
-  background: rgba(32, 22, 16, 0.14);
+  width: 4px;
+  height: 38vh;
+  border-radius: 4px;
+  background: rgba(32, 22, 16, 0.1);
+  box-shadow: inset 0 0 0 0.5px rgba(32, 22, 16, 0.08);
   z-index: 200;
   opacity: 0;
   transition: opacity 0.45s ease;
@@ -2538,10 +2539,12 @@ h1, h2, h3, h4, h5, h6 {
 .scroll-rail span {
   display: block;
   width: 100%;
-  height: 36px;
-  border-radius: 3px;
-  background: linear-gradient(180deg, var(--terracotta) 0%, var(--marigold) 100%);
-  box-shadow: 0 0 12px rgba(217, 91, 56, 0.55);
+  height: 44px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #E66A45 0%, var(--terracotta) 45%, var(--marigold) 100%);
+  box-shadow:
+    0 0 14px rgba(217, 91, 56, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
   will-change: transform;
 }
 
@@ -2596,6 +2599,12 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 940px) {
   .scroll-rail { display: block; }
+
+  /* one depth indicator only: hide the native scrollbar on mobile */
+  html { scrollbar-width: none; }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar { display: none; }
 
   .mobile-dock { display: flex; }
 
