@@ -2608,10 +2608,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .mobile-dock { display: flex; }
 
-  /* the mobile home opens on the bare hero — the dock is the nav */
-  .home-page .site-header,
-  .home-page .mobile-menu { display: none; }
-
   /* top nav mirrors the dock: tucks up while reading, returns on scroll up */
   .site-header {
     transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease,
