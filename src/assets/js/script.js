@@ -392,15 +392,46 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ----------------------------------------------------------------------
-     Mobile: quick-action dock — appears once you're past the hero
+     Mobile: quick-action dock — direction-aware.
+     Greets you as you leave the hero, tucks away while you read down,
+     returns the moment you scroll up, and bows out back in the hero.
      ---------------------------------------------------------------------- */
   const dock = document.getElementById('mobileDock');
   if (dock) {
-    const dockToggle = () => {
-      dock.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.55);
+    const isHome = document.body.classList.contains('home-page');
+    let lastY = window.scrollY;
+    let dockTick = false;
+
+    const dockUpdate = () => {
+      dockTick = false;
+      const y = window.scrollY;
+      if (desktop()) {
+        dock.classList.remove('is-visible');
+        lastY = y;
+        return;
+      }
+      const gate = isHome ? window.innerHeight * 0.8 : 280;
+      const delta = y - lastY;
+      const goingDown = delta > 6;
+      const goingUp = delta < -6;
+
+      if (y <= gate) {
+        dock.classList.remove('is-visible');           // inside the hero
+      } else if (y < gate + 360) {
+        dock.classList.add('is-visible');               // greet past the hero
+      } else if (goingDown) {
+        dock.classList.remove('is-visible');            // reading — step aside
+      } else if (goingUp) {
+        dock.classList.add('is-visible');               // navigating — return
+      }
+      lastY = y;
     };
-    window.addEventListener('scroll', dockToggle, { passive: true });
-    dockToggle();
+
+    window.addEventListener('scroll', () => {
+      if (!dockTick) { dockTick = true; requestAnimationFrame(dockUpdate); }
+    }, { passive: true });
+    window.addEventListener('resize', dockUpdate);
+    dockUpdate();
   }
 
   /* ----------------------------------------------------------------------
