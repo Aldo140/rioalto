@@ -404,7 +404,6 @@ document.addEventListener('DOMContentLoaded', () => {
      ---------------------------------------------------------------------- */
   const dock = document.getElementById('mobileDock');
   if (dock) {
-    const isHome = document.body.classList.contains('home-page');
     let lastY = window.scrollY;
     let dockTick = false;
 
@@ -416,15 +415,12 @@ document.addEventListener('DOMContentLoaded', () => {
         lastY = y;
         return;
       }
-      const gate = isHome ? window.innerHeight * 0.8 : 280;
       const delta = y - lastY;
       const goingDown = delta > 6;
       const goingUp = delta < -6;
 
-      if (y <= gate) {
-        dock.classList.remove('is-visible');           // inside the hero
-      } else if (y < gate + 360) {
-        dock.classList.add('is-visible');               // greet past the hero
+      if (y < 120) {
+        dock.classList.add('is-visible');               // at the top: greet
       } else if (goingDown) {
         dock.classList.remove('is-visible');            // reading — step aside
       } else if (goingUp) {
