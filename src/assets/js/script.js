@@ -404,9 +404,40 @@ document.addEventListener('DOMContentLoaded', () => {
      ---------------------------------------------------------------------- */
   const dock = document.getElementById('mobileDock');
   if (dock) {
+    let lastY = window.scrollY;
+    let dockTick = false;
+
     const dockUpdate = () => {
-      dock.classList.toggle('is-visible', !desktop());
+      dockTick = false;
+      const y = window.scrollY;
+      if (desktop()) {
+        dock.classList.remove('is-visible');
+        document.body.classList.remove('nav-tucked');
+        lastY = y;
+        return;
+      }
+      const delta = y - lastY;
+      const goingDown = delta > 6;
+      const goingUp = delta < -6;
+
+      // dock and top nav move as mirrored pairs:
+      // reading down → both tuck away; scrolling up → both return
+      if (y < 120) {
+        dock.classList.add('is-visible');
+        document.body.classList.remove('nav-tucked');
+      } else if (goingDown) {
+        dock.classList.remove('is-visible');
+        document.body.classList.add('nav-tucked');
+      } else if (goingUp) {
+        dock.classList.add('is-visible');
+        document.body.classList.remove('nav-tucked');
+      }
+      lastY = y;
     };
+
+    window.addEventListener('scroll', () => {
+      if (!dockTick) { dockTick = true; requestAnimationFrame(dockUpdate); }
+    }, { passive: true });
     window.addEventListener('resize', dockUpdate);
     dockUpdate();
   }

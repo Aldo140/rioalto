@@ -2612,6 +2612,19 @@ h1, h2, h3, h4, h5, h6 {
   .home-page .site-header,
   .home-page .mobile-menu { display: none; }
 
+  /* top nav mirrors the dock: tucks up while reading, returns on scroll up */
+  .site-header {
+    transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease,
+      transform 0.5s var(--ease-expo);
+  }
+
+  body.nav-tucked .site-header { transform: translateY(-110%); }
+
+  /* the menu pill bar rides up to the top edge when the header tucks */
+  .menu-nav-bar { transition: transform 0.45s var(--ease-expo), opacity 0.3s ease, top 0.5s var(--ease-expo); }
+
+  body.nav-tucked .menu-nav-bar { top: 0; }
+
   /* clear the dock at page end; the big crest watermark crowds small screens */
   .site-footer { padding-bottom: calc(86px + env(safe-area-inset-bottom)); }
 
