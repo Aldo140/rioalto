@@ -425,6 +425,8 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   z-index: 102;
   color: var(--ink);
+  /* breathing room from the screen edge */
+  margin-right: 12px;
 }
 
 .nav-toggle span {
