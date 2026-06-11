@@ -459,27 +459,47 @@ document.addEventListener('DOMContentLoaded', () => {
       // no autoplay: just show the poster inside the arch
       if (arch) arch.classList.add('is-revealed');
     } else {
-      // warm the file early so the curtain never rises on an empty window
+      const loadFilm = () => {
+        if (storyVideo.src) return;
+        storyVideo.preload = 'auto';
+        storyVideo.src = storyVideo.dataset.src;
+        storyVideo.load();
+      };
+
+      // warm the file early so frame zero is decoded before the curtain rises
       const warmObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           obs.unobserve(storyVideo);
-          if (!storyVideo.src) storyVideo.src = storyVideo.dataset.src;
+          loadFilm();
         });
       }, { rootMargin: '600px 0px' });
       warmObserver.observe(storyVideo);
+
+      // reveal only once the video element already shows frame zero —
+      // the poster is that same frame, so nothing visibly swaps
+      const reveal = () => {
+        if (arch) arch.classList.add('is-revealed');
+        storyVideo.addEventListener('ended', () => {
+          if (arch) arch.classList.add('is-finished');
+        }, { once: true });
+        // let the curtain clear the frame, then roll
+        setTimeout(() => { storyVideo.play().catch(() => {}); }, 550);
+      };
 
       const playObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
           obs.unobserve(storyVideo);
-          if (!storyVideo.src) storyVideo.src = storyVideo.dataset.src;
-          if (arch) arch.classList.add('is-revealed');
-          storyVideo.addEventListener('ended', () => {
-            if (arch) arch.classList.add('is-finished');
-          }, { once: true });
-          // let the curtain clear the frame, then roll
-          setTimeout(() => { storyVideo.play().catch(() => {}); }, 500);
+          loadFilm();
+          if (storyVideo.readyState >= 2) {
+            reveal();
+          } else {
+            let revealed = false;
+            const once = () => { if (!revealed) { revealed = true; reveal(); } };
+            storyVideo.addEventListener('loadeddata', once, { once: true });
+            setTimeout(once, 2500); // never leave the window dark
+          }
         });
       }, { threshold: 0.45 });
       playObserver.observe(storyVideo);
