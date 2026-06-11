@@ -1020,6 +1020,7 @@ h1, h2, h3, h4, h5, h6 {
   will-change: transform;
 }
 
+.is-revealed > .story-curtain,
 .story-arch.is-revealed .story-curtain { transform: translateY(-103%); }
 
 /* fin: the frame holds still, only the arch warms */
@@ -1175,10 +1176,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* hacienda arch window with internal parallax */
 .pillar-media {
+  position: relative;
   height: clamp(300px, 34vw, 420px);
   border-radius: 12rem 12rem var(--radius) var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-deep);
+  background: var(--cacao);
+}
+
+.pillar-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .pillar-media img {

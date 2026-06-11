@@ -447,64 +447,64 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ----------------------------------------------------------------------
-     Story — one-shot scroll-triggered film:
-     dark arch → curtain rises → plays once → settles on the final frame
+     One-shot scroll-triggered films ([data-film]):
+     dark window → curtain rises → plays once → settles on the final frame
      ---------------------------------------------------------------------- */
-  const storyVideo = document.getElementById('storyVideo');
-  if (storyVideo) {
-    const arch = storyVideo.closest('.story-arch');
+  document.querySelectorAll('video[data-film]').forEach(film => {
+    const frame = film.closest('.film-window') || film.closest('.story-arch');
     const saveData = navigator.connection && navigator.connection.saveData;
 
     if (reducedMotion || saveData) {
-      // no autoplay: just show the poster inside the arch
-      if (arch) arch.classList.add('is-revealed');
-    } else {
-      const loadFilm = () => {
-        if (storyVideo.src) return;
-        storyVideo.preload = 'auto';
-        storyVideo.src = storyVideo.dataset.src;
-        storyVideo.load();
-      };
-
-      // warm the file early so frame zero is decoded before the curtain rises
-      const warmObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          obs.unobserve(storyVideo);
-          loadFilm();
-        });
-      }, { rootMargin: '600px 0px' });
-      warmObserver.observe(storyVideo);
-
-      // reveal only once the video element already shows frame zero —
-      // the poster is that same frame, so nothing visibly swaps
-      const reveal = () => {
-        if (arch) arch.classList.add('is-revealed');
-        storyVideo.addEventListener('ended', () => {
-          if (arch) arch.classList.add('is-finished');
-        }, { once: true });
-        // let the curtain clear the frame, then roll
-        setTimeout(() => { storyVideo.play().catch(() => {}); }, 550);
-      };
-
-      const playObserver = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          obs.unobserve(storyVideo);
-          loadFilm();
-          if (storyVideo.readyState >= 2) {
-            reveal();
-          } else {
-            let revealed = false;
-            const once = () => { if (!revealed) { revealed = true; reveal(); } };
-            storyVideo.addEventListener('loadeddata', once, { once: true });
-            setTimeout(once, 2500); // never leave the window dark
-          }
-        });
-      }, { threshold: 0.45 });
-      playObserver.observe(storyVideo);
+      // no autoplay: just show the poster inside the window
+      if (frame) frame.classList.add('is-revealed');
+      return;
     }
-  }
+
+    const loadFilm = () => {
+      if (film.src) return;
+      film.preload = 'auto';
+      film.src = film.dataset.src;
+      film.load();
+    };
+
+    // warm the file early so frame zero is decoded before the curtain rises
+    const warmObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        obs.unobserve(film);
+        loadFilm();
+      });
+    }, { rootMargin: '600px 0px' });
+    warmObserver.observe(film);
+
+    // reveal only once the video element already shows frame zero —
+    // the poster is that same frame, so nothing visibly swaps
+    const reveal = () => {
+      if (frame) frame.classList.add('is-revealed');
+      film.addEventListener('ended', () => {
+        if (frame) frame.classList.add('is-finished');
+      }, { once: true });
+      // let the curtain clear the frame, then roll
+      setTimeout(() => { film.play().catch(() => {}); }, 550);
+    };
+
+    const playObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        obs.unobserve(film);
+        loadFilm();
+        if (film.readyState >= 2) {
+          reveal();
+        } else {
+          let revealed = false;
+          const once = () => { if (!revealed) { revealed = true; reveal(); } };
+          film.addEventListener('loadeddata', once, { once: true });
+          setTimeout(once, 2500); // never leave the window dark
+        }
+      });
+    }, { threshold: 0.45 });
+    playObserver.observe(film);
+  });
 
   /* ----------------------------------------------------------------------
      Pillars — sticky stack compression + arch-window parallax (scrubbed)
