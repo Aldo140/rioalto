@@ -110,8 +110,8 @@
   {% if extra_js %}<script src="{{ extra_js }}" defer></script>{% endif %}
 </head>
 <body class="{{ body_class | default('') }}">
-  <!-- Mobile: tricolor scroll progress -->
-  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+  <!-- Mobile: right-edge depth rail -->
+  <div class="scroll-rail" id="scrollRail" aria-hidden="true"><span></span></div>
 
   {% include "header.njk" %}
   

@@ -374,21 +374,27 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ----------------------------------------------------------------------
-     Mobile: tricolor scroll progress bar
+     Mobile: right-edge depth rail — thumb travels with reading depth,
+     visible while scrolling, fades at rest
      ---------------------------------------------------------------------- */
-  const progressBar = document.getElementById('scrollProgressBar');
-  if (progressBar) {
-    let pTick = false;
-    const updateProgress = () => {
-      pTick = false;
+  const scrollRail = document.getElementById('scrollRail');
+  if (scrollRail) {
+    const railThumb = scrollRail.querySelector('span');
+    let railTick = false;
+    let railFade;
+    const railUpdate = () => {
+      railTick = false;
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
-      progressBar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      const travel = scrollRail.clientHeight - railThumb.offsetHeight;
+      railThumb.style.transform = 'translateY(' + (p * travel).toFixed(1) + 'px)';
+      scrollRail.classList.add('is-active');
+      clearTimeout(railFade);
+      railFade = setTimeout(() => scrollRail.classList.remove('is-active'), 900);
     };
     window.addEventListener('scroll', () => {
-      if (!pTick) { pTick = true; requestAnimationFrame(updateProgress); }
+      if (!railTick) { railTick = true; requestAnimationFrame(railUpdate); }
     }, { passive: true });
-    updateProgress();
   }
 
   /* ----------------------------------------------------------------------
