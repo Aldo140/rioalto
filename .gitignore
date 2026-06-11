@@ -8,3 +8,4 @@ npm-debug.log
 yarn-error.log
 coverage/
 *.log
+_site/

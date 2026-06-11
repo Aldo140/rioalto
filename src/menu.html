@@ -1,0 +1,171 @@
+---
+layout: base.njk
+title: "Menu — Rio Alto"
+description: "View the authentic Mexican menu at Rio Alto. Drinks, appetizers, tacos, enchiladas, chile rellenos, and
+fresh guacamole in High River, AB."
+permalink: "/menu.html"
+---
+
+{% set denseIds = ['cold-drinks', 'alcoholic-drinks', 'hot-drinks', 'sides', 'kids-menu', 'dessert'] %}
+
+<script type="application/ld+json">{{ menu | menuJsonLd | safe }}</script>
+
+<main>
+  <header class="page-hero">
+    <div class="page-hero-bg" aria-hidden="true">
+      <picture>
+        <source media="(min-width: 941px)" srcset="/pictures/menu-hero.webp">
+        <img src="/pictures/Rio_alto/web-optimized/five-tacos-colorful-tortillas.jpg" alt="" loading="eager"
+          decoding="async" style="object-position: center 55%;" />
+      </picture>
+    </div>
+    <div class="page-hero-shade" aria-hidden="true"></div>
+    <div class="container">
+      <span class="eyebrow" data-reveal="up" style="justify-content: center;">The Menu</span>
+      <h1 data-reveal="up">Nuestra <em>Cocina</em></h1>
+      <p data-reveal="up">Made fresh daily — from our hand-built horno to your table.</p>
+    </div>
+  </header>
+
+  <!-- Mobile: sticky category pills (scrollspy) -->
+  <div class="menu-nav-bar">
+    <div class="container">
+      <nav class="menu-nav" id="menuNav" aria-label="Menu categories">
+        {% for category in menu.categories %}
+        <a href="#{{ category.id }}">{{ category.name | replace(" (Mexican Sandwiches)", "") }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </div>
+
+  <!-- Mobile: search + app-style jump grid -->
+  <div class="menu-launcher-wrap" data-reveal="up">
+    <div class="container">
+      <label class="menu-search menu-search--mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input type="search" data-menu-search placeholder="Search the menu — try “taco”…" autocomplete="off" aria-label="Search the menu">
+      </label>
+      <p class="search-status" data-search-status hidden aria-live="polite"></p>
+      <p class="launcher-label">Browse the kitchen</p>
+      <div class="menu-launcher" aria-label="Jump to category">
+        {% for category in menu.categories %}
+        <a class="launch-chip" href="#{{ category.id }}">
+          <span class="launch-idx">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+          <span class="launch-name">{{ category.name | replace(" (Mexican Sandwiches)", "") }}</span>
+          <span class="launch-count">{{ category | itemCount }} items</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <section class="section menu-section" style="padding-top: var(--space-md);">
+    <div class="container menu-shell">
+      <!-- Desktop: sticky index sidebar -->
+      <aside class="menu-sidebar" aria-label="Menu index">
+        <label class="menu-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input type="search" data-menu-search placeholder="Search the menu…" autocomplete="off" aria-label="Search the menu">
+        </label>
+        <p class="search-status" data-search-status hidden aria-live="polite"></p>
+        <nav class="sidebar-nav" id="sidebarNav">
+          {% for category in menu.categories %}
+          <a href="#{{ category.id }}">
+            <i>{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</i>
+            <span>{{ category.name | replace(" (Mexican Sandwiches)", "") }}</span>
+            <b>{{ category | itemCount }}</b>
+          </a>
+          {% endfor %}
+        </nav>
+      </aside>
+
+      <div class="menu-content">
+        <p class="menu-empty" id="menuEmpty" hidden>Nothing matches that craving — try “taco”, “mole”, or “flan”.</p>
+
+        {% for category in menu.categories %}
+        <div id="{{ category.id }}" class="menu-category" data-category-section>
+          <button class="category-head" type="button" data-reveal="up" aria-expanded="true">
+            <span class="category-index">{% if loop.index < 10 %}0{% endif %}{{ loop.index }}</span>
+            <h2 class="category-title">{{ category.name | replace(" (Mexican Sandwiches)", "") }}</h2>
+            <span class="category-count">{{ category | itemCount }}</span>
+            <span class="category-chevron" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
+          </button>
+
+          <div class="category-body">
+            <div class="category-body-inner">
+              {% if category.id == 'tortas' %}
+              <p class="category-note">Mexican Sandwiches</p>
+              {% endif %}
+              {% if category.description %}
+              <p class="category-note">{{ category.description }}</p>
+              {% endif %}
+
+              {% if category.items %}
+              <div class="menu-grid {% if category.id in denseIds %}dense{% endif %}" data-reveal-stagger>
+                {% for item in category.items %}
+                <article class="menu-card{% if item.image %} has-photo{% endif %}" data-reveal="up" data-tilt>
+                  {% if item.image %}
+                  <span class="menu-card-photo"><img src="{{ item.image | menuThumb(menu.imagesBasePath) }}"
+                      alt="{{ item.name }}" loading="lazy"></span>
+                  {% endif %}
+                  <div class="menu-card-header">
+                    <h3 class="menu-card-name">{{ item.name }}</h3>
+                    <span class="menu-card-dots"></span>
+                    {% if item.price %}<span class="menu-card-price">{{ item.price | money }}</span>{% endif %}
+                  </div>
+                  {% if item.description %}<p class="menu-card-desc">{{ item.description }}</p>{% endif %}
+                  {% if item.tags %}
+                  <div>
+                    {% for tag in item.tags %}<span class="menu-tag menu-tag--{{ tag }}">{{ tag | replace("-", " ") }}</span>{% endfor %}
+                  </div>
+                  {% endif %}
+                  <span class="tilt-glare"></span>
+                </article>
+                {% endfor %}
+              </div>
+              {% endif %}
+
+              {% for sub in category.subcategories %}
+              <h3 class="subcategory-title" data-reveal="up">{{ sub.name }}</h3>
+              <div class="menu-grid dense" data-reveal-stagger>
+                {% for item in sub.items %}
+                <article class="menu-card" data-reveal="up" data-tilt>
+                  <div class="menu-card-header">
+                    <h3 class="menu-card-name">{{ item.name }}</h3>
+                    <span class="menu-card-dots"></span>
+                    {% if item.price %}<span class="menu-card-price">{{ item.price | money }}</span>{% endif %}
+                  </div>
+                  {% if item.description %}<p class="menu-card-desc">{{ item.description }}</p>{% endif %}
+                  {% if item.tags %}
+                  <div>
+                    {% for tag in item.tags %}<span class="menu-tag menu-tag--{{ tag }}">{{ tag | replace("-", " ") }}</span>{% endfor %}
+                  </div>
+                  {% endif %}
+                  <span class="tilt-glare"></span>
+                </article>
+                {% endfor %}
+              </div>
+              {% endfor %}
+
+              {% if category.extras %}
+              <div class="menu-extras" data-reveal="up">
+                <span class="extras-label">Make it yours —</span>
+                {% for extra in category.extras %}
+                <span class="item">{{ extra.name }}<b>{{ extra.price | money }}</b></span>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>

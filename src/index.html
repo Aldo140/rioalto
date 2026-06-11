@@ -1,0 +1,404 @@
+---
+layout: base.njk
+title: "Rio Alto — Authentic Mexican Food in High River, AB"
+description: "Rio Alto serves authentic Mexican food in High River, AB — tacos, enchiladas, chile rellenos, and more
+with fresh ingredients and warm hospitality."
+preload_banner: true
+body_class: "home-page"
+---
+
+<!-- ======================================================================
+     1. HERO — 3D tilted gallery wall (desktop).
+     CRITICAL: Mobile keeps the edge-to-edge banner image ONLY.
+     ====================================================================== -->
+<section id="home" class="hero" aria-label="Rio Alto hero">
+  <!-- Mobile-only banner (hidden on desktop) -->
+  <picture class="hero-bg-picture">
+    <source type="image/webp" srcset="/pictures/Rio_alto/web-optimized/banner.webp">
+    <img class="hero-bg" src="/pictures/Rio_alto/web-optimized/banner.png" alt="Rio Alto — Authentic Mexican Food"
+      fetchpriority="high" loading="eager" decoding="async" />
+  </picture>
+
+  <!-- Cinematic stage: graded kitchen footage, desktop only (JS gates playback) -->
+  <div class="hero-stage" aria-hidden="true">
+    <video id="heroVideo" class="hero-video" data-src="/pictures/hero-loop.mp4"
+      poster="/pictures/hero-loop-poster.webp" muted loop playsinline preload="none"></video>
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-spot" aria-hidden="true"></div>
+
+  <!-- Poster lockup: quiet info row + monumental bottom-anchored title -->
+  <div class="hero-poster">
+    <div class="hero-poster-row">
+      <div class="hero-poster-info">
+        <p class="hero-tagline">Mexico City recipes, made by hand in High River — from our horno to your table.</p>
+        <p class="hero-meta-line">
+          <span class="hero-status" id="heroStatus"><span class="dot"></span><span class="label"></span></span>
+          <span><span class="star">★</span> 4.6 · 607 reviews — High River, AB</span>
+        </p>
+      </div>
+      <div class="hero-poster-links">
+        <a href="/menu.html" class="accent">See the Menu →</a>
+        <a href="/gallery.html">Gallery</a>
+      </div>
+    </div>
+    <h1 class="hero-title" id="heroTitle" aria-label="Rio Alto"><!--
+      --><span class="char" style="animation-delay: 0.35s" aria-hidden="true">R</span><!--
+      --><span class="char" style="animation-delay: 0.41s" aria-hidden="true">I</span><!--
+      --><span class="char" style="animation-delay: 0.47s" aria-hidden="true">O</span><!--
+      --><span class="char space" aria-hidden="true">&nbsp;</span><!--
+      --><span class="char alt" style="animation-delay: 0.53s" aria-hidden="true">A</span><!--
+      --><span class="char alt" style="animation-delay: 0.59s" aria-hidden="true">L</span><!--
+      --><span class="char alt" style="animation-delay: 0.65s" aria-hidden="true">T</span><!--
+      --><span class="char alt" style="animation-delay: 0.71s" aria-hidden="true">O</span><!--
+      --><span class="char mark" style="animation-delay: 0.78s" aria-hidden="true"><img
+          src="/pictures/eagle-color.webp" alt="" decoding="async"></span><!--
+    --></h1>
+  </div>
+</section>
+
+<!-- Marquee ticker -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee">
+    <div class="marquee-group">
+      <span>Tacos al Pastor</span><i>✦</i><span>Mole Casero</span><i>✦</i><span>Chile Relleno</span><i>✦</i>
+      <span>Guacamole Fresco</span><i>✦</i><span>Birria</span><i>✦</i><span>Horchata</span><i>✦</i>
+      <span>Flan de la Casa</span><i>✦</i><span>Sopes</span><i>✦</i><span>Enchiladas</span><i>✦</i><span>Elote</span><i>✦</i>
+    </div>
+    <div class="marquee-group">
+      <span>Tacos al Pastor</span><i>✦</i><span>Mole Casero</span><i>✦</i><span>Chile Relleno</span><i>✦</i>
+      <span>Guacamole Fresco</span><i>✦</i><span>Birria</span><i>✦</i><span>Horchata</span><i>✦</i>
+      <span>Flan de la Casa</span><i>✦</i><span>Sopes</span><i>✦</i><span>Enchiladas</span><i>✦</i><span>Elote</span><i>✦</i>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================================================
+     2. MENU SHOWCASE — dark band, 3D tilt dish cards
+     ====================================================================== -->
+<section id="menu-showcase" class="section section--dark">
+  <div class="container">
+    <div class="showcase-layout">
+      <div class="showcase-copy">
+        <span class="eyebrow" data-reveal="up">From the Horno</span>
+        <h2 class="section-title" data-reveal="up">Fresh ingredients,<br><em>bold flavors</em></h2>
+        <p class="lede" data-reveal="up">Guacamole mashed at your table. Tortillas pressed by hand the same morning you
+          eat them. This is the food we grew up on — nothing rushed, nothing from a can.</p>
+        <p class="lede" data-reveal="up" style="margin-top: 1.2rem;">Empanadas, sopes, enchiladas, carne asada — every
+          plate cooked over real flame in our horno. And if Héctor tells you to try the birria, try the birria.</p>
+        <div style="margin-top: 2.4rem;" data-reveal="up">
+          <a href="/menu.html" class="btn btn-primary"><span>Full Menu</span> <span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+      <div class="showcase-grid mobile-carousel" data-reveal-stagger>
+        <div class="tilt-wrap" data-reveal="flip">
+          <a href="/menu.html#appetizers" class="showcase-card" data-tilt>
+            <img src="/pictures/Sopes.webp" alt="Sopes" loading="lazy">
+            <div class="showcase-content tilt-pop">
+              <h3 class="showcase-title">Sopes</h3>
+              <span class="go">→</span>
+            </div>
+            <span class="tilt-glare"></span>
+          </a>
+        </div>
+        <div class="tilt-wrap" data-reveal="flip">
+          <a href="/menu.html#main-course" class="showcase-card" data-tilt>
+            <img src="/pictures/Enhilada.jpg" alt="Enchiladas" loading="lazy">
+            <div class="showcase-content tilt-pop">
+              <h3 class="showcase-title">Enchiladas</h3>
+              <span class="go">→</span>
+            </div>
+            <span class="tilt-glare"></span>
+          </a>
+        </div>
+        <div class="tilt-wrap" data-reveal="flip">
+          <a href="/menu.html#dessert" class="showcase-card" data-tilt>
+            <img src="/pictures/Rio_alto/web-optimized/dessert-sweets-stack.jpg" alt="Desserts" loading="lazy">
+            <div class="showcase-content tilt-pop">
+              <h3 class="showcase-title">Dulces</h3>
+              <span class="go">→</span>
+            </div>
+            <span class="tilt-glare"></span>
+          </a>
+        </div>
+        <div class="tilt-wrap" data-reveal="flip">
+          <a href="/menu.html#soft-tacos" class="showcase-card" data-tilt>
+            <img src="/pictures/soft-tacos-your-choice.jpg" alt="Soft Tacos" loading="lazy">
+            <div class="showcase-content tilt-pop">
+              <h3 class="showcase-title">Soft Tacos</h3>
+              <span class="go">→</span>
+            </div>
+            <span class="tilt-glare"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="scallop" aria-hidden="true"></div>
+
+<!-- ======================================================================
+     3. OUR STORY — parallax photo stack + animated stats
+     ====================================================================== -->
+<section id="story" class="section">
+  <div class="container">
+    <div class="story-layout">
+      <!-- the hands at work, framed in a hacienda arch -->
+      <div class="story-media" data-reveal="left">
+        <div class="story-arch">
+          <video id="storyVideo" class="story-video" data-src="/pictures/story-loop.mp4"
+            poster="/pictures/story-loop-poster.webp" muted playsinline preload="none"></video>
+          <span class="story-curtain" aria-hidden="true"></span>
+        </div>
+        <p class="story-caption">De México hasta High River — the journey behind every plate.</p>
+      </div>
+
+      <div class="story-copy">
+        <span class="eyebrow" data-reveal="up">Nuestra Historia</span>
+        <h2 class="section-title" data-reveal="up">Our <em>story</em></h2>
+        <p data-reveal="up">For over ten years, Rio Alto has brought the heart of Mexico City and its nearby provinces
+          to High River. Every dish is crafted in our traditional Mexican oven — the kind you won’t find anywhere else
+          in Alberta.</p>
+        <p data-reveal="up">Alberta beef, vegetables from farms down the road, sauces built from raw ingredients,
+          sweet bread from the morning bake — <strong>nothing from a can, ever.</strong></p>
+        <p data-reveal="up">Our guests say dining here is like taking a trip to Mexico without leaving Alberta. Come
+          taste why.</p>
+        <p class="story-signature" data-reveal="up">— Héctor López <span>founder &amp; cook</span></p>
+        <div style="margin-top: 2rem;" data-reveal="up">
+          <a href="/gallery.html" class="btn btn-outline"><span>Experience the Gallery</span> <span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-strip" data-reveal-stagger>
+      <div class="stat-item" data-reveal="up">
+        <div class="stat-value"><span data-count="10">0</span><span class="suffix">+</span></div>
+        <div class="stat-label">Years in High River</div>
+      </div>
+      <div class="stat-item" data-reveal="up">
+        <div class="stat-value"><span data-count="4.6" data-decimals="1">0</span><span class="suffix">★</span></div>
+        <div class="stat-label">Google rating</div>
+      </div>
+      <div class="stat-item" data-reveal="up">
+        <div class="stat-value"><span data-count="607">0</span></div>
+        <div class="stat-label">Google reviews</div>
+      </div>
+      <div class="stat-item" data-reveal="up">
+        <div class="stat-value"><span data-count="100">0</span><span class="suffix">%</span></div>
+        <div class="stat-label">Made from scratch</div>
+      </div>
+    </div>
+
+    <!-- The three pillars — sticky stacking panels, scroll-scrubbed -->
+    <div class="pillars">
+      <article class="pillar" style="--pi: 0">
+        <div class="pillar-copy">
+          <span class="pillar-num" aria-hidden="true">01</span>
+          <span class="pillar-kicker">La Tradición</span>
+          <h3 class="pillar-title">The horno never <em>sleeps</em></h3>
+          <p>Our hand-built Mexican oven — the only one of its kind in Alberta — keeps the flame glowing every day for
+            slow-fire cooking, the way it’s been done for generations.</p>
+        </div>
+        <div class="pillar-media">
+          <img src="/pictures/Rio_alto/web-optimized/full.course2.webp" alt="Slow-cooked plate from the horno" loading="lazy">
+        </div>
+      </article>
+
+      <article class="pillar" style="--pi: 1">
+        <div class="pillar-copy">
+          <span class="pillar-num" aria-hidden="true">02</span>
+          <span class="pillar-kicker">Del Campo</span>
+          <h3 class="pillar-title">Alberta-raised, <em>Mexico-made</em></h3>
+          <p>Beef from Alberta ranches, vegetables from farms down the road — local ingredients cooked with recipes
+            that crossed a continent to get here.</p>
+        </div>
+        <div class="pillar-media">
+          <img src="/pictures/Rio_alto/web-optimized/nopales-cactus-salad.jpg" alt="Nopales cactus salad with fresh produce" loading="lazy">
+        </div>
+      </article>
+
+      <article class="pillar" style="--pi: 2">
+        <div class="pillar-copy">
+          <span class="pillar-num" aria-hidden="true">03</span>
+          <span class="pillar-kicker">Hecho en Casa</span>
+          <h3 class="pillar-title">Small-batch <em>everything</em></h3>
+          <p>Sauces from raw ingredients, sweet bread from the morning bake, desserts in small batches — so every
+            plate feels like someone’s home, because it is ours.</p>
+        </div>
+        <div class="pillar-media">
+          <img src="/pictures/Rio_alto/web-optimized/fresh-bread-basket.jpg" alt="Fresh-baked bread basket" loading="lazy">
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================
+     4. PRESS — dark editorial band
+     ====================================================================== -->
+<section id="press" class="section section--dark">
+  <div class="container">
+    <div class="text-center" style="max-width: 760px; margin: 0 auto var(--space-lg);">
+      <span class="eyebrow" data-reveal="up" style="justify-content: center;">In the News</span>
+      <h2 class="section-title" data-reveal="up">Word got <em>around</em></h2>
+      <p class="lede" data-reveal="up" style="margin: 0 auto;">We just kept cooking the way we always have. People
+        started writing about it.</p>
+    </div>
+
+    <div class="press-board">
+      <a class="clipping" style="--tilt: -1.8deg; --tape-tilt: -4deg" data-reveal="clip"
+        href="https://www.thealbertan.com/hot-summer-guide/some-of-albertas-best-most-authentic-mexican-food-is-hidden-in-high-river-10871924"
+        target="_blank" rel="noopener">
+        <span class="clip-stamp">Featured</span>
+        <div class="clip-masthead">The Albertan</div>
+        <div class="clip-dateline">June 27, 2025 — Hot Summer Guide · Olds, AB</div>
+        <h3 class="clip-headline">“Some of Alberta’s most authentic Mexican food is hidden in High River.”</h3>
+        <p class="clip-deck">Hand-pressed tortillas, house mole simmered from raw ingredients, and plates we’ll gladly
+          rework for vegan, gluten-free, and adventurous eaters alike.</p>
+        <span class="clip-link">Read the story <span>→</span></span>
+      </a>
+
+      <a class="clipping" style="--tilt: 1.4deg; --tape-tilt: 3deg" data-reveal="clip"
+        href="https://www.cbc.ca/news/canada/calgary/high-river-stolen-sculpture-rio-alto-1.4175128" target="_blank"
+        rel="noopener">
+        <span class="clip-stamp">Community</span>
+        <div class="clip-masthead"><span class="cbc-mark"></span>CBC News</div>
+        <div class="clip-dateline">June 23, 2017 — Calgary</div>
+        <h3 class="clip-headline">“When the fiddler went missing.”</h3>
+        <p class="clip-deck">CBC had a laugh with us when our four-foot fiddler statue disappeared — Héctor offered a
+          reward while Heartland fans kept snapping photos out front.</p>
+        <span class="clip-link">Read on CBC <span>→</span></span>
+      </a>
+    </div>
+
+    <!-- Reviews: quote theater + rating monument -->
+    <div class="text-center" style="max-width: 760px; margin: var(--space-xl) auto var(--space-lg);">
+      <span class="eyebrow" data-reveal="up" style="justify-content: center;">De Nuestros Invitados</span>
+      <h2 class="section-title" data-reveal="up">In their own <em>words</em></h2>
+    </div>
+
+    <div class="reviews-theater">
+      <div class="quote-stage" id="quoteStage" data-reveal="up">
+        <div class="quote-slide is-active">
+          <p class="quote-text">Absolutely loved this food! Talk about authentic! Everything is made from scratch and
+            with love. The owner came and talked to us — really passionate about the food.</p>
+          <div class="quote-author-row">
+            <span class="quote-avatar">J</span>
+            <div>
+              <div class="quote-author">JPHensley</div>
+              <div class="quote-source">Local Guide · Google review · Oct 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote-slide">
+          <p class="quote-text">This was a 10/10. The owner was so proud of his food and even taught me my favorite
+            recipe of Chile Rellenos! Everything was delicious and authentic.</p>
+          <div class="quote-author-row">
+            <span class="quote-avatar">B</span>
+            <div>
+              <div class="quote-author">Brittany Hemmerling</div>
+              <div class="quote-source">Local Guide · Google review · Oct 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote-slide">
+          <p class="quote-text">This is the REAL deal!! Truly authentic Central Mexican dishes. Everything is handmade
+            and marinated, nothing from cans. Worth the trip to High River.</p>
+          <div class="quote-author-row">
+            <span class="quote-avatar">J</span>
+            <div>
+              <div class="quote-author">joanneleitch</div>
+              <div class="quote-source">Local Guide · Google review · Oct 2025</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote-controls" aria-label="Review navigation">
+          <button class="q-dot is-active" aria-label="Review 1"></button>
+          <button class="q-dot" aria-label="Review 2"></button>
+          <button class="q-dot" aria-label="Review 3"></button>
+        </div>
+      </div>
+
+      <div class="rating-monument" data-reveal="zoom">
+        <div class="rating-big"><span data-count="4.6" data-decimals="1">0</span><span class="of"> / 5</span></div>
+        <div class="rating-stars" aria-label="4.6 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21 9.27l-4.9 4.38L17.8 21 12 17.27 6.2 21l1.7-7.35L3 9.27l6.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21 9.27l-4.9 4.38L17.8 21 12 17.27 6.2 21l1.7-7.35L3 9.27l6.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21 9.27l-4.9 4.38L17.8 21 12 17.27 6.2 21l1.7-7.35L3 9.27l6.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21 9.27l-4.9 4.38L17.8 21 12 17.27 6.2 21l1.7-7.35L3 9.27l6.1-1.01z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21 9.27l-4.9 4.38L17.8 21 12 17.27 6.2 21l1.7-7.35L3 9.27l6.1-1.01z"/></svg>
+        </div>
+        <div class="rating-count">607 Google reviews</div>
+        <a href="https://www.google.com/maps/search/?api=1&query=Rio+Alto+Authentic+Mexican+Food+118+3+Ave+SW+High+River+AB"
+          target="_blank" rel="noopener" class="btn btn-primary"><span>Leave a review</span> <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="scallop" aria-hidden="true"></div>
+
+<!-- ======================================================================
+     5. VISIT
+     ====================================================================== -->
+<section id="visit" class="section">
+  <div class="container">
+    <div class="text-center" style="margin-bottom: var(--space-lg);">
+      <span class="eyebrow" data-reveal="up" style="justify-content: center;">Encuéntranos</span>
+      <h2 class="section-title" data-reveal="up">Visit <em>Rio Alto</em></h2>
+      <p class="lede" data-reveal="up" style="margin: 0 auto;">Downtown High River, on 3rd Avenue. Come hungry — the
+        horno’s been on since morning.</p>
+    </div>
+
+    <!-- A postcard home — airmail border, handwritten note, eagle stamp -->
+    <div class="postcard" id="postcard" data-reveal="zoom">
+      <span class="postcard-label" aria-hidden="true">Tarjeta Postal · Post Card</span>
+
+      <div class="postcard-left">
+        <p class="postcard-script">Come hungry — we’ll take care of the rest. The horno’s been on since morning
+          <em>y la salsa está lista.</em></p>
+        <p class="postcard-sign" aria-hidden="true">— Héctor</p>
+        <ul class="postcard-lines">
+          <li><span class="k">Find us</span><span class="dots"></span><span class="v">118 3 Ave SW, High River</span></li>
+          <li><span class="k">Call</span><span class="dots"></span><a class="v" href="tel:+14036521261">(403) 652-1261</a></li>
+          <li><span class="k">Mon – Wed</span><span class="dots"></span><span class="v">11 AM – 8 PM</span></li>
+          <li><span class="k">Thu – Sat</span><span class="dots"></span><span class="v">11 AM – 9 PM</span></li>
+          <li><span class="k">Sunday</span><span class="dots"></span><span class="v">Closed</span></li>
+        </ul>
+        <div class="postcard-actions">
+          <a href="https://maps.google.com/?q=118+3+Ave+SW,+High+River,+AB+T1V+1R3" target="_blank" rel="noopener"
+            class="btn btn-primary"><span>Get Directions</span> <span class="btn-arrow">→</span></a>
+          <a href="tel:+14036521261" class="btn btn-outline"><span>Call to Order</span></a>
+        </div>
+      </div>
+
+      <div class="postcard-divider" aria-hidden="true"></div>
+
+      <div class="postcard-right">
+        <div class="postcard-corner" aria-hidden="true">
+          <div class="postcard-stamp" id="postcardStamp">
+            <img src="/pictures/eagle-color.webp" alt="" loading="lazy" />
+            <span class="stamp-value">MX·AB</span>
+          </div>
+          <svg class="postcancel" id="postCancel" viewBox="0 0 150 70" fill="none" stroke="rgba(47, 56, 92, 0.55)"
+            stroke-width="2.5" stroke-linecap="round">
+            <path pathLength="1" d="M4 14 Q 28 4, 52 14 T 100 14 T 148 14" />
+            <path pathLength="1" d="M4 34 Q 28 24, 52 34 T 100 34 T 148 34" />
+            <path pathLength="1" d="M4 54 Q 28 44, 52 54 T 100 54 T 148 54" />
+          </svg>
+          <div class="postmark" aria-hidden="true">High River<br>✦ Alberta ✦<br>Rio Alto</div>
+        </div>
+        <div class="postcard-address" aria-hidden="true">
+          <span>To: everyone craving real Mexican</span>
+          <span>From: Héctor &amp; familia</span>
+          <span class="last">Rio Alto · Downtown High River</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="visit-map" data-reveal="up">
+      <iframe title="Map to Rio Alto Authentic Mexican Food"
+        src="https://www.google.com/maps?q=118%203%20Ave%20SW%2C%20High%20River%2C%20AB%20T1V%201R3&output=embed"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>

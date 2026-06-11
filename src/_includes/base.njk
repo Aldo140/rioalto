@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#201610" />
+  <meta name="color-scheme" content="light" />
+  <title>{{ title | default("Rio Alto — Authentic Mexican Food in High River, AB") }}</title>
+  <meta name="description" content="{{ description | default('Rio Alto serves authentic Mexican food in High River, AB — tacos, enchiladas, chile rellenos, and more with fresh ingredients and warm hospitality.') }}" />
+  <meta name="keywords" content="mexican restaurant, high river, authentic tacos, enchiladas, mexican food alberta, dine in high river, rio alto, chile relleno, fresh guacamole, mexican cuisine" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Rio Alto" />
+  <link rel="canonical" href="https://rioalto.ca{{ page.url | default('/') }}" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rioalto.ca{{ page.url | default('/') }}" />
+  <meta property="og:title" content="{{ title | default('Rio Alto — Authentic Mexican Food in High River, AB') }}" />
+  <meta property="og:description" content="{{ description | default('Meet friends over tacos, enchiladas, chile rellenos and made-to-order guacamole at Rio Alto in High River, Alberta.') }}" />
+  <meta property="og:image" content="https://rioalto.ca/pictures/front-of-building.jpg" />
+  <meta property="og:locale" content="en_CA" />
+  <meta property="og:site_name" content="Rio Alto" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ title | default('Rio Alto — Authentic Mexican Food in High River, AB') }}" />
+  <meta name="twitter:description" content="{{ description | default('Authentic Mexican restaurant in High River, AB serving tacos, enchiladas, and flame-grilled specialties.') }}" />
+  <meta name="twitter:image" content="https://rioalto.ca/pictures/front-of-building.jpg" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Karla:ital,wght@0,300..800;1,300..800&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+
+  {% if needs_fancybox %}
+  <!-- Fancybox CSS for Premium Gallery Views -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+  {% endif %}
+
+  {% if preload_banner %}
+  <link rel="preload" as="image" href="/pictures/Rio_alto/web-optimized/banner.webp" imagesrcset="/pictures/Rio_alto/web-optimized/banner.webp 1024w, /pictures/Rio_alto/web-optimized/banner-copy.webp 1130w" imagesizes="(max-width: 1129px) 100vw, 50vw" />
+  {% endif %}
+  
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  {% if extra_css %}<link rel="stylesheet" href="{{ extra_css }}" />{% endif %}
+  <link rel="icon" type="image/png" href="/pictures/favicon-logo.png" sizes="any" />
+  <link rel="apple-touch-icon" href="/pictures/favicon-logo.png" />
+  
+  {% if page.url == '/' or page.fileSlug == '' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Restaurant","LocalBusiness"],
+    "@id": "https://rioalto.ca/#restaurant",
+    "name": "Rio Alto Authentic Mexican Food",
+    "image": "https://rioalto.ca/pictures/front-of-building.jpg",
+    "logo": "https://rioalto.ca/pictures/logo-full.png",
+    "telephone": "+1-403-652-1261",
+    "url": "https://rioalto.ca",
+    "hasMenu": "https://rioalto.ca/menu.html",
+    "menu": "https://rioalto.ca/menu.html",
+    "acceptsReservations": "True",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.6",
+      "bestRating": "5",
+      "ratingCount": "607"
+    },
+    "sameAs": [
+      "https://rioalto.ca/",
+      "https://www.facebook.com/RioAltoHighRiver/"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "118 3 Ave SW",
+      "addressLocality": "High River",
+      "addressRegion": "AB",
+      "postalCode": "T1V 1R3",
+      "addressCountry": "CA"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 50.5803088,
+      "longitude": -113.8732897
+    },
+    "servesCuisine": ["Mexican", "Latin American"],
+    "priceRange": "$$",
+    "openingHoursSpecification": [
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday"],"opens":"11:00","closes":"20:00"},
+      {"@type":"OpeningHoursSpecification","dayOfWeek":["Thursday","Friday","Saturday"],"opens":"11:00","closes":"21:00"}
+    ]
+  }
+  </script>
+  {% endif %}
+  
+  {% if needs_fancybox %}
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
+  {% endif %}
+  <script src="/assets/vendor/gsap.min.js" defer></script>
+  <script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="/assets/vendor/lenis.min.js" defer></script>
+  <script src="/assets/js/script.js" defer></script>
+  {% if extra_js %}<script src="{{ extra_js }}" defer></script>{% endif %}
+</head>
+<body class="{{ body_class | default('') }}">
+  <!-- Mobile: tricolor scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+
+  {% include "header.njk" %}
+  
+  {{ content | safe }}
+
+  {% include "footer.njk" %}
+  
+  <!-- Mobile quick-action dock -->
+  <nav class="mobile-dock" id="mobileDock" aria-label="Quick actions">
+    <a href="tel:+14036521261">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+      </svg>
+      <span>Call</span>
+    </a>
+    <a href="/menu.html" {% if page.url == '/menu.html' %}class="is-current"{% endif %}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+        <path d="M7 2v20"/>
+        <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+      </svg>
+      <span>Menu</span>
+    </a>
+    <a href="/gallery.html" {% if page.url == '/gallery.html' %}class="is-current"{% endif %}>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      <span>Gallery</span>
+    </a>
+    <a href="https://maps.google.com/?q=118+3+Ave+SW,+High+River,+AB+T1V+1R3" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span>Map</span>
+    </a>
+  </nav>
+
+  <!-- Scroll to Top FAB (Mobile focus) -->
+  <button id="scrollToTopFb" class="scroll-to-top" aria-label="Scroll to top">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 19V5M5 12l7-7 7 7"/>
+    </svg>
+  </button>
+
+  {% if extra_footer_js %}
+  {{ extra_footer_js | safe }}
+  {% endif %}
+</body>
+</html>

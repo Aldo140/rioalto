@@ -9,7 +9,7 @@ set -euo pipefail
 SEEK=${1:-3}
 shift || true
 
-OUTDIR="pictures/gallery"
+OUTDIR="src/pictures/gallery"
 
 if [ $# -gt 0 ]; then
   FILES=("$@")
