@@ -35,7 +35,8 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Karla:ital,wght@0,300..800;1,300..800&family=Caveat:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Karla:ital,wght@0,300..800;1,300..800&family=Caveat:wght@500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Karla:ital,wght@0,300..800;1,300..800&family=Caveat:wght@500;600&display=swap" rel="stylesheet" /></noscript>
 
   {% if needs_fancybox %}
   <!-- Fancybox CSS for Premium Gallery Views -->
@@ -51,7 +52,7 @@
   <link rel="stylesheet" href="/assets/css/styles.css" />
   {% if extra_css %}<link rel="stylesheet" href="{{ extra_css }}" />{% endif %}
   <link rel="icon" type="image/png" href="/pictures/favicon-logo.png" sizes="any" />
-  <link rel="apple-touch-icon" href="/pictures/favicon-logo.png" />
+  <link rel="apple-touch-icon" href="/pictures/apple-touch-icon.png" />
   
   {% if page.url == '/' or page.fileSlug == '' %}
   <script type="application/ld+json">

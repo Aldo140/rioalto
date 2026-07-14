@@ -1,7 +1,19 @@
+const fs = require("fs");
+const path = require("path");
+
 module.exports = function(eleventyConfig) {
   // Pass through files that shouldn't be processed by Eleventy
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("src/pictures");
+
+  // Copy everything in src/pictures except unused reference/archive material
+  // that shouldn't ship to production (adds ~220MB of dead weight otherwise).
+  const EXCLUDED_PICTURES = new Set(["archive", "faviconlogo.png", "media_manifest.txt"]);
+  const picturesDir = path.join(__dirname, "src/pictures");
+  for (const entry of fs.readdirSync(picturesDir)) {
+    if (EXCLUDED_PICTURES.has(entry)) continue;
+    eleventyConfig.addPassthroughCopy({ [`src/pictures/${entry}`]: `pictures/${entry}` });
+  }
+
   eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("src/sitemap.xml");
   eleventyConfig.addPassthroughCopy("src/CNAME");
