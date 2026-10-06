@@ -1839,6 +1839,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-credit strong { color: rgba(255, 249, 238, 0.85); font-weight: 700; }
+a.footer-credit { text-decoration: none; transition: color 0.2s ease; }
+a.footer-credit:hover strong { color: var(--terracotta); }
 
 .site-footer::before {
   content: '';
